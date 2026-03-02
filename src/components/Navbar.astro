@@ -10,8 +10,16 @@ import Button from './ui/Button.astro';
   <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
     
     <a href="/" class="flex items-center group cursor-pointer z-50 relative">
-      <img alt="Binizam Logo" class="h-8 w-auto dark:hidden transition-transform duration-300 group-hover:scale-105 mix-blend-multiply opacity-90 object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3156fc13-cd5d-4111-80dc-8c8c86c65bd0_320w.png"/>
-      <img alt="Binizam Logo" class="hidden dark:block transition-transform duration-300 group-hover:scale-105 cursor-pointer opacity-90 mix-blend-screen w-auto h-8 object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4836fc53-0bb6-4b39-b7b3-e11f18b8addd_320w.png"/>
+      <img 
+        alt="Binizam Logo" 
+        class="h-7 w-auto block dark:hidden transition-transform duration-300 group-hover:scale-105" 
+        src="/logo-light.svg"
+      />
+      <img 
+        alt="Binizam Logo" 
+        class="h-7 w-auto hidden dark:block transition-transform duration-300 group-hover:scale-105" 
+        src="/logo-dark.svg"
+      />
     </a>
 
     <nav class="hidden md:flex items-center gap-8 relative z-50">
