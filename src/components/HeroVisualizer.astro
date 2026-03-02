@@ -1,0 +1,129 @@
+---
+// src/components/HeroVisualizer.astro
+---
+
+<div class="relative w-full h-[540px] flex items-center justify-center select-none perspective-[1000px] order-1 lg:order-2 reveal delay-200">
+  <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible" preserveAspectRatio="none" viewBox="0 0 600 540">
+    <defs>
+      <filter height="140%" id="glow" width="140%" x="-20%" y="-20%">
+        <feGaussianBlur result="blur" stdDeviation="2"></feGaussianBlur>
+        <feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite>
+      </filter>
+    </defs>
+    <path class="dark:stroke-white/10" d="M140,60 C220,60 220,270 300,270" fill="none" id="path1" stroke="rgba(87,83,78,0.1)" stroke-width="1"></path>
+    <path class="dark:stroke-white/10" d="M140,180 C220,180 220,270 300,270" fill="none" id="path2" stroke="rgba(87,83,78,0.1)" stroke-width="1"></path>
+    <path class="dark:stroke-white/10" d="M140,360 C220,360 220,270 300,270" fill="none" id="path3" stroke="rgba(87,83,78,0.1)" stroke-width="1"></path>
+    <path class="dark:stroke-white/10" d="M140,480 C220,480 220,270 300,270" fill="none" id="path4" stroke="rgba(87,83,78,0.1)" stroke-width="1"></path>
+    <path class="dark:stroke-white/10" d="M300,270 C380,270 380,190 460,190" fill="none" id="pathOut1" stroke="rgba(87,83,78,0.1)" stroke-width="1"></path>
+    <path class="dark:stroke-white/10" d="M300,270 C380,270 380,270 460,270" fill="none" id="pathOut2" stroke="rgba(87,83,78,0.1)" stroke-width="1"></path>
+    <path class="dark:stroke-white/10" d="M300,270 C380,270 380,350 460,350" fill="none" id="pathOut3" stroke="rgba(87,83,78,0.1)" stroke-width="1"></path>
+    <circle fill="#D97706" filter="url(#glow)" r="3">
+      <animateMotion begin="0s" dur="3s" repeatCount="indefinite"><mpath href="#path1"></mpath></animateMotion>
+      <animate attributeName="opacity" dur="3s" repeatCount="indefinite" values="0;1;1;0"></animate>
+    </circle>
+    <circle fill="#D97706" filter="url(#glow)" r="3">
+      <animateMotion begin="1s" dur="4.5s" repeatCount="indefinite"><mpath href="#path2"></mpath></animateMotion>
+      <animate attributeName="opacity" dur="4.5s" repeatCount="indefinite" values="0;1;1;0"></animate>
+    </circle>
+    <circle fill="#D97706" filter="url(#glow)" r="3">
+      <animateMotion begin="2s" dur="3.8s" repeatCount="indefinite"><mpath href="#path3"></mpath></animateMotion>
+      <animate attributeName="opacity" dur="3.8s" repeatCount="indefinite" values="0;1;1;0"></animate>
+    </circle>
+    <circle fill="#D97706" filter="url(#glow)" r="3">
+      <animateMotion begin="0.5s" dur="5s" repeatCount="indefinite"><mpath href="#path4"></mpath></animateMotion>
+      <animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;1;1;0"></animate>
+    </circle>
+    <circle class="dark:fill-emerald-400" fill="#10B981" r="2">
+      <animateMotion begin="1.5s" calcMode="linear" dur="3s" keyPoints="0;1" keyTimes="0;1" repeatCount="indefinite"><mpath href="#pathOut1"></mpath></animateMotion>
+      <animate attributeName="opacity" dur="3s" repeatCount="indefinite" values="0;1;0"></animate>
+    </circle>
+    <circle class="dark:fill-emerald-400" fill="#10B981" r="2">
+      <animateMotion begin="2s" calcMode="linear" dur="3s" keyPoints="0;1" keyTimes="0;1" repeatCount="indefinite"><mpath href="#pathOut2"></mpath></animateMotion>
+      <animate attributeName="opacity" dur="3s" repeatCount="indefinite" values="0;1;0"></animate>
+    </circle>
+    <circle class="dark:fill-emerald-400" fill="#10B981" r="2">
+      <animateMotion begin="2.5s" calcMode="linear" dur="3s" keyPoints="0;1" keyTimes="0;1" repeatCount="indefinite"><mpath href="#pathOut3"></mpath></animateMotion>
+      <animate attributeName="opacity" dur="3s" repeatCount="indefinite" values="0;1;0"></animate>
+    </circle>
+  </svg>
+  <div class="relative w-full h-full flex justify-between items-center z-10 gap-4">
+    <div class="flex flex-col h-full justify-between py-8 w-1/3 relative items-end pr-14">
+      <div class="node-card flex bg-white/60 dark:bg-stone-900/40 border-stone-200 dark:border-white/10 bg-gradient-to-t from-white/40 to-white/90 dark:from-zinc-400/5 dark:to-zinc-600/50 w-fit border rounded-lg pt-2 pr-3 pb-2 pl-3 shadow-lg backdrop-blur-md gap-x-2 gap-y-2 items-center">
+        <div class="w-6 h-6 rounded bg-stone-100 dark:bg-stone-700 flex items-center justify-center text-stone-600 dark:text-stone-400">
+          <iconify-icon icon="solar:server-square-linear" stroke-width="1.5" width="14"></iconify-icon>
+        </div>
+        <span class="text-xs font-medium text-stone-600 dark:text-stone-300 tracking-wide scale-90 origin-left">ERP</span>
+      </div>
+      <div class="node-card flex bg-white/60 dark:bg-stone-900/40 border-stone-200 dark:border-white/10 bg-gradient-to-t from-white/40 to-white/90 dark:from-zinc-400/5 dark:to-zinc-600/40 w-fit border rounded-lg pt-2 pr-3 pb-2 pl-3 shadow-lg backdrop-blur-md gap-x-2 gap-y-2 items-center">
+        <div class="w-6 h-6 rounded bg-stone-100 dark:bg-stone-700 flex items-center justify-center text-stone-600 dark:text-stone-400">
+          <iconify-icon icon="solar:card-transfer-linear" stroke-width="1.5" width="14"></iconify-icon>
+        </div>
+        <span class="text-xs font-medium text-stone-600 dark:text-stone-300 tracking-wide scale-90 origin-left">Bank Files</span>
+      </div>
+      <div class="node-card flex gap-2 bg-white/60 dark:bg-stone-900/40 border-stone-200 dark:border-white/10 bg-gradient-to-t from-white/40 to-white/90 dark:from-zinc-400/5 dark:to-zinc-600/40 w-fit border rounded-lg px-3 py-2 shadow-lg backdrop-blur-md gap-x-2 gap-y-2 items-center">
+        <div class="w-6 h-6 rounded bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+          <iconify-icon icon="solar:file-text-linear" stroke-width="1.5" width="14"></iconify-icon>
+        </div>
+        <span class="text-xs font-medium text-stone-600 dark:text-stone-300 tracking-wide scale-90 origin-left">Sheets</span>
+      </div>
+      <div class="node-card flex bg-white/60 dark:bg-stone-900/40 border-stone-200 dark:border-white/10 bg-gradient-to-t from-white/40 to-white/90 dark:from-zinc-400/5 dark:to-zinc-600/40 w-fit border rounded-lg px-3 py-2 shadow-lg backdrop-blur-md gap-x-2 gap-y-2 items-center">
+        <div class="w-6 h-6 rounded bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+          <iconify-icon icon="solar:letter-linear" stroke-width="1.5" width="14"></iconify-icon>
+        </div>
+        <span class="text-xs font-medium text-stone-600 dark:text-stone-300 tracking-wide scale-90 origin-left">Inbox</span>
+      </div>
+    </div>
+    <div class="relative z-20 flex-shrink-0 mx-auto">
+      <div class="absolute inset-0 bg-amber-500/10 dark:bg-amber-500/20 blur-2xl rounded-full"></div>
+      <div class="engine-active relative bg-surface/80 dark:bg-[#151312]/90 backdrop-blur-xl border border-stone-200 dark:border-stone-700 rounded-xl p-5 shadow-2xl w-[180px] flex flex-col items-center text-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-100 to-white dark:from-stone-800 dark:to-stone-700 flex items-center justify-center text-amber-600 shadow-inner border border-amber-100 dark:border-stone-600">
+          <iconify-icon icon="solar:layers-minimalistic-bold" stroke-width="1.5" width="20"></iconify-icon>
+        </div>
+        <h3 class="text-xs font-semibold text-primary dark:text-stone-100 uppercase tracking-widest leading-tight">
+          Controlled<br/>Workflow<br/>Layer
+        </h3>
+        <div class="w-full h-px bg-stone-200 dark:bg-stone-700 my-1"></div>
+        <div class="flex flex-col gap-1.5 w-full">
+          <div class="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400 font-mono scale-90 origin-center">
+            <span>Queues</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+          </div>
+          <div class="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400 font-mono scale-90 origin-center">
+            <span>Approvals</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" style="animation-delay: 0.3s"></span>
+          </div>
+          <div class="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400 font-mono scale-90 origin-center">
+            <span>Exceptions</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" style="animation-delay: 0.7s"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col justify-center gap-6 w-1/3 items-start pl-14">
+      <div class="node-card w-40 bg-white/30 dark:bg-stone-900/40 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-lg rounded-lg p-3 flex flex-col gap-1 relative overflow-hidden group">
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500 group-hover:bg-amber-400 transition-colors"></div>
+        <div class="flex items-center gap-2">
+          <iconify-icon class="text-stone-400 dark:text-stone-500" icon="solar:list-check-linear" stroke-width="1.5" width="14"></iconify-icon>
+          <span class="text-xs font-medium text-primary dark:text-stone-200">Worklists</span>
+        </div>
+        <div class="h-1 w-12 bg-stone-100 dark:bg-stone-800 rounded-full mt-1"></div>
+      </div>
+      <div class="node-card w-40 bg-white/30 dark:bg-stone-900/40 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-lg rounded-lg p-3 flex flex-col gap-1 relative overflow-hidden group">
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-green-500 group-hover:bg-green-400 transition-colors"></div>
+        <div class="flex items-center gap-2">
+          <iconify-icon class="text-stone-400 dark:text-stone-500" icon="solar:shield-check-linear" stroke-width="1.5" width="14"></iconify-icon>
+          <span class="text-xs font-medium text-primary dark:text-stone-200">Reconciliation</span>
+        </div>
+        <div class="h-1 w-16 bg-stone-100 dark:bg-stone-800 rounded-full mt-1"></div>
+      </div>
+      <div class="node-card w-40 bg-white/30 dark:bg-stone-900/40 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-lg rounded-lg p-3 flex flex-col gap-1 relative overflow-hidden group">
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 group-hover:bg-blue-400 transition-colors"></div>
+        <div class="flex items-center gap-2">
+          <iconify-icon class="text-stone-400 dark:text-stone-500" icon="solar:chart-2-linear" stroke-width="1.5" width="14"></iconify-icon>
+          <span class="text-xs font-medium text-primary dark:text-stone-200">Reporting</span>
+        </div>
+        <div class="h-1 w-10 bg-stone-100 dark:bg-stone-800 rounded-full mt-1"></div>
+      </div>
+    </div>
+  </div>
+</div>

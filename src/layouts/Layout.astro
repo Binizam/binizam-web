@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { 
+  title, 
+  description = "Internal workflow systems: operational UIs, controlled automation, integrations, reconciliation, and workflow reporting you can trust." 
+} = Astro.props;
+
+// Determine if we are in a Vercel preview environment to prevent indexing
+const isPreview = import.meta.env.VERCEL_ENV === 'preview';
+---
+
+<!doctype html>
+<html class="scroll-smooth antialiased overflow-x-hidden" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <title>{title}</title>
+        
+        {isPreview && <meta name="robots" content="noindex, nofollow" />}
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        
+        <script is:inline src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+        <script is:inline>
+            const theme = localStorage.getItem("theme") || 
+                         (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            if (theme === "dark") document.documentElement.classList.add("dark");
+            else document.documentElement.classList.remove("dark");
+        </script>
+    </head>
+    <body class="font-sans text-primary bg-main dark:bg-[#1C1917] dark:text-stone-100 transition-colors duration-500 relative selection:bg-amber-500 selection:text-white flex flex-col min-h-screen overflow-x-hidden">
+        
+        <div class="fixed inset-0 pointer-events-none z-0">
+            <div class="absolute inset-0 bg-main dark:bg-[#1C1917] transition-colors duration-500"></div>
+            <div class="absolute inset-0 bg-grid opacity-70 dark:opacity-50"></div>
+        </div>
+
+        <slot />
+
+        <script>
+            function initScrollReveal() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            requestAnimationFrame(() => {
+                                entry.target.classList.add("active");
+                            });
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { 
+                    root: null, 
+                    rootMargin: "0px 0px -50px 0px", // Trigger slightly before it hits the bottom
+                    threshold: 0.1 
+                });
+
+                document.querySelectorAll(".reveal, .reveal-right").forEach((el) => {
+                    observer.observe(el);
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', initScrollReveal);
+            document.addEventListener('astro:page-load', initScrollReveal);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  icon?: string;
+  dotColor?: 'amber' | 'red' | 'primary';
+  delay?: string;
+  class?: string; 
+}
+
+const { icon, dotColor, delay = "", class: className = "" } = Astro.props;
+
+const dotClasses = {
+  amber: "bg-amber-600",
+  red: "bg-red-500/40",
+  primary: "bg-primary/40 dark:bg-stone-600",
+};
+---
+
+<div class={`flex items-start gap-3 reveal ${delay} ${className}`}>
+  {icon ? (
+    <iconify-icon class="text-amber-600 mt-1 flex-shrink-0" icon={icon} stroke-width="1.5" width="20"></iconify-icon>
+  ) : (
+    <div class={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${dotClasses[dotColor || 'primary']}`}></div>
+  )}
+  <span class="text-stone-600 dark:text-stone-400 leading-relaxed text-sm">
+    <slot />
+  </span>
+</div>

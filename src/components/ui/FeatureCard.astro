@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  icon: string;
+  delay?: string; // e.g., "delay-100"
+}
+
+const { title, icon, delay = "" } = Astro.props;
+---
+
+<div class={`group p-8 rounded-xl bg-white dark:bg-stone-900 border border-primary/10 dark:border-stone-800 hover:border-amber-600/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 reveal ${delay}`}>
+  <div class="w-10 h-10 mb-6 rounded bg-surface dark:bg-stone-800 flex items-center justify-center text-amber-600">
+    <iconify-icon icon={icon} stroke-width="1.5" width="22"></iconify-icon>
+  </div>
+  <h3 class="text-lg font-semibold mb-3 text-primary dark:text-stone-50">{title}</h3>
+  <div class="text-stone-500 dark:text-stone-400 text-sm leading-relaxed flex flex-col h-full">
+    <slot />
+  </div>
+</div>
