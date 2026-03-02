@@ -1,0 +1,30 @@
+---
+interface Props {
+  title?: string;
+  links: { text: string; href: string }[];
+}
+const { title = "Have a workflow in mind?", links } = Astro.props;
+---
+<section class="max-w-6xl mx-auto px-6 mb-8 reveal">
+  <div class="pt-10 border-t border-stone-200 dark:border-stone-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-8">
+    <div>
+      <h2 class="text-xl font-semibold text-primary dark:text-stone-50 mb-2">
+        {title}
+      </h2>
+      <div class="flex flex-wrap items-center gap-x-2 text-sm text-stone-500 justify-center md:justify-start mt-2 md:mt-0">
+        <span class="opacity-70">Also useful:</span>
+        {links.map((link, index) => (
+          <>
+            <a href={link.href} class="text-stone-700 dark:text-stone-300 hover:text-amber-600 transition-colors">
+              {link.text}
+            </a>
+            {index < links.length - 1 && <span class="text-stone-300 dark:text-stone-700">·</span>}
+          </>
+        ))}
+      </div>
+    </div>
+    <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-amber-600 hover:bg-amber-700 rounded-lg transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap">
+      Talk to an engineer
+    </a>
+  </div>
+</section>

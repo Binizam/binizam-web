@@ -1,58 +1,106 @@
 ---
+import Button from './ui/Button.astro';
 ---
-<header class="fixed top-0 w-full z-40 transition-all duration-300 ease-in-out" id="navbar">
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between relative">
+
+<header 
+  id="navbar" 
+  data-scrolled="false"
+  class="fixed top-0 w-full z-40 transition-all duration-300 border-b border-transparent data-[scrolled=true]:bg-[#FFFCF5]/85 data-[scrolled=true]:dark:bg-[#1C1917]/85 data-[scrolled=true]:backdrop-blur-md data-[scrolled=true]:border-stone-800/10 data-[scrolled=true]:dark:border-white/10 data-[scrolled=true]:shadow-sm"
+>
+  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
     
-    <a class="block z-20 group" href="/">
+    <a href="/" class="flex items-center group cursor-pointer z-50 relative">
       <img alt="Binizam Logo" class="h-8 w-auto dark:hidden transition-transform duration-300 group-hover:scale-105 mix-blend-multiply opacity-90 object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3156fc13-cd5d-4111-80dc-8c8c86c65bd0_320w.png"/>
       <img alt="Binizam Logo" class="hidden dark:block transition-transform duration-300 group-hover:scale-105 cursor-pointer opacity-90 mix-blend-screen w-auto h-8 object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4836fc53-0bb6-4b39-b7b3-e11f18b8addd_320w.png"/>
     </a>
-    
-    <nav class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-8 text-sm font-medium text-stone-600 dark:text-stone-400">
-      <a class="hover:text-amber-600 transition-colors" href="/capabilities">Capabilities</a>
-      <a class="hover:text-amber-600 transition-colors" href="/ar-automation">AR Automation</a>
-      <a class="hover:text-amber-600 transition-colors" href="/security">Security</a>
-      <a class="hover:text-amber-600 transition-colors" href="/how-we-work">How we work</a>
+
+    <nav class="hidden md:flex items-center gap-8 relative z-50">
+      <a href="/capabilities" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Capabilities</a>
+      <a href="/ar-automation" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">AR Automation</a>
+      <a href="/security" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Security</a>
+      <a href="/how-we-work" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">How we work</a>
     </nav>
-    
-    <div class="flex items-center gap-4 z-20">
-      <button aria-label="Toggle Dark Mode" class="p-2 rounded-full text-stone-500 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-white/10 transition-colors" id="theme-toggle">
-        <iconify-icon class="hidden dark:block" height="20" icon="solar:sun-linear" stroke-width="1.5" style="color: rgb(168, 162, 158);" width="20"></iconify-icon>
-        <iconify-icon class="block dark:hidden" icon="solar:moon-linear" stroke-width="1.5" width="20"></iconify-icon>
+
+    <div class="flex items-center gap-5 relative z-50">
+      
+      <button 
+        id="theme-toggle" 
+        type="button" 
+        aria-label="Toggle dark mode" 
+        class="text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 rounded-full flex items-center justify-center w-9 h-9 border border-stone-300 dark:border-stone-600 transition-colors cursor-pointer"
+      >
+        <iconify-icon id="theme-toggle-dark-icon" class="hidden" icon="solar:moon-linear" width="18"></iconify-icon>
+        <iconify-icon id="theme-toggle-light-icon" class="hidden" icon="solar:sun-linear" width="18"></iconify-icon>
       </button>
-      <a class="hidden md:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold text-white bg-amber-600 hover:bg-amber-700 rounded-lg transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5" href="/contact">
-        Talk to an engineer
-      </a>
+      
+      <div class="hidden sm:block">
+         <Button href="/contact" variant="primary">Talk to an engineer</Button>
+      </div>
+
     </div>
   </div>
 </header>
 
-<script is:inline>
-  // Dark Mode Toggle Logic
-  const themeToggle = document.getElementById("theme-toggle");
-  const html = document.documentElement;
-
-  function updateTheme(isDark) {
-    if (isDark) {
-      html.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      html.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+<script>
+  // 1. Data-Attribute Scroll Logic
+  function updateNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      navbar.dataset.scrolled = window.scrollY > 20 ? 'true' : 'false';
     }
   }
 
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      updateTheme(!html.classList.contains("dark"));
+  // 2. Theme Toggle Logic
+  function setupThemeToggle() {
+    const btn = document.getElementById('theme-toggle');
+    
+    // Safety check: Stop if button is missing OR if we already attached the listener
+    if (!btn || btn.dataset.listenerAttached === 'true') return;
+    
+    // Mark it as attached so we don't double-bind it
+    btn.dataset.listenerAttached = 'true';
+
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+    // Sync icons with initial load state
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      lightIcon?.classList.remove('hidden'); 
+      darkIcon?.classList.add('hidden');     
+    } else {
+      darkIcon?.classList.remove('hidden');  
+      lightIcon?.classList.add('hidden');    
+    }
+
+    // Handle the actual click event
+    btn.addEventListener('click', () => {
+      const isCurrentlyDark = document.documentElement.classList.contains('dark');
+      
+      if (isCurrentlyDark) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        lightIcon?.classList.add('hidden');    // Hide Sun
+        darkIcon?.classList.remove('hidden');  // Show Moon
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        darkIcon?.classList.add('hidden');     // Hide Moon
+        lightIcon?.classList.remove('hidden'); // Show Sun
+      }
     });
   }
 
-  // Navbar Blur on Scroll
-  const navbar = document.getElementById("navbar");
-  if (navbar) {
-    window.addEventListener("scroll", () => {
-      navbar.classList.toggle("nav-scrolled", window.scrollY > 20);
-    });
-  }
+  // Run on load and scroll
+  window.addEventListener('scroll', updateNavbarScroll, { passive: true });
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    updateNavbarScroll();
+    setupThemeToggle();
+  });
+  
+  document.addEventListener('astro:page-load', () => {
+    updateNavbarScroll();
+    setupThemeToggle();
+  });
 </script>

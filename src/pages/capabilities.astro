@@ -1,0 +1,199 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import BentoCard from '../components/ui/BentoCard.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageBottomCTA from '../components/ui/PageBottomCTA.astro';
+---
+
+<Layout title="Capabilities | Binizam">
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-24">
+    
+    <PageHeader 
+      title="Capabilities" 
+      description="A scannable map of what we deliver—so you can confirm fit quickly or forward it internally." 
+    />
+
+    <section class="max-w-6xl mx-auto px-6 mb-24 reveal delay-100">
+      <div class="bg-surface/50 dark:bg-stone-900/50 rounded-xl p-8 md:p-10 border border-stone-200 dark:border-stone-800">
+        <div class="space-y-6 text-lg text-primary dark:text-stone-300 leading-relaxed max-w-3xl">
+          <p>
+            We deliver internal workflow systems that coordinate people +
+            systems: operational queues, approvals, automation,
+            integrations, reconciliation, and reporting you can trust.
+          </p>
+          <p>
+            Retool-first for internal operator UIs, with integrations and
+            workflow state anchored in your stack.
+          </p>
+          <p class="text-base text-stone-600 dark:text-stone-500">
+            For a concrete example, see
+            <a href="/ar-automation" class="text-amber-600 hover:text-amber-700 font-medium transition-colors">AR Collections Automation</a>. 
+            For posture, see
+            <a href="/security" class="text-amber-600 hover:text-amber-700 font-medium transition-colors">Security</a>. 
+            For delivery, see
+            <a href="/how-we-work" class="text-amber-600 hover:text-amber-700 font-medium transition-colors">How we work</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-10 reveal">
+        What we deliver
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        
+        <BentoCard title="Worklists and operational UIs (Retool-first)" icon="solar:list-check-linear" delay="delay-100">
+          <ul class="space-y-3.5 pl-1">
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Prioritized queues and case views with clear next actions</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Manager exception dashboards and approval views</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Admin tools for controlled changes (roles, rules, templates)</span>
+            </li>
+          </ul>
+        </BentoCard>
+
+        <BentoCard title="Controlled automation" icon="solar:bolt-linear" delay="delay-200">
+          <ul class="space-y-3.5 pl-1">
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Approvals for sensitive outcomes</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Reminders and escalation paths with accountability</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Scheduled jobs for routine operations (syncs, checks, notifications)</span>
+            </li>
+          </ul>
+        </BentoCard>
+
+        <BentoCard title="Integrations + reconciliation" icon="solar:link-circle-linear" delay="delay-100">
+          <ul class="space-y-3.5 pl-1">
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>APIs, webhooks, and scheduled syncs to connect your systems</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Reconciliation checks to detect drift (“expected vs actual”)</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Exception routing with clear resolution steps and ownership</span>
+            </li>
+          </ul>
+        </BentoCard>
+
+        <BentoCard title="Workflow state + reporting you can trust" icon="solar:chart-2-linear" delay="delay-200">
+          <ul class="space-y-3.5 pl-1">
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Durable workflow state tied to real events (not spreadsheets)</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Operational reporting and metrics based on workflow actions</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>Audit trails for key decisions, changes, and overrides</span>
+            </li>
+          </ul>
+        </BentoCard>
+
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24 reveal">
+      <div class="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-8 border-l-4 border-l-amber-600/80 shadow-sm">
+        <div class="grid md:grid-cols-12 gap-8">
+          <div class="md:col-span-4">
+            <h2 class="text-xl font-semibold tracking-tight text-primary dark:text-stone-50 flex items-center gap-3">
+              <iconify-icon icon="solar:stars-minimalistic-linear" class="text-amber-600"></iconify-icon>
+              AI in workflows (controlled)
+            </h2>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-lg text-stone-600 dark:text-stone-300 mb-6 leading-relaxed">
+              We add AI only when it can be governed:
+            </p>
+            <div class="grid sm:grid-cols-3 gap-4 mb-6">
+              <div class="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-400 bg-surface dark:bg-stone-800/50 px-3 py-2 rounded-md border border-stone-100 dark:border-stone-800">
+                <iconify-icon icon="solar:check-circle-linear" class="text-amber-600"></iconify-icon>
+                Scoped inputs and outputs
+              </div>
+              <div class="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-400 bg-surface dark:bg-stone-800/50 px-3 py-2 rounded-md border border-stone-100 dark:border-stone-800">
+                <iconify-icon icon="solar:check-circle-linear" class="text-amber-600"></iconify-icon>
+                Evaluation and monitoring
+              </div>
+              <div class="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-400 bg-surface dark:bg-stone-800/50 px-3 py-2 rounded-md border border-stone-100 dark:border-stone-800">
+                <iconify-icon icon="solar:check-circle-linear" class="text-amber-600"></iconify-icon>
+                Human approvals
+              </div>
+            </div>
+            <p class="text-sm font-medium text-primary dark:text-stone-200 border-t border-stone-100 dark:border-stone-800 pt-4">
+              Control is a requirement—AI is used only with guardrails,
+              evaluation, monitoring, and approvals where needed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24 reveal">
+      <div class="rounded-xl border border-stone-300 dark:border-stone-700 p-8">
+        <div class="grid md:grid-cols-12 gap-8 items-start">
+          <div class="md:col-span-4">
+            <h2 class="text-xl font-semibold tracking-tight text-primary dark:text-stone-50">
+              Boundaries
+            </h2>
+          </div>
+          <div class="md:col-span-8">
+            <ul class="space-y-4">
+              <li class="flex items-center gap-4 text-stone-600 dark:text-stone-300">
+                <div class="w-1.5 h-1.5 rounded-full bg-stone-400 flex-shrink-0"></div>
+                <span>Not an ERP replacement</span>
+              </li>
+              <li class="flex items-center gap-4 text-stone-600 dark:text-stone-300">
+                <div class="w-1.5 h-1.5 rounded-full bg-stone-400 flex-shrink-0"></div>
+                <span>Not a payments provider</span>
+              </li>
+              <li class="flex items-start gap-4 text-stone-600 dark:text-stone-300">
+                <div class="mt-2 w-1.5 h-1.5 rounded-full bg-stone-400 flex-shrink-0"></div>
+                <span>
+                  When an ERP is involved, we add a controlled, auditable
+                  workflow layer on top of your ERP.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <PageBottomCTA 
+      links={[
+        { text: "How we work", href: "/how-we-work" },
+        { text: "Security", href: "/security" },
+        { text: "AR Collections Automation", href: "/ar-automation" }
+      ]}
+    />
+
+  </main>
+
+  <Footer />
+</Layout>
