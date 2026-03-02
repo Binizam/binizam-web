@@ -1,0 +1,30 @@
+---
+const steps = [
+  { title: "One prioritized worklist", text: "Focus on either collector logic or a single reconciliation stream." },
+  { title: "Small set of actions", text: "Limit next actions and reason codes to the most critical paths." },
+  { title: "One approval path", text: "Route sensitive outcomes through a single, defined management review." },
+  { title: "Minimal integrations", text: "Only sync the required state fields with your ERP to keep it clean." },
+  { title: "Audit + reporting", text: "Deliver basic operational reporting and a rigid, uneditable audit log." }
+];
+---
+<section id="first-version-scope" class="max-w-6xl mx-auto px-6 mb-32 reveal">
+  <div class="mb-12 text-center md:text-left">
+    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight text-primary dark:text-stone-50">First version scope (Safe V1)</h2>
+  </div>
+  <div class="relative mt-8">
+    <div class="hidden md:block absolute top-4 left-4 right-4 h-[1px] bg-stone-200 dark:bg-stone-800 z-0"></div>
+    <div class="md:hidden absolute left-[15px] top-4 bottom-4 w-[1px] bg-stone-200 dark:bg-stone-800 z-0"></div>
+
+    <div class="flex flex-col md:flex-row gap-8 md:gap-4 relative z-10">
+      {steps.map((step, index) => (
+        <div class="flex flex-row md:flex-col items-start gap-4 md:gap-5 group flex-1">
+          <div class="w-8 h-8 rounded-full bg-main dark:bg-stone-950 border border-stone-300 dark:border-stone-700 flex items-center justify-center text-xs font-semibold text-muted group-hover:border-amber-600 group-hover:text-amber-600 transition-colors shadow-sm shrink-0 z-10">{index + 1}</div>
+          <div>
+            <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-2">{step.title}</h3>
+            <p class="text-xs text-muted dark:text-stone-400 leading-relaxed">{step.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

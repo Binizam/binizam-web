@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+import Hero from '../components/ar-automation/Hero.astro';
+import FeaturesGrid from '../components/ar-automation/FeaturesGrid.astro';
+import SignsYouNeedThis from '../components/ar-automation/SignsYouNeedThis.astro';
+import WorkflowsAccordion from '../components/ar-automation/WorkflowsAccordion.astro';
+import SafeVersionStepper from '../components/ar-automation/SafeVersionStepper.astro';
+import FAQ from '../components/ar-automation/FAQ.astro';
+import FinalCTA from '../components/ar-automation/FinalCTA.astro';
+---
+
+<Layout title="AR Automation | Binizam">
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-16">
+    <Hero />
+    <FeaturesGrid />
+    <SignsYouNeedThis />
+    <WorkflowsAccordion />
+    <SafeVersionStepper />
+    <FAQ />
+    <FinalCTA />
+  </main>
+
+  <Footer />
+</Layout>

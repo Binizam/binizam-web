@@ -1,0 +1,32 @@
+---
+const painPoints = [
+  "Work lives across spreadsheets, inboxes, and scattered private notes.",
+  "Follow-ups depend on individual discipline, making team audits nearly impossible.",
+  "Disputes or Promises to Pay (PTPs) lose ownership or stall indefinitely.",
+  "Reconciliation issues surface late in the cycle, delaying reporting.",
+  "Reporting is fundamentally unreliable because workflow states aren't captured centrally."
+];
+---
+<section id="signs-you-need-this" class="max-w-6xl mx-auto px-6 mb-32 reveal">
+  <div class="bg-surface/30 dark:bg-stone-950 rounded-3xl p-8 md:p-12 border border-stone-200 dark:border-stone-800 shadow-sm relative overflow-hidden">
+    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-10 relative z-10">Signs you need this</h2>
+    <div class="grid md:grid-cols-2 gap-x-16 gap-y-6 mb-12 relative z-10">
+      {painPoints.map((point, i) => (
+        <div class={`flex gap-4 items-start group ${i === painPoints.length - 1 ? 'md:col-span-2' : ''}`}>
+          <div class="w-5 h-5 rounded flex items-center justify-center border border-amber-600/30 bg-amber-600/5 mt-0.5 shrink-0 group-hover:border-amber-600/60 transition-colors">
+            <iconify-icon icon="solar:close-square-linear" class="text-amber-600" width="14" stroke-width="1.5"></iconify-icon>
+          </div>
+          <span class="text-primary dark:text-stone-300 text-sm leading-relaxed">{point}</span>
+        </div>
+      ))}
+    </div>
+    <div class="bg-main dark:bg-stone-900/80 rounded-2xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left border border-stone-200 dark:border-stone-800 shadow-sm relative z-10">
+      <div class="text-sm text-muted dark:text-stone-300 leading-relaxed flex-1">
+        <strong class="font-semibold text-primary dark:text-stone-100">Quick fit check:</strong> 15–20 minutes with an engineer. Reply in 1–2 business days. We’ll recommend a first workflow slice after hearing your context.
+      </div>
+      <a href="/contact" class="inline-flex flex-shrink-0 items-center justify-center px-6 py-2.5 text-sm font-semibold text-main bg-primary dark:bg-stone-100 dark:text-primary hover:bg-stone-800 dark:hover:bg-white rounded-lg transition-all shadow-sm whitespace-nowrap">
+        Talk to an engineer
+      </a>
+    </div>
+  </div>
+</section>

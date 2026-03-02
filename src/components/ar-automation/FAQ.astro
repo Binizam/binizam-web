@@ -1,0 +1,21 @@
+---
+const faqs = [
+  { q: "Do you replace our ERP?", a: "No. When an ERP is involved, we add a controlled, auditable workflow layer on top of your ERP. We do not act as your system of record for ledgers." },
+  { q: "Are you a payments provider?", a: "No. We specialize exclusively in operational workflows and automation, leaving payment processing entirely to your dedicated gateways and banks." },
+  { q: "Can you include AI?", a: "Only where it’s governable (guardrails, evaluation, monitoring, approvals). If an automated decision cannot be cleanly audited and approved, we skip it." },
+  { q: "What systems can you integrate with?", a: "Typically ERPs, CRMs, bank files/APIs, and internal microservices. We keep integrations practical, reliable, and observable." }
+];
+---
+<section id="faq" class="max-w-3xl mx-auto px-6 mb-32 reveal">
+  <div class="space-y-1 border-t border-stone-200 dark:border-stone-800">
+    {faqs.map(faq => (
+      <details class="group border-b border-stone-200 dark:border-stone-800">
+        <summary class="flex items-center justify-between py-6 cursor-pointer outline-none hover:text-amber-600 transition-colors text-sm font-semibold text-primary dark:text-stone-100">
+          {faq.q}
+          <iconify-icon icon="solar:add-circle-linear" class="group-open:rotate-45 transition-transform text-muted group-hover:text-amber-600" width="18" stroke-width="1.5"></iconify-icon>
+        </summary>
+        <div class="pb-6 text-sm text-muted dark:text-stone-400 leading-relaxed pr-8">{faq.a}</div>
+      </details>
+    ))}
+  </div>
+</section>
