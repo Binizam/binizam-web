@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+import ContactHeader from '../components/contact/ContactHeader.astro';
+import ContactGrid from '../components/contact/ContactGrid.astro';
+---
+
+<Layout title="Contact | Binizam">
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-16">
+    <ContactHeader />
+    <ContactGrid />
+  </main>
+
+  <Footer />
+</Layout>
