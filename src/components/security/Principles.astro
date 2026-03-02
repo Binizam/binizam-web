@@ -1,0 +1,18 @@
+---
+const principles = [
+  { title: "Least privilege", text: "Roles are scoped to the workflow actions and data required—no broad access “just in case.”" },
+  { title: "Auditability", text: "Key actions are logged with who/what/when so outcomes stay traceable." },
+  { title: "Minimize data", text: "We store only what the workflow needs (state + minimal identifiers)." },
+  { title: "Encrypt", text: "Encryption in transit and at rest is a baseline." }
+];
+---
+<section class="max-w-4xl mx-auto px-6 mb-32 reveal">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {principles.map(item => (
+      <div class="p-6 rounded-2xl bg-main dark:bg-stone-950 border border-stone-200 dark:border-stone-800 shadow-sm hover:border-amber-600/40 transition-colors flex flex-col gap-2">
+        <h3 class="text-sm font-semibold text-primary dark:text-stone-100">{item.title}</h3>
+        <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">{item.text}</p>
+      </div>
+    ))}
+  </div>
+</section>
