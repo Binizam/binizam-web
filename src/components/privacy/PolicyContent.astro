@@ -1,0 +1,95 @@
+---
+const atAGlance = [
+  { label: "Collected", text: "Contact details + message content you submit" },
+  { label: "Used for", text: "Responding and scoping discussions" },
+  { label: "Shared", text: "Only with service providers that run our website and communications" },
+  { label: "Retained", text: "Only as long as reasonably needed" }
+];
+
+const collected = [
+  "Name, email, company (if provided)",
+  "Message content and any links you share"
+];
+
+const usedFor = [
+  "To respond to your inquiry",
+  "To understand scope and constraints",
+  "To communicate about potential project work"
+];
+---
+<section class="max-w-3xl mx-auto px-6 mb-32 reveal delay-100">
+
+  <div class="bg-surface/50 dark:bg-stone-950 rounded-2xl p-6 md:p-8 border border-stone-200 dark:border-stone-800 shadow-sm mb-16">
+    <h2 class="text-base font-semibold text-primary dark:text-stone-100 mb-6 uppercase tracking-wider">At a glance</h2>
+    
+    <ul class="space-y-4 mb-8">
+      {atAGlance.map(item => (
+        <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 text-sm">
+          <span class="font-medium text-stone-900 dark:text-stone-300 min-w-[100px]">{item.label}</span>
+          <span class="text-stone-600 dark:text-stone-400">{item.text}</span>
+        </li>
+      ))}
+      <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 text-sm pt-2">
+          <span class="font-medium text-stone-900 dark:text-stone-300 min-w-[100px]">Contact</span>
+          <a href="mailto:engineers@binizam.com" class="text-amber-600 hover:text-amber-700 transition-colors">engineers@binizam.com</a>
+      </li>
+    </ul>
+    
+    <div class="pt-6 border-t border-stone-200 dark:border-stone-800/60 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-medium text-stone-500">
+      <span class="opacity-70">Related:</span>
+      <a href="/contact" class="text-stone-700 dark:text-stone-300 hover:text-amber-600 transition-colors">Contact</a>
+      <span class="text-stone-300 dark:text-stone-700">·</span>
+      <a href="/security" class="text-stone-700 dark:text-stone-300 hover:text-amber-600 transition-colors">Security</a>
+    </div>
+  </div>
+
+  <div class="space-y-12">
+    
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold text-primary dark:text-stone-100">What we collect</h2>
+      <ul class="space-y-3">
+        {collected.map(item => (
+          <li class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-stone-300 dark:bg-stone-600 mt-2 flex-shrink-0"></div>
+            <span class="text-stone-600 dark:text-stone-300 text-sm leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold text-primary dark:text-stone-100">How we use it</h2>
+      <ul class="space-y-3">
+        {usedFor.map(item => (
+          <li class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-stone-300 dark:bg-stone-600 mt-2 flex-shrink-0"></div>
+            <span class="text-stone-600 dark:text-stone-300 text-sm leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold text-primary dark:text-stone-100">Retention</h2>
+      <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+        We keep inquiry data only as long as reasonably necessary. A practical default is up to 24 months for inactive conversations, then deletion/anonymization when feasible.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold text-primary dark:text-stone-100">Cookies and analytics</h2>
+      <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+        We may use basic analytics to understand traffic and improve the site. If enabled, it may use cookies or similar technologies. You can contact us to ask what’s active.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold text-primary dark:text-stone-100">Contact</h2>
+      <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+        Privacy questions: <a href="mailto:engineers@binizam.com" class="text-amber-600 hover:text-amber-700 transition-colors font-medium">engineers@binizam.com</a>
+      </p>
+    </div>
+
+  </div>
+
+</section>

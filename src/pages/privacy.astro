@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+import PrivacyHeader from '../components/privacy/PrivacyHeader.astro';
+import PolicyContent from '../components/privacy/PolicyContent.astro';
+---
+
+<Layout title="Privacy Policy | Binizam">
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-16">
+    <PrivacyHeader />
+    <PolicyContent />
+  </main>
+
+  <Footer />
+</Layout>
