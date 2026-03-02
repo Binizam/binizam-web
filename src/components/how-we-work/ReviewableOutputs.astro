@@ -1,0 +1,54 @@
+---
+const outputs = [
+  {
+    icon: "solar:reorder-linear",
+    title: "Workflow map",
+    desc: "Clear documentation of states, handoffs, and all identified exception paths.",
+    span: ""
+  },
+  {
+    icon: "solar:list-down-linear",
+    title: "Queue definition",
+    desc: "Specific priorities, filters, and standard next actions for every operator level.",
+    span: ""
+  },
+  {
+    icon: "solar:shield-check-linear",
+    title: "Approval points and audit events list",
+    desc: "A breakdown of sensitive actions and the audit log trail that tracks them.",
+    span: ""
+  },
+  {
+    icon: "solar:plug-connect-linear",
+    title: "Integration plan",
+    desc: "Architecture overview showing what systems connect and the reasoning for each link.",
+    span: ""
+  },
+  {
+    icon: "solar:documents-linear",
+    title: "Handover docs + runbook basics",
+    desc: "Operational guides and troubleshooting steps detailing \"what to check when something looks off\" to ensure long-term stability.",
+    span: "md:col-span-2"
+  }
+];
+---
+<section class="max-w-4xl mx-auto px-6 mb-32 reveal">
+  <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-10">
+    What you’ll get (reviewable outputs)
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {outputs.map(output => (
+      <div class={`p-6 rounded-2xl bg-main dark:bg-stone-950 border border-stone-200 dark:border-stone-800 shadow-sm hover:border-amber-600/40 transition-colors flex flex-col gap-3 group ${output.span}`}>
+        <div class="flex items-center gap-3">
+          <iconify-icon class="text-amber-600" icon={output.icon} stroke-width="1.5" width="20"></iconify-icon>
+          <h3 class="text-sm font-semibold text-primary dark:text-stone-100">
+            {output.title}
+          </h3>
+        </div>
+        <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">
+          {output.desc}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>

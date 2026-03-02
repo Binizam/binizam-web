@@ -1,0 +1,66 @@
+---
+const steps = [
+  {
+    number: "1",
+    title: "Discovery",
+    subtitle: "(clarify the workflow)",
+    items: [
+      "Map states, handoffs, and exceptions",
+      "Define “good” (success criteria you can verify)",
+      "Agree the first slice: one queue + one exception path"
+    ]
+  },
+  {
+    number: "2",
+    title: "Build",
+    subtitle: "(deliver the slice)",
+    items: [
+      "Implement the queue, actions, and required fields",
+      "Add approvals where outcomes are sensitive",
+      "Connect only what’s needed to keep workflow state consistent"
+    ]
+  },
+  {
+    number: "3",
+    title: "QA + handover",
+    subtitle: "(make it reliable)",
+    items: [
+      "Test real exceptions (missing data, overrides, duplicates)",
+      "Verify permissions and audit logging for key actions",
+      "Hand over with documentation and clear ownership"
+    ]
+  }
+];
+---
+<section class="max-w-6xl mx-auto px-6 mb-32 reveal border-t border-stone-200/50 dark:border-stone-800/50 pt-16">
+  <h2 class="text-2xl md:text-3xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-16 text-center">
+    The delivery model (simple)
+  </h2>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 relative">
+    <div class="hidden lg:block absolute top-6 left-[10%] right-[10%] h-px bg-stone-200 dark:bg-stone-800/50 z-0"></div>
+    
+    {steps.map(step => (
+      <div class="flex flex-col items-center lg:items-start gap-6 relative z-10">
+        <div class="w-12 h-12 rounded-full bg-surface dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-amber-600 font-semibold text-lg">
+          {step.number}
+        </div>
+        <div class="text-center lg:text-left">
+          <h3 class="text-lg font-semibold text-primary dark:text-stone-100 mb-1">
+            {step.title}
+          </h3>
+          <p class="text-xs text-muted dark:text-stone-500 mb-4 font-medium uppercase tracking-wider">
+            {step.subtitle}
+          </p>
+          <ul class="space-y-4 text-sm text-muted dark:text-stone-400">
+            {step.items.map(item => (
+              <li class="flex items-start gap-3 justify-center lg:justify-start">
+                <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0"></div>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

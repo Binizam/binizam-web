@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+import Hero from '../components/how-we-work/Hero.astro';
+import DeliveryModel from '../components/how-we-work/DeliveryModel.astro';
+import ReviewableOutputs from '../components/how-we-work/ReviewableOutputs.astro';
+import Checkpoints from '../components/how-we-work/Checkpoints.astro';
+import Hosting from '../components/how-we-work/Hosting.astro';
+import AccessRequirements from '../components/how-we-work/AccessRequirements.astro';
+import FinalCTA from '../components/how-we-work/FinalCTA.astro';
+---
+
+<Layout title="How we work | Binizam">
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-24">
+    <Hero />
+    <DeliveryModel />
+    <ReviewableOutputs />
+    <Checkpoints />
+    <Hosting />
+    <AccessRequirements />
+    <FinalCTA />
+  </main>
+
+  <Footer />
+</Layout>

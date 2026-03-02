@@ -1,0 +1,24 @@
+---
+const checkpoints = [
+  "Short review points at the end of each slice",
+  "Small scope per increment to avoid surprises",
+  "Traceable decisions tied to workflow state"
+];
+---
+<section class="max-w-4xl mx-auto px-6 mb-8 reveal">
+  <div class="bg-surface/50 dark:bg-stone-950 rounded-3xl p-8 md:p-12 border border-stone-200 dark:border-stone-800 shadow-sm relative overflow-hidden">
+    <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-8 relative z-10">
+      Checkpoints (control without bureaucracy)
+    </h2>
+    <ul class="space-y-5 relative z-10">
+      {checkpoints.map(point => (
+        <li class="flex items-start gap-4">
+          <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-2 flex-shrink-0"></div>
+          <span class="text-sm text-primary dark:text-stone-300 leading-relaxed">
+            {point}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
