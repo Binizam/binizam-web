@@ -1,0 +1,36 @@
+---
+const aiPoints = [
+  "Scoped inputs and outputs",
+  "Evaluation and monitoring",
+  "Human approvals"
+];
+---
+<section class="max-w-6xl mx-auto px-6 mb-24 reveal">
+  <div class="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-8 border-l-4 border-l-amber-600/80 shadow-sm">
+    <div class="grid md:grid-cols-12 gap-8">
+      <div class="md:col-span-4">
+        <h2 class="text-xl font-semibold tracking-tight text-primary dark:text-stone-50 flex items-center gap-3">
+          <iconify-icon icon="solar:stars-minimalistic-linear" class="text-amber-600"></iconify-icon>
+          AI in workflows (controlled)
+        </h2>
+      </div>
+      <div class="md:col-span-8">
+        <p class="text-lg text-stone-600 dark:text-stone-300 mb-6 leading-relaxed">
+          We add AI only when it can be governed:
+        </p>
+        <div class="grid sm:grid-cols-3 gap-4 mb-6">
+          {aiPoints.map(point => (
+            <div class="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-400 bg-surface dark:bg-stone-800/50 px-3 py-2 rounded-md border border-stone-100 dark:border-stone-800">
+              <iconify-icon icon="solar:check-circle-linear" class="text-amber-600"></iconify-icon>
+              {point}
+            </div>
+          ))}
+        </div>
+        <p class="text-sm font-medium text-primary dark:text-stone-200 border-t border-stone-100 dark:border-stone-800 pt-4">
+          Control is a requirement—AI is used only with guardrails,
+          evaluation, monitoring, and approvals where needed.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

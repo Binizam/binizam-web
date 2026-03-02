@@ -1,0 +1,65 @@
+---
+import BentoCard from './BentoCard.astro';
+
+const deliverables = [
+  {
+    title: "Worklists and operational UIs (Retool-first)",
+    icon: "solar:list-check-linear",
+    delay: "delay-100",
+    items: [
+      "Prioritized queues and case views with clear next actions",
+      "Manager exception dashboards and approval views",
+      "Admin tools for controlled changes (roles, rules, templates)"
+    ]
+  },
+  {
+    title: "Controlled automation",
+    icon: "solar:bolt-linear",
+    delay: "delay-200",
+    items: [
+      "Approvals for sensitive outcomes",
+      "Reminders and escalation paths with accountability",
+      "Scheduled jobs for routine operations (syncs, checks, notifications)"
+    ]
+  },
+  {
+    title: "Integrations + reconciliation",
+    icon: "solar:link-circle-linear",
+    delay: "delay-100",
+    items: [
+      "APIs, webhooks, and scheduled syncs to connect your systems",
+      "Reconciliation checks to detect drift (“expected vs actual”)",
+      "Exception routing with clear resolution steps and ownership"
+    ]
+  },
+  {
+    title: "Workflow state + reporting you can trust",
+    icon: "solar:chart-2-linear",
+    delay: "delay-200",
+    items: [
+      "Durable workflow state tied to real events (not spreadsheets)",
+      "Operational reporting and metrics based on workflow actions",
+      "Audit trails for key decisions, changes, and overrides"
+    ]
+  }
+];
+---
+<section class="max-w-6xl mx-auto px-6 mb-24">
+  <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-10 reveal">
+    What we deliver
+  </h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    {deliverables.map(card => (
+      <BentoCard title={card.title} icon={card.icon} delay={card.delay}>
+        <ul class="space-y-3.5 pl-1">
+          {card.items.map(item => (
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0 opacity-80"></div>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </BentoCard>
+    ))}
+  </div>
+</section>
