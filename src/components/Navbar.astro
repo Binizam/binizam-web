@@ -23,10 +23,10 @@ import Button from './ui/Button.astro';
     </a>
 
     <nav class="hidden md:flex items-center gap-8 relative z-50">
-      <a href="/capabilities" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Capabilities</a>
-      <a href="/ar-collections" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">AR Automation</a>
-      <a href="/security" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Security</a>
-      <a href="/how-we-work" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">How we work</a>
+      <a href="/capabilities/" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Capabilities</a>
+      <a href="/ar-collections/" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">AR Automation</a>
+      <a href="/security/" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Security</a>
+      <a href="/how-we-work/" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">How we work</a>
     </nav>
 
     <div class="flex items-center gap-5 relative z-50">
@@ -42,7 +42,7 @@ import Button from './ui/Button.astro';
       </button>
       
       <div class="hidden sm:block">
-         <Button href="/contact" variant="primary">Talk to an engineer</Button>
+         <Button href="/contact/" variant="primary">Talk to an engineer</Button>
       </div>
 
     </div>
@@ -62,16 +62,13 @@ import Button from './ui/Button.astro';
   function setupThemeToggle() {
     const btn = document.getElementById('theme-toggle');
     
-    // Safety check: Stop if button is missing OR if we already attached the listener
     if (!btn || btn.dataset.listenerAttached === 'true') return;
     
-    // Mark it as attached so we don't double-bind it
     btn.dataset.listenerAttached = 'true';
 
     const darkIcon = document.getElementById('theme-toggle-dark-icon');
     const lightIcon = document.getElementById('theme-toggle-light-icon');
 
-    // Sync icons with initial load state
     const isDark = document.documentElement.classList.contains('dark');
     if (isDark) {
       lightIcon?.classList.remove('hidden'); 
@@ -81,25 +78,23 @@ import Button from './ui/Button.astro';
       lightIcon?.classList.add('hidden');    
     }
 
-    // Handle the actual click event
     btn.addEventListener('click', () => {
       const isCurrentlyDark = document.documentElement.classList.contains('dark');
       
       if (isCurrentlyDark) {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('theme', 'light');
-        lightIcon?.classList.add('hidden');    // Hide Sun
-        darkIcon?.classList.remove('hidden');  // Show Moon
+        lightIcon?.classList.add('hidden');
+        darkIcon?.classList.remove('hidden');
       } else {
         document.documentElement.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-        darkIcon?.classList.add('hidden');     // Hide Moon
-        lightIcon?.classList.remove('hidden'); // Show Sun
+        darkIcon?.classList.add('hidden');
+        lightIcon?.classList.remove('hidden');
       }
     });
   }
 
-  // Run on load and scroll
   window.addEventListener('scroll', updateNavbarScroll, { passive: true });
   
   document.addEventListener('DOMContentLoaded', () => {
