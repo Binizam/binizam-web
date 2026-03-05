@@ -10,9 +10,15 @@ import WorkflowsAccordion from '../components/ar-automation/WorkflowsAccordion.a
 import SafeVersionStepper from '../components/ar-automation/SafeVersionStepper.astro';
 import FAQ from '../components/ar-automation/FAQ.astro';
 import FinalCTA from '../components/ar-automation/FinalCTA.astro';
+
+// SEO constants 
+const seo = {
+  title: "AR Collections Automation | Binizam",
+  description: "AR collections workflows: collector worklists, follow-ups, disputes/PTP, reconciliation queues, approvals, and audit trails."
+};
 ---
 
-<Layout title="AR Automation | Binizam">
+<Layout title={seo.title} description={seo.description}>
   <Navbar />
 
   <main class="z-10 relative flex-grow pt-16">

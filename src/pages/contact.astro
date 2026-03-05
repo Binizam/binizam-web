@@ -5,9 +5,15 @@ import Footer from '../components/Footer.astro';
 
 import ContactHeader from '../components/contact/ContactHeader.astro';
 import ContactGrid from '../components/contact/ContactGrid.astro';
+
+// SEO constants 
+const seo = {
+  title: "Contact | Binizam",
+  description: "Talk to an engineer about internal workflows and AR collections automation. Reply in 1–2 business days."
+};
 ---
 
-<Layout title="Contact | Binizam">
+<Layout title={seo.title} description={seo.description}>
   <Navbar />
 
   <main class="z-10 relative flex-grow pt-32 pb-16">

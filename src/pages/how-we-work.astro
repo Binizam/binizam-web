@@ -10,9 +10,15 @@ import Checkpoints from '../components/how-we-work/Checkpoints.astro';
 import Hosting from '../components/how-we-work/Hosting.astro';
 import AccessRequirements from '../components/how-we-work/AccessRequirements.astro';
 import FinalCTA from '../components/how-we-work/FinalCTA.astro';
+
+// SEO constants
+const seo = {
+  title: "How we work | Binizam",
+  description: "Engineer-led delivery in reviewable slices: discovery → build → QA/handover. Clear outputs, checkpoints, and practical ownership."
+};
 ---
 
-<Layout title="How we work | Binizam">
+<Layout title={seo.title} description={seo.description}>
   <Navbar />
 
   <main class="z-10 relative flex-grow pt-32 pb-24">

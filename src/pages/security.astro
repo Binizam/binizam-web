@@ -10,9 +10,15 @@ import DataBoundaries from '../components/security/DataBoundaries.astro';
 import Hosting from '../components/security/Hosting.astro';
 import AccessRequirements from '../components/security/AccessRequirements.astro';
 import FinalCTA from '../components/security/FinalCTA.astro';
+
+// SEO constants
+const seo = {
+  title: "Security | Binizam",
+  description: "Practical security posture: least privilege, auditability, encryption, data minimization, and clear data boundaries for internal workflows."
+};
 ---
 
-<Layout title="Security | Binizam">
+<Layout title={seo.title} description={seo.description}>
   <Navbar />
 
   <main class="z-10 relative flex-grow pt-32 pb-24">

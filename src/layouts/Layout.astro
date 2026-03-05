@@ -3,13 +3,18 @@ import '../styles/global.css';
 
 interface Props {
     title: string;
-    description?: string;
+    description: string; // Made this required to ensure you always think about SEO per page
+    ogImage?: string;
 }
 
 const { 
   title, 
-  description = "Internal workflow systems: operational UIs, controlled automation, integrations, reconciliation, and workflow reporting you can trust." 
+  description,
+  ogImage = '/og-image.jpg' // Default image if you haven't made one yet
 } = Astro.props;
+
+// Get the current URL for the canonical link
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://binizam.com');
 
 // Determine if we are in a Vercel preview environment to prevent indexing
 const isPreview = import.meta.env.VERCEL_ENV === 'preview';
@@ -20,24 +25,41 @@ const isPreview = import.meta.env.VERCEL_ENV === 'preview';
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content={description} />
-        <title>{title}</title>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         
-        {isPreview && <meta name="robots" content="noindex, nofollow" />}
+        <title>{title}</title>
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalURL} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(ogImage, Astro.site || 'https://binizam.com')} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={new URL(ogImage, Astro.site || 'https://binizam.com')} />
+        
+        {isPreview ? (
+            <meta name="robots" content="noindex, nofollow" />
+        ) : (
+            <meta name="robots" content="index, follow" />
+        )}
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-        
         <script is:inline src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
         <script is:inline>
             const theme = (() => {
-              // 1. Check if user already has a saved preference
               if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
                 return localStorage.getItem('theme');
               }
-              // 2. Otherwise, force 'light' as the default for everyone
               return 'light';
             })();
           
@@ -84,9 +106,7 @@ const isPreview = import.meta.env.VERCEL_ENV === 'preview';
         </script>
 
         <style is:global>
-            /* Smooth Theme Transition 
-               This ensures that background and text colors fade instead of snapping.
-            */
+            /* Smooth Theme Transition */
             html.dark body,
             html.dark .bg-main,
             html.dark .bg-surface,

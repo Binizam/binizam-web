@@ -9,9 +9,15 @@ import WhatWeDeliver from '../components/capabilities/WhatWeDeliver.astro';
 import AIWorkflows from '../components/capabilities/AIWorkflows.astro';
 import Boundaries from '../components/capabilities/Boundaries.astro';
 import PageBottomCTA from '../components/capabilities/PageBottomCTA.astro';
+
+// SEO constants
+const seo = {
+  title: "Capabilities | Binizam",
+  description: "Internal workflow systems: operational UIs, controlled automation, integrations, reconciliation, and workflow reporting you can trust."
+};
 ---
 
-<Layout title="Capabilities | Binizam">
+<Layout title={seo.title} description={seo.description}>
   <Navbar />
 
   <main class="z-10 relative flex-grow pt-32 pb-24">
@@ -30,7 +36,7 @@ import PageBottomCTA from '../components/capabilities/PageBottomCTA.astro';
       links={[
         { text: "How we work", href: "/how-we-work" },
         { text: "Security", href: "/security" },
-        { text: "AR Collections Automation", href: "/ar-automation" }
+        { text: "AR Collections Automation", href: "/ar-collections" }
       ]}
     />
 
