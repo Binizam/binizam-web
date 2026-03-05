@@ -32,16 +32,26 @@ const isPreview = import.meta.env.VERCEL_ENV === 'preview';
         <script is:inline src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
         <script is:inline>
-            const theme = localStorage.getItem("theme") || 
-                         (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-            if (theme === "dark") document.documentElement.classList.add("dark");
-            else document.documentElement.classList.remove("dark");
+            const theme = (() => {
+              // 1. Check if user already has a saved preference
+              if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                return localStorage.getItem('theme');
+              }
+              // 2. Otherwise, force 'light' as the default for everyone
+              return 'light';
+            })();
+          
+            if (theme === 'dark') {
+              document.documentElement.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+            }
         </script>
     </head>
-    <body class="font-sans text-primary bg-main dark:bg-[#1C1917] dark:text-stone-100 transition-colors duration-500 relative selection:bg-amber-500 selection:text-white flex flex-col min-h-screen overflow-x-hidden">
+    <body class="font-sans text-primary bg-main dark:bg-[#1C1917] dark:text-stone-100 relative selection:bg-amber-500 selection:text-white flex flex-col min-h-screen overflow-x-hidden">
         
         <div class="fixed inset-0 pointer-events-none z-0">
-            <div class="absolute inset-0 bg-main dark:bg-[#1C1917] transition-colors duration-500"></div>
+            <div class="absolute inset-0 bg-main dark:bg-[#1C1917] transition-colors duration-500 ease-in-out"></div>
             <div class="absolute inset-0 bg-grid opacity-70 dark:opacity-50"></div>
         </div>
 
@@ -60,7 +70,7 @@ const isPreview = import.meta.env.VERCEL_ENV === 'preview';
                     });
                 }, { 
                     root: null, 
-                    rootMargin: "0px 0px -50px 0px", // Trigger slightly before it hits the bottom
+                    rootMargin: "0px 0px -50px 0px", 
                     threshold: 0.1 
                 });
 
@@ -72,5 +82,22 @@ const isPreview = import.meta.env.VERCEL_ENV === 'preview';
             document.addEventListener('DOMContentLoaded', initScrollReveal);
             document.addEventListener('astro:page-load', initScrollReveal);
         </script>
+
+        <style is:global>
+            /* Smooth Theme Transition 
+               This ensures that background and text colors fade instead of snapping.
+            */
+            html.dark body,
+            html.dark .bg-main,
+            html.dark .bg-surface,
+            html.dark .text-primary,
+            html.dark .text-muted {
+                transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out, color 0.5s ease-in-out;
+            }
+
+            body, .bg-main, .bg-surface, .text-primary, .text-muted {
+                transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out, color 0.5s ease-in-out;
+            }
+        </style>
     </body>
 </html>
