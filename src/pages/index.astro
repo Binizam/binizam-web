@@ -6,6 +6,7 @@ import Hero from '../components/Hero.astro';
 import FeatureCard from '../components/ui/FeatureCard.astro';
 import ListItem from '../components/ui/ListItem.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
+import ReconciliationSection from '../components/ReconciliationSection.astro';
 
 // SEO Constants
 const seo = {
@@ -31,7 +32,7 @@ const seo = {
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(180,83,9,0.02),transparent_60%)]"></div>
   </div>
 
-  <a class="hidden first-line:fixed bottom-8 right-8 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group reveal delay-500" href="/contact">
+  <a class="hidden fixed bottom-8 right-8 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group reveal delay-500" href="/contact/">
     <iconify-icon height="28" icon="solar:chat-round-dots-linear" stroke-width="1.5" width="28"></iconify-icon>
     <div class="absolute right-full mr-4 px-3 py-1 bg-primary text-main text-xs font-medium rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
       Talk to an engineer
@@ -75,14 +76,16 @@ const seo = {
               <p class="text-sm text-stone-500 mb-4">Retool-first for internal operator UIs, with integrations and workflow state anchored in your stack.</p>
               <div class="flex items-center gap-6 text-sm font-medium">
                 <span class="text-stone-500/60">Learn more:</span>
-                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/capabilities">Capabilities</a>
-                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/security">Security</a>
+                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/capabilities/">Capabilities</a>
+                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/security/">Security</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <ReconciliationSection />
 
     <section class="py-12 max-w-6xl mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -96,7 +99,7 @@ const seo = {
         
         <FeatureCard title="Engineer-to-engineer delivery" icon="solar:code-square-linear" delay="delay-200">
           <p class="mb-6">Direct access to engineers, tight review loops, and clear handover documentation.</p>
-          <a class="inline-flex items-center text-xs font-mono font-medium text-amber-600 hover:text-amber-700 mt-auto" href="/how-we-work">
+          <a class="inline-flex items-center text-xs font-mono font-medium text-amber-600 hover:text-amber-700 mt-auto" href="/how-we-work/">
             See: How we work
             <iconify-icon class="ml-1" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
           </a>
@@ -113,7 +116,7 @@ const seo = {
           </div>
           <h3 class="text-xl font-semibold mb-3 text-primary dark:text-stone-50">AR collections automation</h3>
           <p class="text-stone-500 dark:text-stone-400 text-sm mb-8 leading-relaxed">Collector worklists, follow-ups, disputes/PTP, reconciliation queues, manager exceptions, audit trails.</p>
-          <a class="inline-flex items-center text-sm font-semibold text-amber-600 hover:text-amber-700 group-hover:translate-x-1 transition-transform" href="/ar-collections">
+          <a class="inline-flex items-center text-sm font-semibold text-amber-600 hover:text-amber-700 group-hover:translate-x-1 transition-transform" href="/ar-collections/">
             <iconify-icon class="mr-2" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
             AR Collections Automation
           </a>
@@ -121,7 +124,7 @@ const seo = {
         <div class="p-8 rounded-xl bg-surface dark:bg-stone-800/30 hover:bg-surface/80 dark:hover:bg-stone-800/60 transition-colors group reveal delay-200">
           <h3 class="text-xl font-semibold mb-3 text-primary dark:text-stone-50">Reconciliation + exception operations</h3>
           <p class="text-stone-500 dark:text-stone-400 text-sm mb-8 leading-relaxed">"Out-of-sync" routing, resolution queues, traceable outcomes.</p>
-          <a class="inline-flex items-center text-sm font-semibold text-primary dark:text-stone-200 group-hover:text-amber-600 transition-colors" href="/capabilities">
+          <a class="inline-flex items-center text-sm font-semibold text-primary dark:text-stone-200 group-hover:text-amber-600 transition-colors" href="/capabilities/">
             <iconify-icon class="mr-2" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
             Capabilities
           </a>

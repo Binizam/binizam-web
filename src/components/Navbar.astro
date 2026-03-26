@@ -5,11 +5,11 @@ import Button from './ui/Button.astro';
 <header 
   id="navbar" 
   data-scrolled="false"
-  class="fixed top-0 w-full z-40 transition-all duration-300 border-b border-transparent data-[scrolled=true]:bg-[#FFFCF5]/85 data-[scrolled=true]:dark:bg-[#1C1917]/85 data-[scrolled=true]:backdrop-blur-md data-[scrolled=true]:border-stone-800/10 data-[scrolled=true]:dark:border-white/10 data-[scrolled=true]:shadow-sm"
+  class="fixed top-0 w-full z-40 transition-all duration-300 border-b border-transparent data-[scrolled=true]:bg-[#FFFCF5] data-[scrolled=true]:dark:bg-[#1C1917] data-[scrolled=true]:backdrop-blur-md data-[scrolled=true]:border-stone-800/10 data-[scrolled=true]:dark:border-white/10 data-[scrolled=true]:shadow-sm"
 >
-  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between relative">
     
-    <a href="/" class="flex items-center group cursor-pointer z-50 relative">
+    <a href="/" class="flex items-center group cursor-pointer relative z-50">
       <img 
         alt="Binizam Logo" 
         class="h-7 w-auto block dark:hidden transition-transform duration-300 group-hover:scale-105" 
@@ -29,7 +29,7 @@ import Button from './ui/Button.astro';
       <a href="/how-we-work/" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">How we work</a>
     </nav>
 
-    <div class="flex items-center gap-5 relative z-50">
+    <div class="flex items-center gap-4 sm:gap-5 relative z-50">
       
       <button 
         id="theme-toggle" 
@@ -45,12 +45,45 @@ import Button from './ui/Button.astro';
          <Button href="/contact/" variant="primary">Talk to an engineer</Button>
       </div>
 
+      <button 
+        id="mobile-menu-open"
+        class="flex md:hidden items-center justify-center w-9 h-9 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800 border border-stone-300 dark:border-stone-600 rounded-full bg-transparent transition-all"
+        aria-label="Open Menu"
+      >
+        <iconify-icon icon="solar:hamburger-menu-linear" width="20"></iconify-icon>
+      </button>
+
     </div>
+  </div>
+
+  <div 
+    id="mobile-menu" 
+    class="fixed inset-0 h-screen w-screen bg-[#FFFCF5] dark:bg-[#1C1917] z-[100] translate-x-full transition-transform duration-500 cubic-bezier(0.4, 0, 0.2, 1) md:hidden flex flex-col"
+  >
+    <div class="h-20 flex items-center justify-end px-6">
+      <button 
+        id="mobile-menu-close"
+        class="flex items-center justify-center w-9 h-9 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800 border border-stone-300 dark:border-stone-600 rounded-full bg-transparent transition-all"
+        aria-label="Close Menu"
+      >
+        <iconify-icon icon="solar:close-circle-linear" width="20"></iconify-icon>
+      </button>
+    </div>
+
+    <nav class="flex flex-col gap-8 p-8 pt-4 text-lg font-semibold tracking-tight">
+      <a href="/capabilities/" class="text-stone-900 dark:text-stone-100 hover:text-amber-600 transition-colors">Capabilities</a>
+      <a href="/ar-collections/" class="text-stone-900 dark:text-stone-100 hover:text-amber-600 transition-colors">AR Automation</a>
+      <a href="/security/" class="text-stone-900 dark:text-stone-100 hover:text-amber-600 transition-colors">Security</a>
+      <a href="/how-we-work/" class="text-stone-900 dark:text-stone-100 hover:text-amber-600 transition-colors">How we work</a>
+      
+      <div class="flex flex-col mt-4">
+        <Button href="/contact/" variant="primary">Talk to an engineer</Button>
+      </div>
+    </nav>
   </div>
 </header>
 
 <script>
-  // 1. Data-Attribute Scroll Logic
   function updateNavbarScroll() {
     const navbar = document.getElementById('navbar');
     if (navbar) {
@@ -58,52 +91,75 @@ import Button from './ui/Button.astro';
     }
   }
 
-  // 2. Theme Toggle Logic
+  function setupMobileMenu() {
+    const openBtn = document.getElementById('mobile-menu-open');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const menu = document.getElementById('mobile-menu');
+    
+    if (!openBtn || !closeBtn || !menu || openBtn.dataset.listenerAttached === 'true') return;
+    openBtn.dataset.listenerAttached = 'true';
+
+    const openMenu = () => {
+      menu.classList.remove('translate-x-full');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeMenu = () => {
+      menu.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+    };
+
+    openBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+
+    const links = menu.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
   function setupThemeToggle() {
     const btn = document.getElementById('theme-toggle');
-    
-    if (!btn || btn.dataset.listenerAttached === 'true') return;
-    
-    btn.dataset.listenerAttached = 'true';
+    if (!btn || btn.dataset.themeListenerAttached === 'true') return;
+    btn.dataset.themeListenerAttached = 'true';
 
     const darkIcon = document.getElementById('theme-toggle-dark-icon');
     const lightIcon = document.getElementById('theme-toggle-light-icon');
 
-    const isDark = document.documentElement.classList.contains('dark');
-    if (isDark) {
-      lightIcon?.classList.remove('hidden'); 
-      darkIcon?.classList.add('hidden');     
-    } else {
-      darkIcon?.classList.remove('hidden');  
-      lightIcon?.classList.add('hidden');    
-    }
+    const updateIcons = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        lightIcon?.classList.remove('hidden'); 
+        darkIcon?.classList.add('hidden');     
+      } else {
+        darkIcon?.classList.remove('hidden');  
+        lightIcon?.classList.add('hidden');    
+      }
+    };
+
+    updateIcons();
 
     btn.addEventListener('click', () => {
       const isCurrentlyDark = document.documentElement.classList.contains('dark');
-      
       if (isCurrentlyDark) {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('theme', 'light');
-        lightIcon?.classList.add('hidden');
-        darkIcon?.classList.remove('hidden');
       } else {
         document.documentElement.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-        darkIcon?.classList.add('hidden');
-        lightIcon?.classList.remove('hidden');
       }
+      updateIcons();
     });
   }
 
   window.addEventListener('scroll', updateNavbarScroll, { passive: true });
   
-  document.addEventListener('DOMContentLoaded', () => {
+  const init = () => {
     updateNavbarScroll();
     setupThemeToggle();
-  });
-  
-  document.addEventListener('astro:page-load', () => {
-    updateNavbarScroll();
-    setupThemeToggle();
-  });
+    setupMobileMenu();
+  };
+
+  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('astro:page-load', init);
 </script>

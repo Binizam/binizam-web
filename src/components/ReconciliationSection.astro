@@ -1,0 +1,116 @@
+---
+import ListItem from './ui/ListItem.astro';
+---
+
+<section class="py-24 relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      
+      <div class="order-1 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+        <div class="w-12 h-12 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-8 reveal">
+          <iconify-icon icon="solar:refresh-circle-linear" stroke-width="1.5" width="24"></iconify-icon>
+        </div>
+        
+        <h2 class="text-3xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-6 reveal delay-100">
+          Reconciliation queues, under control.
+        </h2>
+        
+        <p class="dark:text-stone-400 leading-relaxed text-lg text-stone-600 mb-8 reveal delay-200 max-w-lg">
+          We build workflows that reconcile bank feeds and ledger entries, then route exceptions into a clear review queue, so teams stop chasing mismatches and start working a single, traceable list from suggestion to resolution.
+        </p>
+        
+        <div class="space-y-4 mb-10 reveal delay-300 flex flex-col items-center lg:items-start w-full">
+          <ListItem dotColor="amber">Multi-currency and common bank file formats</ListItem>
+          <ListItem dotColor="amber">Configurable matching rules + thresholds</ListItem>
+          <ListItem dotColor="amber">Exception review workflows (approvals where needed)</ListItem>
+        </div>
+        
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3 text-sm font-medium reveal delay-400">
+          <a class="group inline-flex items-center gap-1.5 text-primary dark:text-stone-100 hover:text-amber-600 transition-colors" href="/capabilities/">
+            <span>Explore Capabilities</span>
+            <iconify-icon class="transition-transform group-hover:translate-x-1" icon="solar:arrow-right-linear" width="16"></iconify-icon>
+          </a>
+          <span class="text-stone-300 dark:text-stone-700 hidden sm:block">|</span>
+          <a class="group inline-flex items-center gap-1.5 text-primary dark:text-stone-100 hover:text-amber-600 transition-colors" href="/contact/">
+            <span>Talk to an engineer</span>
+            <iconify-icon class="transition-transform group-hover:translate-x-1" icon="solar:arrow-right-linear" width="16"></iconify-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="order-2 lg:order-2 flex justify-center lg:justify-end reveal-right delay-200">
+        <div class="w-full max-w-lg dark:bg-stone-950 dark:border-stone-800 bg-[#F8FAFC] border-slate-200 border rounded-2xl p-4 relative shadow-2xl">
+          <div class="bg-white dark:bg-stone-900 rounded-xl border border-slate-200 dark:border-stone-800 shadow-sm overflow-hidden">
+            
+            <div class="px-6 py-4 border-b border-slate-200 dark:border-stone-800 flex items-center justify-between bg-white dark:bg-stone-900">
+              <h3 class="font-mono text-[10px] font-semibold text-slate-500 dark:text-stone-400 uppercase tracking-widest">Reconciliation Queue</h3>
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600 dark:bg-stone-800 dark:text-stone-400 border border-slate-200 dark:border-stone-700">In review</span>
+            </div>
+
+            <div class="divide-y divide-slate-100 dark:divide-stone-800 text-sm">
+              <div class="grid grid-cols-2 px-6 py-2 bg-slate-50 dark:bg-stone-950/50 text-[10px] font-bold text-slate-400 dark:text-stone-500 uppercase tracking-widest">
+                <div>Bank feed</div>
+                <div>Ledger</div>
+              </div>
+
+              <div class="grid grid-cols-2 px-6 py-4 gap-4 bg-amber-50/50 dark:bg-amber-900/10 relative group">
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500"></div>
+                <div>
+                  <div class="font-medium text-slate-900 dark:text-stone-200 text-xs sm:text-sm">TXN-8392</div>
+                  <div class="text-slate-500 dark:text-stone-500 font-mono text-xs mt-0.5">$4,250.00</div>
+                </div>
+                <div class="flex flex-col">
+                  <div>
+                    <div class="font-medium text-slate-900 dark:text-stone-200 text-xs sm:text-sm">INV-2024-001</div>
+                    <div class="text-slate-500 dark:text-stone-500 font-mono text-xs mt-0.5">$4,250.00</div>
+                  </div>
+                  <div class="flex items-center gap-1.5 mt-2 text-[10px] text-amber-600 dark:text-amber-500 font-bold uppercase">
+                    <iconify-icon icon="solar:check-circle-bold" width="14"></iconify-icon>
+                    Suggested match
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 px-6 py-4 gap-4 hover:bg-slate-50 dark:hover:bg-stone-800/50 transition-colors">
+                <div>
+                  <div class="font-medium text-slate-900 dark:text-stone-200 text-xs sm:text-sm">TXN-8393</div>
+                  <div class="text-slate-500 dark:text-stone-500 font-mono text-xs mt-0.5">$120.50</div>
+                </div>
+                <div class="flex flex-col justify-between">
+                  <div class="text-slate-400 dark:text-stone-500 italic font-normal text-xs sm:text-sm">Unmatched</div>
+                  <div class="flex items-center gap-1.5 mt-2 text-[10px] text-slate-500 dark:text-stone-400 font-bold uppercase">
+                    <iconify-icon icon="solar:question-circle-linear" width="14"></iconify-icon>
+                    Needs review
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 px-6 py-4 gap-4 hover:bg-slate-50 dark:hover:bg-stone-800/50 transition-colors">
+                <div>
+                  <div class="font-medium text-slate-900 dark:text-stone-200 text-xs sm:text-sm">TXN-8394</div>
+                  <div class="text-slate-500 dark:text-stone-500 font-mono text-xs mt-0.5">$850.00</div>
+                </div>
+                <div class="flex flex-col justify-between">
+                  <div>
+                    <div class="font-medium text-slate-900 dark:text-stone-200 text-xs sm:text-sm">INV-2024-002</div>
+                    <div class="text-red-500 font-mono text-xs mt-0.5">$870.00</div>
+                  </div>
+                  <div class="flex items-center gap-1.5 mt-2 text-[10px] text-slate-500 dark:text-stone-400 font-bold uppercase">
+                    <iconify-icon icon="solar:danger-triangle-linear" width="14"></iconify-icon>
+                    Amount mismatch
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 py-3 border-t border-slate-200 dark:border-stone-800 bg-slate-50 dark:bg-stone-950/30 flex items-center justify-between">
+              <span class="text-[10px] font-medium text-slate-500 dark:text-stone-500 uppercase">Auto-match enabled</span>
+              <span class="text-[10px] text-slate-400 dark:text-stone-600 font-mono">All decisions logged</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
