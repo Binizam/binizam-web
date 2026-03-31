@@ -4,19 +4,20 @@ import ListItem from './ui/ListItem.astro';
 import HeroVisualizer from './HeroVisualizer.astro';
 ---
 
-<section class="min-h-[90vh] flex max-w-6xl mr-auto ml-auto pt-48 pr-6 pb-24 pl-6 items-center">
-  <div class="grid lg:grid-cols-2 gap-16 w-full items-center">
+<section class="min-h-0 sm:min-h-[90vh] flex max-w-6xl mx-auto pt-32 sm:pt-48 px-6 pb-12 sm:pb-24 items-center">
+  <div class="grid grid-cols-1 xl:grid-cols-12 gap-16 w-full items-center">
     
-    <div class="max-w-lg z-20 relative order-2 lg:order-1">
+    <div class="z-20 relative order-1 xl:col-span-6 flex flex-col items-center xl:items-start text-center xl:text-left">
       <h1 class="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.1] mb-6 reveal">
         <span class="text-primary dark:text-stone-50">Workflow systems for </span>
         <span class="bg-clip-text text-transparent bg-gradient-to-br from-amber-700 to-amber-500">finance and operations teams.</span>
       </h1>
-      <p class="dark:text-stone-400 leading-relaxed text-lg font-normal text-stone-600 mb-8 reveal delay-100">
+      
+      <p class="dark:text-stone-400 leading-relaxed text-lg font-normal text-stone-600 mb-8 reveal delay-100 max-w-lg">
         Binizam delivers governed workflow systems and automation across your stack, so finance and ops teams run a clear queue with approvals and traceable outcomes.
       </p>
       
-      <div class="space-y-3 mb-8">
+      <div class="space-y-3 mb-8 w-full flex flex-col items-center xl:items-start">
         <ListItem icon="solar:global-linear" delay="delay-200">
           GCC-first delivery. Arabic and English.
         </ListItem>
@@ -25,18 +26,24 @@ import HeroVisualizer from './HeroVisualizer.astro';
         </ListItem>
       </div>
       
-      <div class="space-y-6 mt-8 reveal delay-300">
-        <div class="flex flex-col sm:flex-row gap-4">
-          <Button href="/contact" variant="primary">Talk to an engineer</Button>
-          <Button href="/ar-automation" variant="secondary">Explore AR collections</Button>
+      <div class="space-y-6 mt-8 reveal delay-300 w-full flex flex-col items-center xl:items-start">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center xl:justify-start w-full">
+          <Button href="/contact/" variant="primary">Talk to an engineer</Button>
+          <Button href="/ar-collections/" variant="secondary">Explore AR collections</Button>
         </div>
-        <p class="text-xs font-mono text-stone-500 dark:text-stone-500 leading-relaxed max-w-sm">
+        <p class="text-xs font-mono text-stone-500 dark:text-stone-500 leading-relaxed">
           Reply in 1–2 business days • 15–20 min fit check.
         </p>
       </div>
     </div>
     
-    <HeroVisualizer />
+    <div class="hidden sm:flex order-2 xl:col-span-6 justify-center xl:justify-end items-center w-full min-w-0">
+      <div class="w-full max-w-[30rem] sm:max-w-md xl:max-w-none">
+         <div class="w-full h-auto transition-all duration-500 scale-100 origin-center xl:origin-right">
+            <HeroVisualizer />
+         </div>
+      </div>
+    </div>
     
   </div>
 </section>
