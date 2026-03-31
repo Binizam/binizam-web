@@ -16,9 +16,48 @@ const seo = {
   title: "AR Collections Automation | Binizam",
   description: "AR collections workflows: collector worklists, follow-ups, disputes/PTP, reconciliation queues, approvals, and audit trails."
 };
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do you replace our ERP?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. When an ERP is involved, we add a controlled, auditable workflow layer on top of your ERP. We do not act as your system of record for ledgers.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Are you a payments provider?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. We specialize exclusively in operational workflows and automation, leaving payment processing entirely to your dedicated gateways and banks.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Can you include AI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Only where it’s governable (guardrails, evaluation, monitoring, approvals). If an automated decision cannot be cleanly audited and approved, we skip it.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What systems can you integrate with?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Typically ERPs, CRMs, bank files/APIs, and internal microservices. We keep integrations practical, reliable, and observable.'
+      }
+    }
+  ]
+};
 ---
 
-<Layout title={seo.title} description={seo.description}>
+<Layout title={seo.title} description={seo.description} structuredData={structuredData}>
   <Navbar />
 
   <main class="z-10 relative flex-grow pt-16">

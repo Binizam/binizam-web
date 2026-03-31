@@ -5,16 +5,56 @@ interface Props {
     title: string;
     description: string; // Made this required to ensure you always think about SEO per page
     ogImage?: string;
+    structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const { 
   title, 
   description,
-  ogImage = '/og-image.jpg' // Default image if you haven't made one yet
+  ogImage = '/og-image.jpg', // Default image if you haven't made one yet
+  structuredData = []
 } = Astro.props;
 
 // Get the current URL for the canonical link
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://binizam.com');
+const siteURL = Astro.site || new URL('https://binizam.com');
+const structuredDataItems = Array.isArray(structuredData) ? structuredData : [structuredData];
+const baseStructuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': new URL('/#organization', siteURL).toString(),
+    name: 'Binizam',
+    url: siteURL.toString(),
+    email: 'engineers@binizam.com'
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': new URL('/#website', siteURL).toString(),
+    url: siteURL.toString(),
+    name: 'Binizam',
+    description,
+    publisher: {
+      '@id': new URL('/#organization', siteURL).toString()
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${canonicalURL.toString()}#webpage`,
+    url: canonicalURL.toString(),
+    name: title,
+    description,
+    isPartOf: {
+      '@id': new URL('/#website', siteURL).toString()
+    },
+    about: {
+      '@id': new URL('/#organization', siteURL).toString()
+    }
+  },
+  ...structuredDataItems
+];
 
 // Determine if we are in a Vercel preview environment to prevent indexing
 const isPreview = import.meta.env.VERCEL_ENV === 'preview';
@@ -34,6 +74,7 @@ const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true';
         <link rel="canonical" href={canonicalURL} />
 
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Binizam" />
         <meta property="og:url" content={canonicalURL} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
@@ -50,6 +91,10 @@ const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true';
         ) : (
             <meta name="robots" content="index, follow" />
         )}
+
+        {baseStructuredData.map((item) => (
+            <script type="application/ld+json" set:html={JSON.stringify(item)} />
+        ))}
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
