@@ -15,9 +15,15 @@ const {
   structuredData = []
 } = Astro.props;
 
-// Get the current URL for the canonical link
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://binizam.com');
 const siteURL = Astro.site || new URL('https://binizam.com');
+const isPreview = import.meta.env.VERCEL_ENV === 'preview';
+const previewOrigin = import.meta.env.VERCEL_URL
+  ? new URL(`https://${import.meta.env.VERCEL_URL}`)
+  : siteURL;
+const socialBaseURL = isPreview ? previewOrigin : siteURL;
+const socialPageURL = new URL(Astro.url.pathname, socialBaseURL);
+const socialImageURL = new URL(ogImage, socialBaseURL);
 const structuredDataItems = Array.isArray(structuredData) ? structuredData : [structuredData];
 const baseStructuredData = [
   {
@@ -56,8 +62,6 @@ const baseStructuredData = [
   ...structuredDataItems
 ];
 
-// Determine if we are in a Vercel preview environment to prevent indexing
-const isPreview = import.meta.env.VERCEL_ENV === 'preview';
 const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true';
 ---
 
@@ -75,16 +79,16 @@ const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true';
 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Binizam" />
-        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:url" content={socialPageURL} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={new URL(ogImage, Astro.site || 'https://binizam.com')} />
+        <meta property="og:image" content={socialImageURL} />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={canonicalURL} />
+        <meta property="twitter:url" content={socialPageURL} />
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={new URL(ogImage, Astro.site || 'https://binizam.com')} />
+        <meta property="twitter:image" content={socialImageURL} />
         
         {isPreview || !allowIndexing ? (
             <meta name="robots" content="noindex, nofollow" />
