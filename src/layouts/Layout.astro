@@ -18,6 +18,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://binizam.
 
 // Determine if we are in a Vercel preview environment to prevent indexing
 const isPreview = import.meta.env.VERCEL_ENV === 'preview';
+const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true';
 ---
 
 <!doctype html>
@@ -33,18 +34,18 @@ const isPreview = import.meta.env.VERCEL_ENV === 'preview';
         <link rel="canonical" href={canonicalURL} />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={Astro.url} />
+        <meta property="og:url" content={canonicalURL} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={new URL(ogImage, Astro.site || 'https://binizam.com')} />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:url" content={canonicalURL} />
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={new URL(ogImage, Astro.site || 'https://binizam.com')} />
         
-        {isPreview ? (
+        {isPreview || !allowIndexing ? (
             <meta name="robots" content="noindex, nofollow" />
         ) : (
             <meta name="robots" content="index, follow" />
