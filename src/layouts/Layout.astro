@@ -18,7 +18,6 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://binizam.com');
 const siteURL = Astro.site || new URL('https://binizam.com');
 const isPreview = import.meta.env.VERCEL_ENV === 'preview';
-const isVercelAppHost = Astro.url.hostname.endsWith(".vercel.app");
 const previewOrigin = import.meta.env.VERCEL_URL
   ? new URL(`https://${import.meta.env.VERCEL_URL}`)
   : siteURL;
@@ -91,7 +90,7 @@ const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true';
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={socialImageURL} />
         
-        {isPreview || isVercelAppHost || !allowIndexing ? (
+        {isPreview || !allowIndexing ? (
             <meta name="robots" content="noindex, nofollow" />
         ) : (
             <meta name="robots" content="index, follow" />
