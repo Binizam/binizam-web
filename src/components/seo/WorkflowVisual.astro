@@ -6,10 +6,63 @@ interface Props {
 }
 
 const { visual } = Astro.props;
+
+const toneMap = {
+  amber: {
+    glow: 'bg-amber-600/5',
+    panel: 'bg-[#FFFCF5] dark:bg-stone-900/70',
+    border: 'border-amber-600/20',
+    iconBg: 'bg-amber-600/10',
+    iconText: 'text-amber-700 dark:text-amber-500',
+    connector: 'from-amber-500/80'
+  },
+  emerald: {
+    glow: 'bg-emerald-500/10',
+    panel: 'bg-emerald-50/60 dark:bg-emerald-950/15',
+    border: 'border-emerald-500/20',
+    iconBg: 'bg-emerald-500/10',
+    iconText: 'text-emerald-700 dark:text-emerald-400',
+    connector: 'from-emerald-500/80'
+  },
+  sky: {
+    glow: 'bg-sky-500/10',
+    panel: 'bg-sky-50/60 dark:bg-sky-950/15',
+    border: 'border-sky-500/20',
+    iconBg: 'bg-sky-500/10',
+    iconText: 'text-sky-700 dark:text-sky-400',
+    connector: 'from-sky-500/80'
+  },
+  rose: {
+    glow: 'bg-rose-500/10',
+    panel: 'bg-rose-50/60 dark:bg-rose-950/15',
+    border: 'border-rose-500/20',
+    iconBg: 'bg-rose-500/10',
+    iconText: 'text-rose-700 dark:text-rose-400',
+    connector: 'from-rose-500/80'
+  },
+  indigo: {
+    glow: 'bg-indigo-500/10',
+    panel: 'bg-indigo-50/60 dark:bg-indigo-950/15',
+    border: 'border-indigo-500/20',
+    iconBg: 'bg-indigo-500/10',
+    iconText: 'text-indigo-700 dark:text-indigo-400',
+    connector: 'from-indigo-500/80'
+  },
+  slate: {
+    glow: 'bg-stone-500/10',
+    panel: 'bg-stone-50/80 dark:bg-stone-900/70',
+    border: 'border-stone-300/70 dark:border-stone-700',
+    iconBg: 'bg-stone-500/10',
+    iconText: 'text-stone-700 dark:text-stone-300',
+    connector: 'from-stone-500/80'
+  }
+} as const;
+
+const tone = toneMap[visual.tone ?? 'amber'];
 ---
 
 <div class="relative w-full max-w-xl mx-auto lg:mx-0 reveal delay-200">
-  <div class="absolute inset-x-10 top-10 bottom-10 rounded-full bg-amber-600/5 blur-3xl"></div>
+  <div class={`absolute inset-x-10 top-10 bottom-10 rounded-full blur-3xl ${tone.glow}`}></div>
 
   <div class="relative space-y-4 rounded-[2rem] border border-stone-200/80 dark:border-stone-800 bg-white/80 dark:bg-stone-950/80 p-5 shadow-sm">
     <div class="flex items-center justify-between px-1 pb-2">
@@ -25,16 +78,16 @@ const { visual } = Astro.props;
 
     {visual.cards.map((card, index) => (
       <div
-        class={`relative rounded-3xl border border-stone-200 dark:border-stone-800 bg-[#FFFCF5] dark:bg-stone-900/70 p-5 shadow-sm transition-transform duration-300 hover:-translate-y-1 ${
+        class={`relative rounded-3xl border p-5 shadow-sm transition-transform duration-300 hover:-translate-y-1 ${tone.border} ${tone.panel} ${
           index === 1 ? 'ml-5' : index === 2 ? 'ml-10' : ''
         }`}
       >
         {index < visual.cards.length - 1 && (
-          <div class="absolute left-9 top-full h-4 w-px bg-gradient-to-b from-amber-500/80 to-transparent"></div>
+          <div class={`absolute left-9 top-full h-4 w-px bg-gradient-to-b ${tone.connector} to-transparent`}></div>
         )}
 
         <div class="flex items-start gap-4">
-          <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-600/20 bg-amber-600/10 text-amber-700 dark:text-amber-500">
+          <div class={`flex h-12 w-12 items-center justify-center rounded-2xl border ${tone.border} ${tone.iconBg} ${tone.iconText}`}>
             <iconify-icon icon={card.icon} width="24" stroke-width="1.5"></iconify-icon>
           </div>
           <div class="min-w-0 flex-1">

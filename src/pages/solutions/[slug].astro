@@ -69,8 +69,9 @@ const structuredData = [
       quickLinks={page.quickLinks}
       visual={page.visual}
       highlights={page.outcomes}
-      secondaryCtaHref="/solutions/"
-      secondaryCtaLabel="All solutions"
+      secondaryCtaHref={page.secondaryCtaHref ?? '/solutions/'}
+      secondaryCtaLabel={page.secondaryCtaLabel ?? 'All solutions'}
+      metaLine={`${page.scopeTag} | Reply in 1-2 business days | 15-20 min fit check`}
     />
 
     {page.sections.map((section) => (

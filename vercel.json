@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "/ar-collections",
+      "destination": "/solutions/ar-collections-automation/",
+      "permanent": true
+    },
+    {
+      "source": "/ar-collections/",
+      "destination": "/solutions/ar-collections-automation/",
+      "permanent": true
+    },
+    {
+      "source": "/capabilities",
+      "destination": "/solutions/accounts-receivable-automation/",
+      "permanent": true
+    },
+    {
+      "source": "/capabilities/",
+      "destination": "/solutions/accounts-receivable-automation/",
+      "permanent": true
+    }
+  ]
+}

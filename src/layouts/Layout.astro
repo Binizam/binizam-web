@@ -121,6 +121,8 @@ const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING !== 'false';
         <script is:inline src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
         <script is:inline>
+            document.documentElement.classList.add('js-reveal');
+
             const theme = (() => {
               if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
                 return localStorage.getItem('theme');
@@ -146,24 +148,67 @@ const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING !== 'false';
 
         <script>
             function initScrollReveal() {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            requestAnimationFrame(() => {
-                                entry.target.classList.add("active");
-                            });
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { 
-                    root: null, 
-                    rootMargin: "0px 0px -50px 0px", 
-                    threshold: 0.1 
-                });
+                try {
+                    const activateReachedTargets = () => {
+                        const triggerY = window.innerHeight - 40;
+                        document.querySelectorAll('.reveal, .reveal-right').forEach((el) => {
+                            if (el.classList.contains('active')) return;
+                            if (el.getBoundingClientRect().top <= triggerY) {
+                                el.classList.add('active');
+                            }
+                        });
+                    };
 
-                document.querySelectorAll(".reveal, .reveal-right").forEach((el) => {
-                    observer.observe(el);
-                });
+                    const activateAllTargets = () => {
+                        document.querySelectorAll('.reveal, .reveal-right').forEach((el) => {
+                            el.classList.add('active');
+                        });
+                    };
+
+                    if (!('IntersectionObserver' in window)) {
+                        document.documentElement.classList.remove('js-reveal');
+                        activateReachedTargets();
+                        return;
+                    }
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                requestAnimationFrame(() => {
+                                    entry.target.classList.add('active');
+                                });
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, {
+                        root: null,
+                        rootMargin: '0px 0px -50px 0px',
+                        threshold: 0.1
+                    });
+
+                    document.querySelectorAll('.reveal, .reveal-right').forEach((el) => {
+                        if (el.classList.contains('active')) {
+                            return;
+                        }
+                        observer.observe(el);
+                    });
+
+                    activateReachedTargets();
+
+                    if (window.__binizamRevealScrollFallbackBound !== true) {
+                        window.__binizamRevealScrollFallbackBound = true;
+                        window.addEventListener('scroll', activateReachedTargets, { passive: true });
+                        window.addEventListener('resize', activateReachedTargets, { passive: true });
+                    }
+
+                    if (window.__binizamRevealSafetyTimeoutBound !== true) {
+                        window.__binizamRevealSafetyTimeoutBound = true;
+                        window.setTimeout(activateAllTargets, 1800);
+                    }
+                } catch (error) {
+                    document.documentElement.classList.remove('js-reveal');
+                    console.warn('Scroll reveal disabled; content left visible.', error);
+                }
             }
 
             document.addEventListener('DOMContentLoaded', initScrollReveal);
