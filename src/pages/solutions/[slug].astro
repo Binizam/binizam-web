@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import ContentHero from '../../components/seo/ContentHero.astro';
+import PageSectionGrid from '../../components/seo/PageSectionGrid.astro';
+import FAQAccordion from '../../components/seo/FAQAccordion.astro';
+import RelatedLinks from '../../components/seo/RelatedLinks.astro';
+import { solutionPages, type SolutionPage } from '../../data/siteContent';
+
+export function getStaticPaths() {
+  return solutionPages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page }
+  }));
+}
+
+interface Props {
+  page: SolutionPage;
+}
+
+const { page } = Astro.props;
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Solutions', href: '/solutions/' },
+  { label: page.h1.replace(/\.$/, ''), href: page.href }
+];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: page.serviceName,
+    serviceType: page.serviceName,
+    description: page.description,
+    areaServed: ['United Arab Emirates', 'Saudi Arabia', 'GCC'],
+    provider: {
+      '@id': new URL('/#organization', Astro.site || 'https://binizam.com').toString()
+    },
+    url: new URL(page.href, Astro.site || 'https://binizam.com').toString()
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: page.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a
+      }
+    }))
+  }
+];
+---
+
+<Layout title={page.title} description={page.description} breadcrumbs={breadcrumbs} structuredData={structuredData}>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <ContentHero
+      eyebrow={page.eyebrow}
+      h1={page.h1}
+      lead={page.lead}
+      directAnswer={page.directAnswer}
+      quickLinks={page.quickLinks}
+      visual={page.visual}
+      highlights={page.outcomes}
+      secondaryCtaHref="/solutions/"
+      secondaryCtaLabel="All solutions"
+    />
+
+    {page.sections.map((section) => (
+      <PageSectionGrid section={section} />
+    ))}
+
+    <FAQAccordion faqs={page.faqs} />
+    <RelatedLinks links={page.relatedLinks} />
+  </main>
+
+  <Footer />
+</Layout>

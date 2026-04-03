@@ -1,0 +1,108 @@
+---
+import Button from '../ui/Button.astro';
+import type { PageCard, PageVisual } from '../../data/siteContent';
+import WorkflowVisual from './WorkflowVisual.astro';
+
+interface Props {
+  eyebrow: string;
+  h1: string;
+  lead: string;
+  directAnswer: string;
+  quickLinks: Array<{ label: string; href: string }>;
+  visual: PageVisual;
+  highlights?: PageCard[];
+  primaryCtaHref?: string;
+  primaryCtaLabel?: string;
+  secondaryCtaHref?: string;
+  secondaryCtaLabel?: string;
+  metaLine?: string;
+}
+
+const {
+  eyebrow,
+  h1,
+  lead,
+  directAnswer,
+  quickLinks,
+  visual,
+  highlights = [],
+  primaryCtaHref = '/contact/',
+  primaryCtaLabel = 'Talk to an engineer',
+  secondaryCtaHref,
+  secondaryCtaLabel,
+  metaLine = 'Reply in 1-2 business days | 15-20 min fit check'
+} = Astro.props;
+---
+
+<section class="max-w-6xl mx-auto px-6 pb-20 lg:pb-28">
+  <div class="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
+    <div class="max-w-2xl">
+      <p class="text-xs font-mono uppercase tracking-[0.24em] text-amber-700 dark:text-amber-500 reveal">
+        {eyebrow}
+      </p>
+      <h1 class="mt-5 text-4xl md:text-5xl font-semibold tracking-tight leading-[1.08] text-primary dark:text-stone-50 reveal">
+        {h1}
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-stone-600 dark:text-stone-400 reveal delay-100">
+        {lead}
+      </p>
+
+      <div id="direct-answer" class="mt-8 rounded-3xl border border-amber-600/20 bg-white/80 dark:bg-stone-900/60 p-6 shadow-sm reveal delay-200">
+        <p class="text-[0.65rem] font-mono uppercase tracking-[0.24em] text-stone-500 dark:text-stone-500">
+          Direct answer
+        </p>
+        <p class="mt-3 text-sm md:text-base leading-7 text-primary dark:text-stone-200">
+          {directAnswer}
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 reveal delay-300">
+        <Button href={primaryCtaHref} variant="primary">{primaryCtaLabel}</Button>
+        {secondaryCtaHref && secondaryCtaLabel && (
+          <Button href={secondaryCtaHref} variant="secondary">{secondaryCtaLabel}</Button>
+        )}
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center gap-3 reveal delay-300">
+        <span class="text-xs font-medium text-stone-400 dark:text-stone-500">Quick jumps:</span>
+        {quickLinks.map((link) => (
+          <a
+            href={link.href}
+            class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 bg-surface/50 dark:bg-stone-800/50 text-xs font-medium text-primary dark:text-stone-300 hover:border-amber-600/40 hover:text-amber-600 hover:-translate-y-0.5 transition-all"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <p class="mt-5 text-xs font-mono text-stone-500 dark:text-stone-500 reveal delay-300">
+        {metaLine}
+      </p>
+    </div>
+
+    <WorkflowVisual visual={visual} />
+  </div>
+
+  {highlights.length > 0 && (
+    <div class="mt-14 grid md:grid-cols-3 gap-4">
+      {highlights.map((card, index) => (
+        <article class={`rounded-3xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-950/60 p-6 shadow-sm reveal ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : ''}`}>
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-2xl border border-stone-200 dark:border-stone-700 bg-surface dark:bg-stone-800 text-amber-700 dark:text-amber-500">
+              <iconify-icon icon={card.icon} width="20" stroke-width="1.5"></iconify-icon>
+            </div>
+            {card.label && (
+              <span class="text-[0.6rem] font-mono uppercase tracking-[0.22em] text-stone-400 dark:text-stone-500">
+                {card.label}
+              </span>
+            )}
+          </div>
+          <h2 class="mt-4 text-base font-semibold text-primary dark:text-stone-100">{card.title}</h2>
+          <p class="mt-3 text-sm leading-relaxed text-stone-600 dark:text-stone-400">
+            {card.text}
+          </p>
+        </article>
+      ))}
+    </div>
+  )}
+</section>

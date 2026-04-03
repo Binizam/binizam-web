@@ -1,0 +1,147 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import ContentHero from '../../components/seo/ContentHero.astro';
+import HubCards from '../../components/seo/HubCards.astro';
+import RelatedLinks from '../../components/seo/RelatedLinks.astro';
+import FAQAccordion from '../../components/seo/FAQAccordion.astro';
+import { guideHubHighlights, guidePages, type FaqItem } from '../../data/siteContent';
+
+const seo = {
+  title: 'Accounts Receivable Automation Guides and Workflow Playbooks | Binizam',
+  description:
+    'Guides to AR automation, collections workflows, cash application, DSO reduction, ERP boundaries, and GCC finance operations.'
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Guides', href: '/guides/' }
+];
+
+const faqs: FaqItem[] = [
+  {
+    q: 'Which guide should a team read first?',
+    a: 'If the buyer is new to the category, start with “What is accounts receivable automation?” If the immediate problem is overdue recovery or operational execution, start with the DSO or collections workflow guides.'
+  },
+  {
+    q: 'How should guides support commercial SEO?',
+    a: 'Each guide should provide a clear direct answer, define the workflow states accurately, and link to the relevant solution pages where implementation is explained.'
+  }
+];
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  breadcrumbs={breadcrumbs}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: seo.title,
+    description: seo.description,
+    url: new URL('/guides/', Astro.site || 'https://binizam.com').toString()
+  }}
+>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <ContentHero
+      eyebrow="Guides"
+      h1="Guides to AR automation, collections workflows, cash application, and DSO improvement."
+      lead="Create clear educational pages that answer informational search intent directly, then point readers toward the matching solution pages."
+      directAnswer="The guides hub should act as a topical content library for AR automation. Each article starts with a concise answer that a human or LLM can quote, then expands into workflow states, implementation tradeoffs, FAQs, and links to commercial pages."
+      quickLinks={[
+        { label: 'Guide cards', href: '#guide-cards' },
+        { label: 'FAQ', href: '#faq' }
+      ]}
+      visual={{
+        caption: 'Guide cluster',
+        cards: [
+          {
+            icon: 'solar:book-bookmark-linear',
+            title: 'Explain the concept',
+            text: 'Start with one answer and one workflow definition.',
+            label: 'Read'
+          },
+          {
+            icon: 'solar:chart-square-linear',
+            title: 'Show operating steps',
+            text: 'Expand into queues, controls, metrics, and implementation sequence.',
+            label: 'Learn'
+          },
+          {
+            icon: 'solar:arrow-right-linear',
+            title: 'Route into solutions',
+            text: 'Connect informational intent to the right implementation page.',
+            label: 'Act'
+          }
+        ]
+      }}
+      highlights={guideHubHighlights}
+      secondaryCtaHref="/solutions/"
+      secondaryCtaLabel="See solutions"
+    />
+
+    <section id="guide-cards" class="max-w-6xl mx-auto px-6 pb-16">
+      <div class="grid md:grid-cols-2 gap-5">
+        {guidePages.map((page, index) => (
+          <a
+            href={page.href}
+            class={`group rounded-[2rem] border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-950/60 p-7 shadow-sm hover:border-amber-600/40 hover:-translate-y-1 transition-all reveal ${index % 2 === 1 ? 'delay-100' : ''}`}
+          >
+            <div class="flex items-center justify-between gap-4">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-stone-200 dark:border-stone-700 bg-surface dark:bg-stone-800 text-amber-700 dark:text-amber-500">
+                <iconify-icon icon={page.visual.cards[0]?.icon ?? 'solar:book-bookmark-linear'} width="22" stroke-width="1.5"></iconify-icon>
+              </div>
+              <span class="text-[0.65rem] font-mono uppercase tracking-[0.22em] text-stone-500 dark:text-stone-500">
+                {page.readTime}
+              </span>
+            </div>
+            <h2 class="mt-5 text-xl font-semibold tracking-tight text-primary dark:text-stone-50 group-hover:text-amber-600 transition-colors">
+              {page.h1.replace(/\.$/, '')}
+            </h2>
+            <p class="mt-4 text-sm leading-7 text-stone-600 dark:text-stone-400">
+              {page.articleSummary}
+            </p>
+            <div class="mt-6 flex items-center gap-2 text-sm font-semibold text-amber-700 dark:text-amber-500">
+              Read guide
+              <iconify-icon icon="solar:arrow-right-linear" width="16" stroke-width="1.5"></iconify-icon>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <HubCards cards={guideHubHighlights} />
+    <FAQAccordion faqs={faqs} />
+    <RelatedLinks links={[
+      {
+        eyebrow: 'Solution',
+        label: 'Accounts Receivable Automation',
+        href: '/solutions/accounts-receivable-automation/',
+        description: 'Move from definitions to a commercially structured implementation page.',
+        icon: 'solar:chart-2-linear'
+      },
+      {
+        eyebrow: 'Solution',
+        label: 'AR Collections Automation',
+        href: '/solutions/ar-collections-automation/',
+        description: 'See how queue, PTP, and dispute workflows map to the guide content.',
+        icon: 'solar:users-group-two-rounded-linear'
+      },
+      {
+        eyebrow: 'Integration',
+        label: 'Retool',
+        href: '/integrations/retool/',
+        description: 'Understand how internal operator UIs can expose the workflows discussed in the guides.',
+        icon: 'solar:window-frame-linear'
+      }
+    ]} />
+  </main>
+
+  <Footer />
+</Layout>

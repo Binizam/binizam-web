@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import ContentHero from '../../components/seo/ContentHero.astro';
+import PageSectionGrid from '../../components/seo/PageSectionGrid.astro';
+import FAQAccordion from '../../components/seo/FAQAccordion.astro';
+import RelatedLinks from '../../components/seo/RelatedLinks.astro';
+import { guidePages, type GuidePage } from '../../data/siteContent';
+
+export function getStaticPaths() {
+  return guidePages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page }
+  }));
+}
+
+interface Props {
+  page: GuidePage;
+}
+
+const { page } = Astro.props;
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Guides', href: '/guides/' },
+  { label: page.h1.replace(/\.$/, ''), href: page.href }
+];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: page.h1.replace(/\.$/, ''),
+    description: page.description,
+    author: {
+      '@id': new URL('/#organization', Astro.site || 'https://binizam.com').toString()
+    },
+    publisher: {
+      '@id': new URL('/#organization', Astro.site || 'https://binizam.com').toString()
+    },
+    mainEntityOfPage: new URL(page.href, Astro.site || 'https://binizam.com').toString()
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: page.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a
+      }
+    }))
+  }
+];
+---
+
+<Layout title={page.title} description={page.description} breadcrumbs={breadcrumbs} structuredData={structuredData}>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <ContentHero
+      eyebrow={page.eyebrow}
+      h1={page.h1}
+      lead={page.lead}
+      directAnswer={page.directAnswer}
+      quickLinks={page.quickLinks}
+      visual={page.visual}
+      secondaryCtaHref="/solutions/accounts-receivable-automation/"
+      secondaryCtaLabel="See the AR solution"
+      metaLine={`${page.readTime} | evergreen implementation guide`}
+    />
+
+    <section class="max-w-3xl mx-auto px-6 pb-10">
+      <article class="rounded-[2rem] border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-950/60 p-8 shadow-sm reveal">
+        <p class="text-xs font-mono uppercase tracking-[0.22em] text-amber-700 dark:text-amber-500">
+          Summary
+        </p>
+        <h2 class="mt-4 text-2xl font-semibold tracking-tight text-primary dark:text-stone-50">
+          What this guide covers
+        </h2>
+        <p class="mt-4 text-sm md:text-base leading-8 text-stone-600 dark:text-stone-400">
+          {page.articleSummary}
+        </p>
+      </article>
+    </section>
+
+    {page.sections.map((section) => (
+      <PageSectionGrid section={section} />
+    ))}
+
+    <FAQAccordion faqs={page.faqs} />
+    <RelatedLinks links={page.relatedLinks} />
+  </main>
+
+  <Footer />
+</Layout>

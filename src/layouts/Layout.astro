@@ -6,13 +6,15 @@ interface Props {
     description: string; // Made this required to ensure you always think about SEO per page
     ogImage?: string;
     structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+    breadcrumbs?: Array<{ label: string; href: string }>;
 }
 
 const { 
   title, 
   description,
   ogImage = '/og-image.jpg', // Default image if you haven't made one yet
-  structuredData = []
+  structuredData = [],
+  breadcrumbs = []
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://binizam.com');
@@ -25,6 +27,18 @@ const socialBaseURL = isPreview ? previewOrigin : siteURL;
 const socialPageURL = new URL(Astro.url.pathname, socialBaseURL);
 const socialImageURL = new URL(ogImage, socialBaseURL);
 const structuredDataItems = Array.isArray(structuredData) ? structuredData : [structuredData];
+const breadcrumbSchema = breadcrumbs.length > 0
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbs.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.label,
+        item: new URL(item.href, siteURL).toString()
+      }))
+    }
+  : null;
 const baseStructuredData = [
   {
     '@context': 'https://schema.org',
@@ -59,10 +73,11 @@ const baseStructuredData = [
       '@id': new URL('/#organization', siteURL).toString()
     }
   },
+  ...(breadcrumbSchema ? [breadcrumbSchema] : []),
   ...structuredDataItems
 ];
 
-const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true';
+const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING !== 'false';
 ---
 
 <!doctype html>

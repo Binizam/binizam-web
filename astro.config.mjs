@@ -9,6 +9,11 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://binizam.com',
+  trailingSlash: 'always',
+  redirects: {
+    '/ar-collections': '/solutions/ar-collections-automation/',
+    '/capabilities': '/solutions/accounts-receivable-automation/'
+  },
   vite: {
     plugins: [tailwindcss()]
   },
