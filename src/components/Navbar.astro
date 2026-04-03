@@ -1,5 +1,6 @@
 ---
 import Button from './ui/Button.astro';
+import { siteNavigation } from '../data/siteContent';
 ---
 
 <header 
@@ -23,10 +24,51 @@ import Button from './ui/Button.astro';
     </a>
 
     <nav class="hidden md:flex items-center gap-8 relative z-50">
-      <a href="/capabilities/" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Capabilities</a>
-      <a href="/ar-collections/" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">AR Automation</a>
-      <a href="/security/" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Security</a>
-      <a href="/how-we-work/" class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">How we work</a>
+      {siteNavigation.map((item) => (
+        item.items ? (
+          <div class="relative group/nav">
+            <a
+              href={item.href}
+              class="inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors py-2"
+            >
+              {item.label}
+              <iconify-icon icon="solar:alt-arrow-down-linear" width="14" stroke-width="1.5" class="transition-transform duration-300 group-hover/nav:rotate-180"></iconify-icon>
+            </a>
+
+            <div class="absolute left-1/2 top-full w-[25rem] -translate-x-1/2 pt-4 opacity-0 pointer-events-none group-hover/nav:opacity-100 group-hover/nav:pointer-events-auto group-focus-within/nav:opacity-100 group-focus-within/nav:pointer-events-auto transition-all duration-200">
+              <div class="rounded-[2rem] border border-stone-200 dark:border-stone-800 bg-[#FFFCF5]/95 dark:bg-[#1C1917]/95 backdrop-blur-xl shadow-xl p-3">
+                <div class="grid gap-1">
+                  {item.items.map((child) => (
+                    <a
+                      href={child.href}
+                      class="group/item flex gap-4 rounded-3xl p-4 hover:bg-white dark:hover:bg-stone-900 transition-colors"
+                    >
+                      <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-stone-200 dark:border-stone-700 bg-surface dark:bg-stone-800 text-amber-700 dark:text-amber-500">
+                        <iconify-icon icon={child.icon} width="20" stroke-width="1.5"></iconify-icon>
+                      </div>
+                      <div class="min-w-0 flex-1">
+                        <p class="text-sm font-semibold text-primary dark:text-stone-100 group-hover/item:text-amber-600 transition-colors">
+                          {child.label}
+                        </p>
+                        <p class="mt-1 text-xs leading-5 text-stone-500 dark:text-stone-400">
+                          {child.description}
+                        </p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-500 transition-colors"
+          >
+            {item.label}
+          </a>
+        )
+      ))}
     </nav>
 
     <div class="flex items-center gap-4 sm:gap-5 relative z-50">
@@ -70,12 +112,38 @@ import Button from './ui/Button.astro';
       </button>
     </div>
 
-    <nav class="flex flex-col gap-8 p-8 pt-4 text-lg font-semibold tracking-tight">
-      <a href="/capabilities/" class="text-stone-900 dark:text-stone-100 hover:text-amber-600 transition-colors">Capabilities</a>
-      <a href="/ar-collections/" class="text-stone-900 dark:text-stone-100 hover:text-amber-600 transition-colors">AR Automation</a>
-      <a href="/security/" class="text-stone-900 dark:text-stone-100 hover:text-amber-600 transition-colors">Security</a>
-      <a href="/how-we-work/" class="text-stone-900 dark:text-stone-100 hover:text-amber-600 transition-colors">How we work</a>
-      
+    <nav class="flex flex-col gap-5 p-8 pt-4 text-lg font-semibold tracking-tight overflow-y-auto">
+      {siteNavigation.map((item) => (
+        item.items ? (
+          <details class="group/mobile border-b border-stone-200 dark:border-stone-800 pb-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-stone-900 dark:text-stone-100 hover:text-amber-600 transition-colors">
+              <span>{item.label}</span>
+              <iconify-icon icon="solar:alt-arrow-down-linear" width="20" stroke-width="1.5" class="text-stone-500 group-open/mobile:rotate-180 transition-transform"></iconify-icon>
+            </summary>
+            <div class="mt-5 grid gap-3">
+              <a href={item.href} class="text-sm font-semibold text-amber-700 dark:text-amber-500">
+                View all {item.label.toLowerCase()}
+              </a>
+              {item.items.map((child) => (
+                <a href={child.href} class="flex gap-3 rounded-3xl bg-white/60 dark:bg-stone-900/40 p-4">
+                  <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl border border-stone-200 dark:border-stone-700 bg-surface dark:bg-stone-800 text-amber-700 dark:text-amber-500">
+                    <iconify-icon icon={child.icon} width="18" stroke-width="1.5"></iconify-icon>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-primary dark:text-stone-100">{child.label}</p>
+                    <p class="mt-1 text-xs font-normal leading-5 text-stone-500 dark:text-stone-400">{child.description}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </details>
+        ) : (
+          <a href={item.href} class="text-stone-900 dark:text-stone-100 hover:text-amber-600 transition-colors">
+            {item.label}
+          </a>
+        )
+      ))}
+
       <div class="flex flex-col mt-4">
         <Button href="/contact/" variant="primary">Talk to an engineer</Button>
       </div>
@@ -163,3 +231,9 @@ import Button from './ui/Button.astro';
   document.addEventListener('DOMContentLoaded', init);
   document.addEventListener('astro:page-load', init);
 </script>
+
+<style is:global>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

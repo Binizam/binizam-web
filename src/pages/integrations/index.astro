@@ -1,0 +1,142 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import ContentHero from '../../components/seo/ContentHero.astro';
+import HubCards from '../../components/seo/HubCards.astro';
+import FAQAccordion from '../../components/seo/FAQAccordion.astro';
+import RelatedLinks from '../../components/seo/RelatedLinks.astro';
+import { integrationHubHighlights, integrationPages, type FaqItem } from '../../data/siteContent';
+
+const seo = {
+  title: 'AR Integrations for SAP, Oracle, Dynamics, Retool, and Bank Files | Binizam',
+  description:
+    'Integrations for ERP, CRM, bank files, APIs, and internal systems that support AR collections, payment matching, reconciliation, and governed workflow operations.'
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Integrations', href: '/integrations/' }
+];
+
+const faqs: FaqItem[] = [
+  {
+    q: 'What systems can Binizam integrate with?',
+    a: 'Typical integrations include SAP, Oracle, Microsoft Dynamics, Retool, CRM systems, bank files, APIs, webhooks, and internal services, scoped to the workflow being implemented.'
+  },
+  {
+    q: 'Does Binizam become the system of record?',
+    a: 'No. The integration model keeps ERP, banking, and approved financial systems authoritative while Binizam handles workflow queues, exception routing, and approvals.'
+  }
+];
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  breadcrumbs={breadcrumbs}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: seo.title,
+    description: seo.description,
+    url: new URL('/integrations/', Astro.site || 'https://binizam.com').toString()
+  }}
+>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <ContentHero
+      eyebrow="Integrations"
+      h1="Integrations for ERP, CRM, bank files, and internal systems."
+      lead="Explain how Binizam sits around your systems of record with scoped access, controlled workflow states, and reconciliation visibility."
+      directAnswer="The integration architecture should keep SAP, Oracle, Dynamics, bank systems, and internal services as the records they own, while Binizam coordinates operator queues, exception states, approvals, and reporting across those sources."
+      quickLinks={[
+        { label: 'Integration cards', href: '#integration-cards' },
+        { label: 'FAQ', href: '#faq' }
+      ]}
+      visual={{
+        caption: 'Integration architecture',
+        cards: [
+          {
+            icon: 'solar:database-linear',
+            title: 'ERP and financial systems',
+            text: 'Systems of record keep accounting and master-data ownership.',
+            label: 'Source'
+          },
+          {
+            icon: 'solar:layers-minimalistic-linear',
+            title: 'Binizam workflow layer',
+            text: 'Queues, status transitions, approvals, and reconciliation exceptions.',
+            label: 'Control'
+          },
+          {
+            icon: 'solar:users-group-two-rounded-linear',
+            title: 'Finance operators',
+            text: 'Collectors, managers, and exception owners work from one operating loop.',
+            label: 'Users'
+          }
+        ]
+      }}
+      highlights={integrationHubHighlights}
+      secondaryCtaHref="/security/"
+      secondaryCtaLabel="Security model"
+    />
+
+    <section id="integration-cards" class="max-w-6xl mx-auto px-6 pb-16">
+      <div class="grid md:grid-cols-2 gap-5">
+        {integrationPages.map((page, index) => (
+          <a
+            href={page.href}
+            class={`group rounded-[2rem] border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-950/60 p-7 shadow-sm hover:border-amber-600/40 hover:-translate-y-1 transition-all reveal ${index % 2 === 1 ? 'delay-100' : ''}`}
+          >
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-stone-200 dark:border-stone-700 bg-surface dark:bg-stone-800 text-amber-700 dark:text-amber-500">
+              <iconify-icon icon={page.visual.cards[0]?.icon ?? 'solar:plug-circle-linear'} width="22" stroke-width="1.5"></iconify-icon>
+            </div>
+            <h2 class="mt-5 text-xl font-semibold tracking-tight text-primary dark:text-stone-50 group-hover:text-amber-600 transition-colors">
+              {page.h1.replace(/\.$/, '')}
+            </h2>
+            <p class="mt-4 text-sm leading-7 text-stone-600 dark:text-stone-400">
+              {page.lead}
+            </p>
+            <div class="mt-6 flex items-center gap-2 text-sm font-semibold text-amber-700 dark:text-amber-500">
+              Open integration
+              <iconify-icon icon="solar:arrow-right-linear" width="16" stroke-width="1.5"></iconify-icon>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <HubCards cards={integrationHubHighlights} />
+    <FAQAccordion faqs={faqs} />
+    <RelatedLinks links={[
+      {
+        eyebrow: 'Solution',
+        label: 'Accounts Receivable Automation',
+        href: '/solutions/accounts-receivable-automation/',
+        description: 'Understand the workflow modules these integrations support.',
+        icon: 'solar:chart-2-linear'
+      },
+      {
+        eyebrow: 'Support',
+        label: 'Security',
+        href: '/security/',
+        description: 'Review least-privilege access, hosting, and auditability expectations.',
+        icon: 'solar:shield-check-linear'
+      },
+      {
+        eyebrow: 'Support',
+        label: 'How we work',
+        href: '/how-we-work/',
+        description: 'See the delivery model, checkpoints, and reviewable rollout artifacts.',
+        icon: 'solar:code-square-linear'
+      }
+    ]} />
+  </main>
+
+  <Footer />
+</Layout>

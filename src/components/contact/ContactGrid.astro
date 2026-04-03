@@ -212,6 +212,25 @@ Sensitive steps: (what needs approvals/audit trail)`;
     const submitBtn = form.querySelector("[data-contact-submit]");
     const originalBtnHtml = submitBtn?.innerHTML;
 
+    const buildFallbackMailto = (payload) => {
+      const subject = encodeURIComponent("Binizam workflow inquiry");
+      const body = encodeURIComponent(
+        [
+          `Full Name: ${payload.fullName || "-"}`,
+          `Work Email: ${payload.email || "-"}`,
+          `Company / Organization: ${payload.company || "-"}`,
+          "",
+          "Message:",
+          payload.message || "-",
+          "",
+          `Page: ${payload.pageUri}`,
+          `Source: ${payload.utmSource || "-"} / ${payload.utmMedium || "-"} / ${payload.utmCampaign || "-"}`
+        ].join("\n")
+      );
+
+      return `mailto:engineers@binizam.com?subject=${subject}&body=${body}`;
+    };
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -257,6 +276,7 @@ Sensitive steps: (what needs approvals/audit trail)`;
         if (!res.ok) {
           if (res.status === 429) throw new Error("RATE_LIMIT");
           if (res.status === 403) throw new Error("FORBIDDEN_ORIGIN");
+          if (res.status === 404) throw new Error("CONTACT_API_MISSING");
           throw new Error("SUBMIT_FAILED");
         }
 
@@ -270,6 +290,13 @@ Sensitive steps: (what needs approvals/audit trail)`;
           msg = "Too many attempts. Please wait a minute and try again.";
         } else if (err && err.message === "FORBIDDEN_ORIGIN") {
           msg = "Please refresh the page and try again.";
+        } else if (err && err.message === "CONTACT_API_MISSING") {
+          window.location.href = buildFallbackMailto(payload);
+          msg = "This deployment does not have the form backend yet, so we opened your email app with the message prefilled.";
+          statusEl.textContent = msg;
+          statusEl?.classList.add("text-green-600", "dark:text-green-400");
+          statusEl?.classList.remove("hidden");
+          return;
         }
 
         statusEl.textContent = msg;

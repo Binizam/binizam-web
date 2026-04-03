@@ -1,0 +1,38 @@
+---
+import type { FaqItem } from '../../data/siteContent';
+
+interface Props {
+  faqs: FaqItem[];
+}
+
+const { faqs } = Astro.props;
+---
+
+<section id="faq" class="max-w-3xl mx-auto px-6 py-16 border-t border-stone-200/70 dark:border-stone-800/70">
+  <p class="text-xs font-mono uppercase tracking-[0.22em] text-amber-700 dark:text-amber-500 text-center reveal">
+    FAQ
+  </p>
+  <h2 class="mt-4 text-2xl md:text-3xl font-semibold tracking-tight text-primary dark:text-stone-50 text-center reveal">
+    Questions buyers usually ask before implementation
+  </h2>
+
+  <div class="mt-10 border-t border-stone-200 dark:border-stone-800">
+    {faqs.map((faq, index) => (
+      <details class="group border-b border-stone-200 dark:border-stone-800" open={index === 0}>
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-6 text-sm font-semibold text-primary dark:text-stone-100 hover:text-amber-600 transition-colors">
+          {faq.q}
+          <iconify-icon icon="solar:add-circle-linear" class="text-stone-500 group-open:rotate-45 transition-transform" width="18" stroke-width="1.5"></iconify-icon>
+        </summary>
+        <div class="pb-6 pr-8 text-sm leading-7 text-stone-600 dark:text-stone-400">
+          {faq.a}
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style is:global>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
