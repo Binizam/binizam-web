@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/ar-automation",
+      "destination": "/ar-collections",
+      "permanent": true
+    },
+    {
       "source": "/:path+/",
       "destination": "/:path+",
       "permanent": true
