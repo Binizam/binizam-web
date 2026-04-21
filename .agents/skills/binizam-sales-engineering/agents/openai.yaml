@@ -1,0 +1,8 @@
+interface:
+  display_name: Binizam Sales Engineering
+  short_description: Scope Binizam discovery, PoCs, demos, and technical proposals
+  default_prompt: Use $binizam-sales-engineering to frame this Binizam engagement as a clear discovery, PoC, proposal, or demo deliverable.
+
+policy:
+  allow_implicit_invocation: true
+
