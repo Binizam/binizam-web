@@ -1,0 +1,7 @@
+interface:
+  display_name: Binizam Discovery Coach
+  short_description: Prepare sharper Binizam discovery calls and buyer questions
+  default_prompt: Use $binizam-discovery-coach to prepare a Binizam discovery call with strong questions, stakeholder mapping, gap discovery, and objection prep.
+
+policy:
+  allow_implicit_invocation: true

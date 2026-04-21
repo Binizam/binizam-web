@@ -1,0 +1,7 @@
+interface:
+  display_name: Binizam Proposal Strategy
+  short_description: Write stronger Binizam proposals, exec summaries, and win themes
+  default_prompt: Use $binizam-proposal-strategy to turn Binizam discovery and solution context into a strong executive summary, proposal outline, and win-theme structure.
+
+policy:
+  allow_implicit_invocation: true

@@ -1,8 +1,7 @@
 interface:
   display_name: Binizam Marketing Copy
-  short_description: Write specific, credible copy for Binizam
-  default_prompt: Use $binizam-marketing-copy to sharpen Binizam messaging, service framing, or website copy without slipping into generic startup language.
+  short_description: Write specific, credible Binizam website and collateral copy
+  default_prompt: Use $binizam-marketing-copy to sharpen Binizam messaging, service framing, or website copy without slipping into generic startup language or proposal writing.
 
 policy:
   allow_implicit_invocation: true
-

@@ -1,6 +1,6 @@
 ---
 name: binizam-marketing-copy
-description: Use when working on Binizam website messaging, service framing, landing-page copy, case-study structure, outbound collateral, or founder-positioning copy for AR and workflow automation work. Trigger in Binizam repos or when the task is clearly about Binizam marketing copy. Do not use for non-Binizam brands, technical discovery plans, or generic coding tasks.
+description: Use when working on Binizam website messaging, service framing, landing-page copy, case-study structure, outbound collateral, or founder-positioning copy for AR and workflow automation work. Trigger in Binizam repos or when the task is clearly about Binizam marketing copy. Do not use for non-Binizam brands, client proposals, technical discovery plans, or generic coding tasks.
 ---
 
 # Binizam Marketing Copy
@@ -31,5 +31,5 @@ Before writing, read `references/company-context.md` and reuse only confirmed co
 - Do not fabricate clients, results, certifications, or scale claims.
 - Avoid generic SaaS hype, inflated AI language, or vague transformation claims.
 - Keep the tone calm, specific, and engineer-led.
+- If the task is a client proposal or executive summary, use `binizam-proposal-strategy` instead.
 - When the evidence is thin, prefer honest positioning over stronger but invented claims.
-
