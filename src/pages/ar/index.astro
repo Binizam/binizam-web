@@ -97,9 +97,9 @@ const boundaries = page.sections[5].items || [];
             <h3 class="text-xl font-semibold mb-3 text-primary dark:text-stone-50">{card.title}</h3>
             <p class="text-stone-500 dark:text-stone-400 text-sm mb-8 leading-relaxed">{card.text}</p>
             {card.href && card.cta && (
-              <a class="inline-flex items-center text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors" href={card.href}>
+              <a class="inline-flex items-center text-sm font-semibold text-amber-600 hover:text-amber-700 group-hover:-translate-x-1 transition-transform" href={card.href}>
+                <iconify-icon class="me-2" icon="solar:arrow-left-linear" stroke-width="1.5"></iconify-icon>
                 {card.cta}
-                <iconify-icon class="mr-2" icon="solar:arrow-left-linear" stroke-width="1.5"></iconify-icon>
               </a>
             )}
           </div>
@@ -130,13 +130,13 @@ const boundaries = page.sections[5].items || [];
       <div class="grid md:grid-cols-2 gap-12">
         <div class="space-y-6">
           <SectionHeader title={page.sections[4].title} />
-          <div class="space-y-3 pl-1">
+          <div class="space-y-3 ps-1">
             {enterpriseItems.map((item) => <ListItem dotColor="primary">{item}</ListItem>)}
           </div>
         </div>
         <div class="space-y-6">
           <SectionHeader title={page.sections[5].title} />
-          <div class="space-y-3 pl-1 text-sm">
+          <div class="space-y-3 ps-1 text-sm">
             {boundaries.map((item) => <ListItem dotColor="red">{item}</ListItem>)}
             <p class="text-sm text-stone-500 dark:text-stone-400 pt-4">{page.sections[5].intro?.[0]}</p>
           </div>
