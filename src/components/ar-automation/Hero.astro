@@ -29,8 +29,8 @@ const copy = isAr ? {
   smallLine: 'فحص ملاءمة خلال 15–20 دقيقة · رد خلال يوم إلى يومي عمل',
   nodes: [
     { icon: 'solar:clipboard-list-linear', title: 'قائمة عمل', desc: 'ترتيب الإجراءات التالية', margin: '' },
-    { icon: 'solar:shield-warning-linear', title: 'استثناءات', desc: 'توجيه الحالات غير المتطابقة', margin: 'lg:mr-8' },
-    { icon: 'solar:check-read-linear', title: 'موافقات', desc: 'مراجعة الإدارة وسجل التدقيق', margin: 'lg:mr-16', active: true }
+    { icon: 'solar:shield-warning-linear', title: 'استثناءات', desc: 'توجيه الحالات غير المتطابقة', margin: 'lg:ms-8' },
+    { icon: 'solar:check-read-linear', title: 'موافقات', desc: 'مراجعة الإدارة وسجل التدقيق', margin: 'lg:ms-16', active: true }
   ]
 } : {
   contactHref: '/contact',
@@ -54,8 +54,8 @@ const copy = isAr ? {
   smallLine: '15–20 min fit check · Reply in 1–2 business days',
   nodes: [
     { icon: 'solar:clipboard-list-linear', title: 'Worklist', desc: 'Prioritize next actions', margin: '' },
-    { icon: 'solar:shield-warning-linear', title: 'Exceptions', desc: 'Route out-of-sync events', margin: 'lg:ml-8' },
-    { icon: 'solar:check-read-linear', title: 'Approvals', desc: 'Manager review & audit', margin: 'lg:ml-16', active: true }
+    { icon: 'solar:shield-warning-linear', title: 'Exceptions', desc: 'Route out-of-sync events', margin: 'lg:ms-8' },
+    { icon: 'solar:check-read-linear', title: 'Approvals', desc: 'Manager review & audit', margin: 'lg:ms-16', active: true }
   ]
 };
 ---
@@ -66,7 +66,7 @@ const copy = isAr ? {
 
 <section class="min-h-0 lg:min-h-[70vh] flex max-w-6xl mx-auto pt-24 px-6 pb-12 lg:pb-24 items-center" dir={isAr ? 'rtl' : 'ltr'}>
   <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 w-full items-center">
-    <div class={`w-full min-w-0 max-w-xl z-20 relative order-1 lg:order-1 flex flex-col items-center ${isAr ? 'lg:items-end lg:text-right' : 'lg:items-start lg:text-left'} text-center`}>
+    <div class={`w-full min-w-0 max-w-xl z-20 relative order-1 lg:order-1 flex flex-col items-center lg:items-start lg:text-start text-center`}>
       <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-[1.1] mb-6 reveal">
         {copy.title}
       </h1>
@@ -103,8 +103,8 @@ const copy = isAr ? {
     </div>
 
     <div class="relative w-full min-w-0 h-auto py-12 lg:py-0 lg:h-[400px] flex items-center justify-center order-2 lg:order-2 reveal delay-200 select-none">
-      <div class={`relative flex flex-col gap-8 w-full max-w-sm mx-auto ${isAr ? 'lg:ml-0 text-right' : 'lg:mr-0 text-left'}`}>
-        <div class={`absolute ${isAr ? 'right-10' : 'left-10'} top-12 bottom-12 w-[2px] dash-line text-stone-200 dark:text-stone-800 z-0`}></div>
+      <div class={`relative flex flex-col gap-8 w-full max-w-sm mx-auto lg:ms-0 text-start`}>
+        <div class="absolute start-10 top-12 bottom-12 w-[2px] dash-line text-stone-200 dark:text-stone-800 z-0"></div>
         {copy.nodes.map(node => (
           <div class={`flex items-center gap-6 relative z-10 group cursor-default ${node.margin}`}>
             <div class={`w-20 h-20 rounded-2xl border shadow-sm flex items-center justify-center transition-all group-hover:shadow-lg group-hover:-translate-y-1 ${

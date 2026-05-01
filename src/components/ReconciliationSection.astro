@@ -73,7 +73,7 @@ const copy = isAr ? {
   <div class="max-w-6xl mx-auto px-6">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       
-      <div class={`order-1 lg:order-1 flex flex-col items-center ${isAr ? 'lg:items-end lg:text-right' : 'lg:items-start lg:text-left'} text-center`}>
+      <div class={`order-1 lg:order-1 flex flex-col items-center lg:items-start lg:text-start text-center`}>
         <div class="w-12 h-12 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-8 reveal">
           <iconify-icon icon="solar:refresh-circle-linear" stroke-width="1.5" width="24"></iconify-icon>
         </div>
@@ -122,7 +122,7 @@ const copy = isAr ? {
               </div>
 
               <div class="grid grid-cols-2 px-4 sm:px-6 py-4 gap-3 sm:gap-4 bg-amber-50/50 dark:bg-amber-900/10 relative group min-w-0">
-                <div class={`absolute ${isAr ? 'right-0' : 'left-0'} top-0 bottom-0 w-1 bg-amber-500`}></div>
+                <div class="absolute start-0 top-0 bottom-0 w-1 bg-amber-500"></div>
                 <div class="min-w-0">
                   <div class="font-medium text-slate-900 dark:text-stone-200 text-xs sm:text-sm" dir="ltr">TXN-8392</div>
                   <div class="text-slate-500 dark:text-stone-500 font-mono text-xs mt-0.5" dir="ltr">$4,250.00</div>
