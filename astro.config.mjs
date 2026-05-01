@@ -14,5 +14,10 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [mdx(), sitemap()]
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => !page.endsWith('/404') && !page.endsWith('/ar/404')
+    })
+  ]
 });

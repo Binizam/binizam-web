@@ -1,6 +1,4 @@
-# User-agent: * means these rules apply to all bots (Google, Bing, etc.)
 User-agent: *
 Allow: /
 
-# Points bots to your master sitemap index
-Sitemap: https://binizam.com/sitemap-index.xml
+Sitemap: https://binizam.com/sitemap.xml

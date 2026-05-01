@@ -1,8 +1,10 @@
 ---
 const aiPoints = [
   "Scoped inputs and outputs",
-  "Evaluation and monitoring",
-  "Human approvals"
+  "Clear fallback behavior",
+  "Human approval for sensitive outcomes",
+  "Monitoring and review",
+  "No black-box decisioning for critical workflow state"
 ];
 ---
 <section class="max-w-6xl mx-auto px-6 mb-24 reveal">
@@ -11,14 +13,15 @@ const aiPoints = [
       <div class="md:col-span-4">
         <h2 class="text-xl font-semibold tracking-tight text-primary dark:text-stone-50 flex items-center gap-3">
           <iconify-icon icon="solar:stars-minimalistic-linear" class="text-amber-600"></iconify-icon>
-          AI in workflows (controlled)
+          AI in workflows, only where governable
         </h2>
       </div>
       <div class="md:col-span-8">
-        <p class="text-lg text-stone-600 dark:text-stone-300 mb-6 leading-relaxed">
-          We add AI only when it can be governed:
+        <p class="text-lg text-stone-600 dark:text-stone-300 mb-5 leading-relaxed">
+          We add AI only when it can be controlled, evaluated, and audited.
         </p>
-        <div class="grid sm:grid-cols-3 gap-4 mb-6">
+        <p class="text-sm font-semibold text-primary dark:text-stone-100 mb-4">That means:</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-6">
           {aiPoints.map(point => (
             <div class="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-400 bg-surface dark:bg-stone-800/50 px-3 py-2 rounded-md border border-stone-100 dark:border-stone-800">
               <iconify-icon icon="solar:check-circle-linear" class="text-amber-600"></iconify-icon>
@@ -27,8 +30,7 @@ const aiPoints = [
           ))}
         </div>
         <p class="text-sm font-medium text-primary dark:text-stone-200 border-t border-stone-100 dark:border-stone-800 pt-4">
-          Control is a requirement—AI is used only with guardrails,
-          evaluation, monitoring, and approvals where needed.
+          If an automated or model-assisted step cannot be cleanly reviewed, explained, and approved, we keep it deterministic.
         </p>
       </div>
     </div>

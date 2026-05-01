@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/ui/Button.astro';
+
+Astro.response.status = 404;
+---
+
+<Layout
+  title="Page Not Found | Binizam"
+  description="The page you were looking for could not be found. Return to Binizam or talk to an engineer about a workflow problem."
+>
+  <Navbar />
+  <main class="z-10 relative flex-grow pt-32 pb-24">
+    <section class="w-full px-6 lg:max-w-6xl lg:mx-auto">
+      <div class="max-w-2xl">
+        <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-4 reveal">
+          404
+        </p>
+        <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-tight mb-6 reveal delay-100">
+          This page is not here.
+        </h1>
+        <p class="text-lg leading-relaxed text-muted dark:text-stone-400 mb-8 reveal delay-200">
+          Binizam builds governed internal workflow systems for GCC finance and operations teams. If you were looking for AR Collections, capabilities, security, or the contact page, start from one of the links below.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 reveal delay-300">
+          <Button href="/contact">Talk to an engineer</Button>
+          <Button href="/" variant="secondary">Return home</Button>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-16 reveal delay-400">
+        <a class="rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/50 p-5 text-sm font-semibold text-primary dark:text-stone-100 hover:border-amber-600/40 hover:text-amber-600 transition-colors" href="/capabilities">
+          Capabilities
+        </a>
+        <a class="rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/50 p-5 text-sm font-semibold text-primary dark:text-stone-100 hover:border-amber-600/40 hover:text-amber-600 transition-colors" href="/ar-collections">
+          AR Collections
+        </a>
+        <a class="rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/50 p-5 text-sm font-semibold text-primary dark:text-stone-100 hover:border-amber-600/40 hover:text-amber-600 transition-colors" href="/security">
+          Security
+        </a>
+        <a class="rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/50 p-5 text-sm font-semibold text-primary dark:text-stone-100 hover:border-amber-600/40 hover:text-amber-600 transition-colors" href="/how-we-work">
+          How we work
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -1,18 +1,21 @@
 ---
+import { getLocaleFromPath } from '../../lib/i18n';
+
 interface Props {
   title: string;
   subtitle?: string;
 }
 
 const { title, subtitle } = Astro.props;
+const isArabicRoute = getLocaleFromPath(Astro.url.pathname) === 'ar';
 ---
 
-<div class="mb-8 reveal">
-  <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-4 relative z-10">
+<div class="mb-8 reveal" dir={isArabicRoute ? 'rtl' : undefined}>
+  <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-4 relative z-10 break-words">
     {title}
   </h2>
   {subtitle && (
-    <p class="text-sm text-stone-500 dark:text-stone-400 leading-relaxed max-w-2xl relative z-10">
+    <p class="text-sm text-stone-500 dark:text-stone-400 leading-relaxed max-w-2xl relative z-10 break-words">
       {subtitle}
     </p>
   )}

@@ -1,0 +1,295 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/ui/Button.astro';
+import FeatureCard from '../../components/ui/FeatureCard.astro';
+import ListItem from '../../components/ui/ListItem.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+
+const seo = {
+  title: "AR Collections Automation for UAE FMCG Distributors | Binizam",
+  description: "AR collections workflows for UAE FMCG distributors: aging follow-up, payment matching, disputes, deductions, route-delivery complexity, and audit trails."
+};
+
+const site = Astro.site || new URL('https://binizam.com');
+const breadcrumbStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'AR Collections', item: new URL('/ar-collections', site).toString() },
+    { '@type': 'ListItem', position: 3, name: 'UAE FMCG Distributors', item: new URL('/ar-collections/fmcg-distributors-uae', site).toString() }
+  ]
+};
+
+const serviceStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': new URL('/ar-collections/fmcg-distributors-uae#service', site).toString(),
+  name: 'AR Collections Automation for UAE FMCG Distributors',
+  serviceType: 'AR collections automation',
+  description: 'Binizam builds governed AR collections workflows for UAE FMCG distributors with aging follow-up, payment matching, disputes, deductions, route-delivery complexity, manager visibility, and audit trails above ERP.',
+  provider: {
+    '@id': new URL('/#organization', site).toString()
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United Arab Emirates'
+  },
+  audience: {
+    '@type': 'BusinessAudience',
+    name: 'UAE FMCG distributors'
+  }
+};
+
+const structuredData = [breadcrumbStructuredData, serviceStructuredData];
+
+const painPatterns = [
+  "Aging reports show what is overdue, but not what should be worked first",
+  "Collectors rely on spreadsheets, inboxes, and private notes",
+  "Customer payments arrive without clean remittance detail",
+  "Receipts need to be allocated across multiple invoices",
+  "Deductions, short-pays, returns, disputes, or credit notes create ambiguity",
+  "Sales or branch teams hold context finance needs to resolve an account",
+  "Managers cannot easily see what is overdue, promised, disputed, unmatched, blocked, or escalated"
+];
+
+const controlCards = [
+  {
+    title: "Aging-based collections",
+    icon: "solar:sort-from-bottom-to-top-linear",
+    text: "A prioritized worklist that helps the AR team decide who to chase first, what the current account state is, and what action is due next."
+  },
+  {
+    title: "Payment matching and receipt allocation",
+    icon: "solar:refresh-circle-linear",
+    text: "Queues for unmatched receipts, incomplete remittances, partial payments, and payments that need allocation across multiple invoices."
+  },
+  {
+    title: "Disputes, PTPs, short-pays, and deductions",
+    icon: "solar:hand-shake-linear",
+    text: "Explicit workflow states for items that are overdue but not simply collectible: disputed, promised, short-paid, deducted, awaiting credit note, or waiting on internal clarification."
+  },
+  {
+    title: "Manager visibility and audit trail",
+    icon: "solar:chart-2-linear",
+    text: "A controlled view of what collectors are working, which accounts are blocked, which exceptions need escalation, and what changed over time."
+  }
+];
+
+const whereItems = [
+  "collector worklists",
+  "account-state tracking",
+  "dispute and PTP workflows",
+  "remittance and receipt-allocation queues",
+  "short-pay and deduction handling",
+  "escalation paths",
+  "approval steps",
+  "audit trail",
+  "manager visibility"
+];
+
+const firstSlices = [
+  "one AR team",
+  "one customer portfolio",
+  "one branch cluster",
+  "one division or SBU",
+  "one country unit",
+  "one business line",
+  "one queue for unmatched, disputed, promised, or short-paid items"
+];
+
+const roleGroups = [
+  {
+    title: "Pain owners",
+    roles: ["AR Manager", "Accounts Receivable Manager", "Credit Control Manager", "Credit Controller", "Senior Credit Controller", "Receivables Accountant", "AR Supervisor"]
+  },
+  {
+    title: "Sponsor layer",
+    roles: ["Finance Manager", "Financial Controller", "Chief Accountant", "Head of Finance"]
+  },
+  {
+    title: "Approval layer",
+    roles: ["CFO", "Finance Director", "Managing Director / owner in some private regional firms"]
+  }
+];
+
+const fitSigns = [
+  "B2B FMCG distribution",
+  "warehouses, branches, fleets, route delivery, or multi-city operations",
+  "fragmented customer channels such as groceries, retailers, HORECA, wholesalers, or independent outlets",
+  "visible AR, credit-control, or collections ownership",
+  "ERP-backed finance operations",
+  "manual follow-up, reconciliation, payment matching, or exception tracking around the ERP"
+];
+
+const faqs = [
+  { q: "Do you replace the ERP?", a: "No. The ERP remains the system of record. Binizam adds the AR workflow layer around it." },
+  { q: "Do you process payments?", a: "No. Binizam is not a payments provider. We help with payment matching, remittance handling, receipt allocation, reconciliation, and exception workflows." },
+  { q: "Can this start with one team?", a: "Yes. The best first slice is usually one AR team, customer portfolio, branch cluster, division, or exception queue." },
+  { q: "Can you handle deductions and short-pays?", a: "Yes. Short-pays, deductions, disputes, PTPs, and credit-note dependencies are exactly the kinds of account states that need workflow control." }
+];
+
+const relatedLinks = [
+  { text: "AR Collections Automation", href: "/ar-collections" },
+  { text: "Receivables Reconciliation Automation", href: "/ar-collections/receivables-reconciliation" },
+  { text: "Workflow Layer Above ERP", href: "/capabilities/workflow-layer-above-erp" },
+  { text: "How We Work", href: "/how-we-work" },
+  { text: "Security", href: "/security" }
+];
+---
+
+<Layout title={seo.title} description={seo.description} structuredData={structuredData}>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-24">
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-8">
+          <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-4 reveal">AR Collections / UAE FMCG</p>
+          <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-[1.1] mb-6 reveal">
+            AR collections automation for UAE FMCG distributors
+          </h1>
+          <div class="space-y-5 text-lg text-muted dark:text-stone-400 leading-relaxed max-w-3xl mb-8 reveal delay-100">
+            <p>Binizam builds governed AR collections workflows for UAE FMCG distributors that need better control over aging, credit-control follow-up, customer balances, payment matching, disputes, short-pays, deductions, and receivables exceptions.</p>
+            <p>This is for B2B distributors with warehouses, fleets, route delivery, fragmented trade channels, and finance teams that already have ERP but still run daily receivables execution through spreadsheets, inboxes, and manual follow-up.</p>
+            <p>We add the workflow layer around your ERP. We do not replace the ERP or handle payments.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 reveal delay-200">
+            <Button href="/contact">Talk to an engineer about one AR workflow slice</Button>
+            <Button href="/ar-collections" variant="secondary">Explore AR collections automation</Button>
+          </div>
+        </div>
+        <div class="lg:col-span-4 reveal delay-200">
+          <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 p-6 shadow-sm">
+            <p class="text-xs font-medium text-stone-400 dark:text-stone-500 mb-4">Quick jumps:</p>
+            <div class="flex flex-col gap-3 text-sm">
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#why-messy">Why FMCG AR gets messy</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#controls">What the workflow controls</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#first-slices">First-slice options</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#roles">Roles</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#boundaries">Boundaries</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-messy" class="max-w-6xl mx-auto px-6 mb-24 border-t border-stone-200/70 dark:border-stone-800/70 pt-16">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <SectionHeader title="Why FMCG distributor AR gets messy" />
+        </div>
+        <div class="lg:col-span-8">
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-8">
+            FMCG distribution creates receivables complexity because finance is not only waiting for payment. AR and credit-control teams often need to coordinate across warehouses, fleets, branches, route delivery, sales teams, customer accounts, and fragmented trade channels.
+          </p>
+          <p class="text-sm font-semibold text-primary dark:text-stone-100 mb-5">Common pain patterns:</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {painPatterns.map(point => (
+              <ListItem dotColor="amber">{point}</ListItem>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="controls" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="What the workflow controls" />
+      <div class="grid md:grid-cols-2 gap-6">
+        {controlCards.map(card => (
+          <FeatureCard title={card.title} icon={card.icon}>
+            <p>{card.text}</p>
+          </FeatureCard>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-main dark:bg-stone-950 p-8 md:p-10">
+        <div class="grid lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-5">
+            <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-5">Where Binizam sits</h2>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mb-4">Your ERP remains the system of record for customers, invoices, balances, credits, and accounting entries.</p>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">Binizam adds the execution layer around it:</p>
+          </div>
+          <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+            {whereItems.map(item => (
+              <ListItem dotColor="primary">{item}</ListItem>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="first-slices" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="First-slice options" subtitle="The safest first project is a contained workflow slice, not an all-company AR transformation." />
+      <p class="text-sm font-semibold text-primary dark:text-stone-100 mb-5">Good FMCG distributor first slices include:</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {firstSlices.map(slice => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-4 text-sm text-stone-600 dark:text-stone-300">{slice}</div>
+        ))}
+      </div>
+      <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-6">The goal is to prove the workflow with one controlled scope before expanding.</p>
+    </section>
+
+    <section id="roles" class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 p-8 md:p-10">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-8">Who this is for</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {roleGroups.map(group => (
+            <div>
+              <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-4">{group.title}</h3>
+              <div class="flex flex-wrap gap-2">
+                {group.roles.map(role => (
+                  <span class="inline-flex rounded-full border border-stone-200 dark:border-stone-700 px-3 py-1.5 text-xs font-medium text-stone-600 dark:text-stone-300 bg-surface/60 dark:bg-stone-900">{role}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Good-fit signs" subtitle="This page is most relevant if your company has:" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {fitSigns.map(sign => (
+          <ListItem dotColor="amber">{sign}</ListItem>
+        ))}
+      </div>
+    </section>
+
+    <section id="boundaries" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="FAQ / boundaries" />
+      <div class="grid md:grid-cols-2 gap-6">
+        {faqs.map(faq => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-6">
+            <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-3">{faq.q}</h3>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Related pages" />
+      <div class="flex flex-wrap gap-3">
+        {relatedLinks.map(link => (
+          <a class="rounded-full border border-stone-200 dark:border-stone-800 px-4 py-2 text-sm font-medium text-primary dark:text-stone-200 hover:border-amber-600/50 hover:text-amber-600 transition-colors" href={link.href}>{link.text}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6">
+      <div class="pt-10 border-t border-stone-200 dark:border-stone-800 text-center flex flex-col items-center gap-5">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50">Talk to an engineer about one AR workflow slice</h2>
+        <p class="text-sm text-muted dark:text-stone-400 max-w-xl">Send the short version: what AR work is stuck, what systems are involved, and what first slice would be safest.</p>
+        <Button href="/contact">Talk to an engineer</Button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

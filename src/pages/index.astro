@@ -10,8 +10,8 @@ import ReconciliationSection from '../components/ReconciliationSection.astro';
 
 // SEO Constants
 const seo = {
-  title: "Binizam | Workflow systems for finance and ops",
-  description: "Internal workflow systems and automation for finance and ops teams. AR collections automation specialization. Talk to an engineer."
+  title: "Workflow Systems for GCC Finance & Ops | Binizam",
+  description: "Binizam builds governed workflow systems for GCC finance and operations teams: queues, approvals, integrations, reconciliation, audit trails, and control above existing systems."
 };
 ---
 
@@ -32,7 +32,7 @@ const seo = {
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(180,83,9,0.02),transparent_60%)]"></div>
   </div>
 
-  <a class="hidden fixed bottom-8 right-8 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group reveal delay-500" href="/contact/">
+  <a class="hidden fixed bottom-8 right-8 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group reveal delay-500" href="/contact">
     <iconify-icon height="28" icon="solar:chat-round-dots-linear" stroke-width="1.5" width="28"></iconify-icon>
     <div class="absolute right-full mr-4 px-3 py-1 bg-primary text-main text-xs font-medium rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
       Talk to an engineer
@@ -52,32 +52,40 @@ const seo = {
              <SectionHeader title="What Binizam does" />
           </div>
           <div class="md:col-span-8 space-y-10">
-            <p class="text-xl text-primary dark:text-stone-300 font-light leading-relaxed reveal delay-100">
-              We make operational work predictable and traceable by turning scattered handoffs into a controlled workflow layer—so teams stop chasing status across tools and start running a clear queue.
-            </p>
+            <div class="space-y-5 text-xl text-primary dark:text-stone-300 font-light leading-relaxed reveal delay-100">
+              <p>We make operational work predictable and traceable by turning scattered handoffs into controlled workflow systems.</p>
+              <p>Your ERP can remain the system of record. Binizam adds the execution layer around it: queues, worklists, approvals, exception routing, reconciliation checks, manager visibility, and audit trails.</p>
+              <p>We usually help where the process already exists, but the execution still lives across spreadsheets, inboxes, follow-up messages, and people's memory.</p>
+            </div>
             <div class="grid sm:grid-cols-2 gap-y-6 gap-x-8">
               <ListItem icon="solar:checklist-minimalistic-linear" delay="delay-200">
-                Prioritized worklists/queues with clear next actions
+                Prioritized queues and worklists with clear ownership
               </ListItem>
               <ListItem icon="solar:git-branch-linear" delay="delay-300">
-                Approvals + exception handling for sensitive steps
+                Approvals and exception paths for sensitive actions
               </ListItem>
-              <ListItem icon="solar:bolt-linear" delay="delay-200">
-                Automation (reminders, escalations, scheduled jobs)
+              <ListItem icon="solar:database-linear" delay="delay-200">
+                Workflow state that survives beyond spreadsheets and private notes
               </ListItem>
               <ListItem icon="solar:link-circle-linear" delay="delay-300">
-                Integrations + reconciliation checks so systems stay aligned
+                Integrations and reconciliation checks across existing systems
               </ListItem>
-              <ListItem icon="solar:clock-circle-linear" delay="delay-400" class="sm:col-span-2">
-                Workflow-state reporting and audit trails tied to real events
+              <ListItem icon="solar:chart-2-linear" delay="delay-400">
+                Manager visibility into what is open, blocked, approved, or escalated
+              </ListItem>
+              <ListItem icon="solar:document-text-linear" delay="delay-500">
+                Audit trails tied to real workflow events
               </ListItem>
             </div>
             <div class="pt-6 border-t border-primary/10 dark:border-stone-800 reveal delay-500">
               <p class="text-sm text-stone-500 mb-4">Retool-first for internal operator UIs, with integrations and workflow state anchored in your stack.</p>
-              <div class="flex items-center gap-6 text-sm font-medium">
+              <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium">
                 <span class="text-stone-500/60">Learn more:</span>
-                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/capabilities/">Capabilities</a>
-                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/security/">Security</a>
+                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/capabilities">Capabilities</a>
+                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/capabilities/internal-tools-development-gcc">Internal tool development</a>
+                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/capabilities/retool-development-gcc">Retool development</a>
+                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/capabilities/workflow-layer-above-erp">Workflow layer above ERP</a>
+                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href="/security">Security</a>
               </div>
             </div>
           </div>
@@ -99,7 +107,7 @@ const seo = {
         
         <FeatureCard title="Engineer-to-engineer delivery" icon="solar:code-square-linear" delay="delay-200">
           <p class="mb-6">Direct access to engineers, tight review loops, and clear handover documentation.</p>
-          <a class="inline-flex items-center text-xs font-mono font-medium text-amber-600 hover:text-amber-700 mt-auto" href="/how-we-work/">
+          <a class="inline-flex items-center text-xs font-mono font-medium text-amber-600 hover:text-amber-700 mt-auto" href="/how-we-work">
             See: How we work
             <iconify-icon class="ml-1" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
           </a>
@@ -109,24 +117,49 @@ const seo = {
 
     <section class="py-12 max-w-6xl mx-auto px-6 space-y-8">
       <SectionHeader title="Common starting points" />
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="relative p-8 rounded-xl border border-amber-600/20 bg-white dark:bg-stone-900 hover:bg-surface dark:hover:bg-stone-800/50 transition-colors group reveal delay-100">
           <div class="absolute top-4 right-4">
             <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-amber-600/10 text-amber-600 uppercase tracking-wider scale-90">Most Common</span>
           </div>
           <h3 class="text-xl font-semibold mb-3 text-primary dark:text-stone-50">AR collections automation</h3>
-          <p class="text-stone-500 dark:text-stone-400 text-sm mb-8 leading-relaxed">Collector worklists, follow-ups, disputes/PTP, reconciliation queues, manager exceptions, audit trails.</p>
-          <a class="inline-flex items-center text-sm font-semibold text-amber-600 hover:text-amber-700 group-hover:translate-x-1 transition-transform" href="/ar-collections/">
+          <p class="text-stone-500 dark:text-stone-400 text-sm mb-8 leading-relaxed">For AR, credit-control, and collections teams that need aging-based worklists, follow-up queues, disputes/PTP tracking, payment matching, reconciliation queues, manager exceptions, and audit trails.</p>
+          <a class="inline-flex items-center text-sm font-semibold text-amber-600 hover:text-amber-700 group-hover:translate-x-1 transition-transform" href="/ar-collections">
             <iconify-icon class="mr-2" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
-            AR Collections Automation
+            Explore AR Collections Automation
+          </a>
+        </div>
+        <div class="relative p-8 rounded-xl bg-surface dark:bg-stone-800/30 hover:bg-surface/80 dark:hover:bg-stone-800/60 transition-colors group reveal delay-200">
+          <div class="absolute top-4 right-4">
+            <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-stone-900/5 dark:bg-white/10 text-stone-500 uppercase tracking-wider scale-90">UAE first-wave</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-primary dark:text-stone-50">FMCG distributor AR control</h3>
+          <p class="text-stone-500 dark:text-stone-400 text-sm mb-8 leading-relaxed">For UAE B2B FMCG distributors with warehouses, fleets, route delivery, fragmented trade channels, and receivables work that still depends on spreadsheets and inboxes.</p>
+          <a class="inline-flex items-center text-sm font-semibold text-primary dark:text-stone-200 group-hover:text-amber-600 transition-colors" href="/ar-collections/fmcg-distributors-uae">
+            <iconify-icon class="mr-2" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+            AR for FMCG distributors
+          </a>
+        </div>
+        <div class="relative p-8 rounded-xl bg-surface dark:bg-stone-800/30 hover:bg-surface/80 dark:hover:bg-stone-800/60 transition-colors group reveal delay-300">
+          <div class="absolute top-4 right-4">
+            <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-stone-900/5 dark:bg-white/10 text-stone-500 uppercase tracking-wider scale-90">UAE first-wave</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-primary dark:text-stone-50">Logistics receivables execution</h3>
+          <p class="text-stone-500 dark:text-stone-400 text-sm mb-8 leading-relaxed">For warehouse-heavy 3PL, forwarding + warehousing, and logistics operators where collections, discrepancies, unapplied payments, and operational blockers need one controlled queue.</p>
+          <a class="inline-flex items-center text-sm font-semibold text-primary dark:text-stone-200 group-hover:text-amber-600 transition-colors" href="/ar-collections/logistics-3pl-uae">
+            <iconify-icon class="mr-2" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+            Receivables for logistics / 3PL
           </a>
         </div>
         <div class="p-8 rounded-xl bg-surface dark:bg-stone-800/30 hover:bg-surface/80 dark:hover:bg-stone-800/60 transition-colors group reveal delay-200">
-          <h3 class="text-xl font-semibold mb-3 text-primary dark:text-stone-50">Reconciliation + exception operations</h3>
-          <p class="text-stone-500 dark:text-stone-400 text-sm mb-8 leading-relaxed">"Out-of-sync" routing, resolution queues, traceable outcomes.</p>
-          <a class="inline-flex items-center text-sm font-semibold text-primary dark:text-stone-200 group-hover:text-amber-600 transition-colors" href="/capabilities/">
+          <div class="mb-4">
+            <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-stone-900/5 dark:bg-white/10 text-stone-500 uppercase tracking-wider scale-90 origin-left">Parent capability</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-primary dark:text-stone-50">Workflow layer above ERP</h3>
+          <p class="text-stone-500 dark:text-stone-400 text-sm mb-8 leading-relaxed">For finance and operations teams that have an ERP but still need controlled execution, approvals, exception handling, reconciliation, and auditability around it.</p>
+          <a class="inline-flex items-center text-sm font-semibold text-primary dark:text-stone-200 group-hover:text-amber-600 transition-colors" href="/capabilities/workflow-layer-above-erp">
             <iconify-icon class="mr-2" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
-            Capabilities
+            Workflow layer above ERP
           </a>
         </div>
       </div>
@@ -138,14 +171,15 @@ const seo = {
                 <SectionHeader title="What you'll get" />
             </div>
             <div class="md:col-span-8">
-                <p class="text-stone-500 dark:text-stone-400 mb-8">You’ll receive concrete artifacts you can review and keep:</p>
+                <p class="text-stone-500 dark:text-stone-400 mb-8">You’ll receive concrete artifacts you can review, challenge, and keep.</p>
                 <div class="grid sm:grid-cols-2 gap-4">
                     {[
-                        "Workflow map (states, handoffs, exceptions)",
-                        "Queue definitions (priority, next actions)",
-                        "Approval points + audit events list",
-                        "Integration plan (least-privilege posture)",
-                        "Handover docs + runbook basics"
+                        "Workflow map: states, handoffs, exceptions, and owners",
+                        "Queue definition: priority rules, filters, next actions, and review paths",
+                        "Approval map: sensitive actions, reviewer roles, and required evidence",
+                        "Integration plan: systems involved, fields needed, and least-privilege posture",
+                        "QA checklist: happy paths, exceptions, duplicates, missing data, and audit checks",
+                        "Handover docs and runbook basics: what to check when something looks off"
                     ].map((item) => (
                         <div class="flex items-start gap-3 p-4 rounded-lg bg-white/50 dark:bg-stone-900/50 border border-stone-200/50 dark:border-stone-800/50 text-sm reveal">
                             <iconify-icon class="text-amber-600 mt-0.5" icon="solar:file-text-bold" width="16"></iconify-icon>
@@ -170,9 +204,12 @@ const seo = {
         <div class="space-y-6">
           <SectionHeader title="What we don't do" />
           <div class="space-y-3 pl-1 text-sm">
-            <ListItem dotColor="red">We don't replace your ERP or CRM.</ListItem>
-            <ListItem dotColor="red">We don't build customer-facing mobile apps.</ListItem>
-            <ListItem dotColor="red">We don't do generic IT support.</ListItem>
+            <ListItem dotColor="red">We don't replace your ERP or accounting system.</ListItem>
+            <ListItem dotColor="red">We don't act as a payments provider or payment gateway.</ListItem>
+            <ListItem dotColor="red">We don't build generic customer-facing mobile apps.</ListItem>
+            <ListItem dotColor="red">We don't do broad "digital transformation" theatre.</ListItem>
+            <ListItem dotColor="red">We don't ask for broad access "just in case."</ListItem>
+            <p class="text-sm text-stone-500 dark:text-stone-400 pt-4">We build governed internal workflow systems around the systems you already run.</p>
           </div>
         </div>
       </div>

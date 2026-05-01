@@ -1,43 +1,138 @@
 ---
-// Updated footer to include required description and trailing slashes
+import { getLocaleFromPath, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale: localeProp } = Astro.props;
+const locale = localeProp || getLocaleFromPath(Astro.url.pathname);
+const isAr = locale === 'ar';
+
+const copy = isAr ? {
+  brand: 'بنظام',
+  description: 'تبني بنظام أنظمة سير عمل داخلية منظّمة وقابلة للتتبع لفرق المالية والعمليات في الخليج، مع قوائم عمل، موافقات، تكاملات، مطابقة وتسوية، وضوح للإدارة، وسجلات تدقيق.',
+  groupBinizam: 'بنظام',
+  groupAr: 'تحصيل الذمم المدينة',
+  trust: 'الثقة والخصوصية',
+  rights: '© 2026 بنظام. جميع الحقوق محفوظة.',
+  boundary: 'لسنا بديلًا عن نظام ERP · لسنا مزود مدفوعات',
+  links: {
+    about: 'عن بنظام',
+    capabilities: 'القدرات',
+    internalTools: 'تطوير أدوات داخلية',
+    retoolDevelopment: 'تطوير Retool',
+    workflowLayer: 'طبقة تنفيذ فوق نظام ERP',
+    security: 'الأمان',
+    howWeWork: 'كيف نعمل',
+    contact: 'تواصل معنا',
+    arCollections: 'أتمتة تحصيل الذمم المدينة',
+    fmcg: 'موزعو السلع الاستهلاكية في الإمارات',
+    logistics: 'شركات اللوجستيات و3PL في الإمارات',
+    reconciliation: 'مطابقة وتسوية الذمم المدينة',
+    privacy: 'سياسة الخصوصية'
+  },
+  hrefs: {
+    about: '/ar/about',
+    capabilities: '/ar/capabilities',
+    internalTools: '/ar/capabilities/internal-tools-development-gcc',
+    retoolDevelopment: '/ar/capabilities/retool-development-gcc',
+    workflowLayer: '/ar/capabilities/workflow-layer-above-erp',
+    security: '/ar/security',
+    howWeWork: '/ar/how-we-work',
+    contact: '/ar/contact',
+    arCollections: '/ar/ar-collections',
+    fmcg: '/ar/ar-collections/fmcg-distributors-uae',
+    logistics: '/ar/ar-collections/logistics-3pl-uae',
+    reconciliation: '/ar/ar-collections/receivables-reconciliation',
+    privacy: '/ar/privacy'
+  }
+} : {
+  brand: 'Binizam',
+  description: 'Binizam builds governed internal workflow systems and automation—Retool-first, integration-ready, and built for traceability.',
+  groupBinizam: 'Binizam',
+  groupAr: 'AR Collections',
+  trust: 'Trust & Legal',
+  rights: '© 2026 BINIZAM. All rights reserved.',
+  boundary: 'Not an ERP replacement · Not a payments provider',
+  links: {
+    about: 'About',
+    capabilities: 'Capabilities',
+    internalTools: 'Internal tool development',
+    retoolDevelopment: 'Retool development',
+    workflowLayer: 'Workflow layer above ERP',
+    security: 'Security',
+    howWeWork: 'How we work',
+    contact: 'Contact',
+    arCollections: 'AR collections automation',
+    fmcg: 'UAE FMCG distributors',
+    logistics: 'UAE logistics / 3PL operators',
+    reconciliation: 'Receivables reconciliation',
+    privacy: 'Privacy Policy'
+  },
+  hrefs: {
+    about: '/about',
+    capabilities: '/capabilities',
+    internalTools: '/capabilities/internal-tools-development-gcc',
+    retoolDevelopment: '/capabilities/retool-development-gcc',
+    workflowLayer: '/capabilities/workflow-layer-above-erp',
+    security: '/security',
+    howWeWork: '/how-we-work',
+    contact: '/contact',
+    arCollections: '/ar-collections',
+    fmcg: '/ar-collections/fmcg-distributors-uae',
+    logistics: '/ar-collections/logistics-3pl-uae',
+    reconciliation: '/ar-collections/receivables-reconciliation',
+    privacy: '/privacy'
+  }
+};
 ---
-<footer class="dark:border-stone-800 dark:bg-[#1c1917] z-10 bg-[#F5F0E6] border-stone-200 border-t mt-auto pt-16 pb-8 relative reveal" id="global-footer">
-  <div class="max-w-6xl mx-auto px-6">
+
+<footer class="dark:border-stone-800 dark:bg-[#1c1917] z-10 bg-[#F5F0E6] border-stone-200 border-t mt-auto pt-16 pb-8 relative reveal text-start" id="global-footer" dir={isAr ? 'rtl' : 'ltr'}>
+  <div class="w-full px-6 lg:max-w-6xl lg:mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
       
-      <div class="col-span-1 md:col-span-2 lg:col-span-1">
-        <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100 mb-6">Binizam</h4>
-        <p class="leading-7 dark:text-stone-400 text-sm text-stone-500">Binizam builds internal workflow systems and automation—Retool-first, integration-ready, built for traceability.</p>
+      <div class="col-span-1 md:col-span-2 lg:col-span-1 min-w-0">
+        <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100 mb-6">{copy.brand}</h4>
+        <p class="leading-7 dark:text-stone-400 text-sm text-stone-500 break-words">{copy.description}</p>
       </div>
       
-      <div>
-        <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100 mb-6">Contact</h4>
-        <div class="flex flex-col gap-3">
-          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200" href="mailto:engineers@binizam.com">engineers@binizam.com</a>
-          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200" href="/contact/">Contact</a>
+      <div class="min-w-0">
+        <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100 mb-6">{copy.groupBinizam}</h4>
+        <div class="flex flex-col items-start gap-3">
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.about}>{copy.links.about}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.capabilities}>{copy.links.capabilities}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.internalTools}>{copy.links.internalTools}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.retoolDevelopment}>{copy.links.retoolDevelopment}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.workflowLayer}>{copy.links.workflowLayer}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.security}>{copy.links.security}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.howWeWork}>{copy.links.howWeWork}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.contact}>{copy.links.contact}</a>
         </div>
       </div>
       
-      <div>
-        <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100 mb-6">Trust &amp; Legal</h4>
-        <div class="flex flex-col gap-3">
-          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200" href="/security/">Security</a>
-          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200" href="/privacy/">Privacy Policy</a>
+      <div class="min-w-0">
+        <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100 mb-6">{copy.groupAr}</h4>
+        <div class="flex flex-col items-start gap-3">
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.arCollections}>{copy.links.arCollections}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.fmcg}>{copy.links.fmcg}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.logistics}>{copy.links.logistics}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.reconciliation}>{copy.links.reconciliation}</a>
         </div>
       </div>
       
-      <!-- <div>
-        <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100 mb-6">Social</h4>
-        <a class="inline-block text-stone-400 hover:text-[#D97706] transition-colors duration-200" href="https://www.linkedin.com/company/binizam" rel="noopener noreferrer" target="_blank">
-          <iconify-icon height="24" icon="mdi:linkedin" width="24"></iconify-icon>
-        </a>
-      </div> -->
-      
+      <div class="min-w-0">
+        <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100 mb-6">{copy.trust}</h4>
+        <div class="flex flex-col items-start gap-3">
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.security}>{copy.links.security}</a>
+          <a class="text-sm text-stone-500 dark:text-stone-400 hover:text-[#D97706] dark:hover:text-[#D97706] transition-colors duration-200 break-words" href={copy.hrefs.privacy}>{copy.links.privacy}</a>
+        </div>
+      </div>
     </div>
     
     <div class="pt-8 border-t border-stone-200 dark:border-stone-800 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-      <p class="text-xs text-stone-500 dark:text-stone-500">© 2026 BINIZAM. All rights reserved.</p>
-      <p class="text-xs text-stone-400 dark:text-stone-600">Not an ERP replacement · Not a payments provider</p>
+      <p class="text-xs text-stone-500 dark:text-stone-500 break-words">{copy.rights}</p>
+      <p class="text-xs text-stone-400 dark:text-stone-600 break-words">{copy.boundary}</p>
     </div>
   </div>
 </footer>

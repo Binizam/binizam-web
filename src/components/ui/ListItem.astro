@@ -1,4 +1,6 @@
 ---
+import { getLocaleFromPath } from '../../lib/i18n';
+
 interface Props {
   icon?: string;
   dotColor?: 'amber' | 'red' | 'primary';
@@ -7,6 +9,7 @@ interface Props {
 }
 
 const { icon, dotColor, delay = "", class: className = "" } = Astro.props;
+const isArabicRoute = getLocaleFromPath(Astro.url.pathname) === 'ar';
 
 const dotClasses = {
   amber: "bg-amber-600",
@@ -15,13 +18,13 @@ const dotClasses = {
 };
 ---
 
-<div class={`flex items-start gap-3 reveal ${delay} ${className}`}>
+<div class={`flex items-start gap-3 reveal min-w-0 ${delay} ${className}`} dir={isArabicRoute ? 'rtl' : undefined}>
   {icon ? (
     <iconify-icon class="text-amber-600 mt-1 flex-shrink-0" icon={icon} stroke-width="1.5" width="20"></iconify-icon>
   ) : (
     <div class={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${dotClasses[dotColor || 'primary']}`}></div>
   )}
-  <span class="text-stone-600 dark:text-stone-400 leading-relaxed text-sm">
+  <span class="text-stone-600 dark:text-stone-400 leading-relaxed text-sm min-w-0 break-words">
     <slot />
   </span>
 </div>

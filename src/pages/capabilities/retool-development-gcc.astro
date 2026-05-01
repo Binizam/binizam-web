@@ -1,0 +1,375 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/ui/Button.astro';
+import FeatureCard from '../../components/ui/FeatureCard.astro';
+import ListItem from '../../components/ui/ListItem.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import { makeServiceStructuredData } from '../../lib/schema';
+
+const seo = {
+  title: "Retool Development in the GCC | Binizam",
+  description: "Binizam uses Retool to build governed internal tools for GCC teams: operations consoles, workflow queues, admin panels, approvals, integrations, dashboards, and audit-ready workflows."
+};
+
+const site = Astro.site || new URL('https://binizam.com');
+const structuredData = makeServiceStructuredData({
+  site,
+  path: '/capabilities/retool-development-gcc#service',
+  name: 'Retool development for GCC internal tools',
+  serviceType: 'Retool development',
+  description: 'Binizam uses Retool to build governed internal tools for GCC teams, including operations consoles, workflow queues, admin panels, approvals, integrations, dashboards, and audit-ready workflows.',
+  areaServed: ['GCC', 'United Arab Emirates', 'Saudi Arabia'],
+  audience: 'GCC finance and operations teams',
+  inLanguage: 'en'
+});
+
+const usefulItems = [
+  "see work in a queue",
+  "filter records",
+  "review exceptions",
+  "edit controlled fields",
+  "approve sensitive changes",
+  "run operational actions",
+  "view dashboards",
+  "connect to existing systems"
+];
+
+const featureCards = [
+  {
+    title: "Apps and components",
+    icon: "solar:widget-linear",
+    text: "Retool lets us build internal screens with tables, forms, buttons, modals, charts, filters, and detail views without starting every interface from scratch."
+  },
+  {
+    title: "Resources and integrations",
+    icon: "solar:plug-circle-linear",
+    text: "Retool can connect to databases, APIs, SaaS tools, and internal services, making it useful for workflow layers around ERP, CRM, finance systems, and operational data."
+  },
+  {
+    title: "Workflows and automation",
+    icon: "solar:restart-linear",
+    text: "Retool Workflows can support scheduled jobs, triggered flows, notifications, and operational automations when they fit the use case."
+  },
+  {
+    title: "Permissions and environments",
+    icon: "solar:lock-keyhole-linear",
+    text: "For serious internal tools, role-based access, environment separation, and controlled deployment matter. The exact setup depends on the Retool plan and deployment model."
+  },
+  {
+    title: "Auditability and governance",
+    icon: "solar:document-text-linear",
+    text: "Internal tools need traceability. Where Retool features and the surrounding architecture support it, we design for logs, approvals, reviewer actions, and controlled changes."
+  },
+  {
+    title: "Speed with engineering control",
+    icon: "solar:code-square-linear",
+    text: "Retool is valuable because it speeds up the interface without removing engineering judgment. The workflow still needs good data models, validation, permissions, and operational design."
+  }
+];
+
+const retoolBuilds = [
+  "operations consoles",
+  "finance operations dashboards",
+  "approval queues",
+  "reconciliation review screens",
+  "admin panels",
+  "exception management tools",
+  "AR collections worklists",
+  "manager review dashboards",
+  "data correction workflows",
+  "reporting and status views",
+  "internal tools around ERP or operational systems"
+];
+
+const architectureItems = [
+  "PostgreSQL or another source of workflow state",
+  "backend services",
+  "queues and workers",
+  "scheduled jobs",
+  "integration logic",
+  "validation rules",
+  "audit tables",
+  "export generation",
+  "security and permissions design"
+];
+
+const securityChecks = [
+  "which Retool deployment model is appropriate",
+  "what data the app needs to access",
+  "which roles need permissions",
+  "whether SSO or role-based access is required",
+  "what actions need audit logs",
+  "what data should stay outside the tool",
+  "which compliance documents need to be reviewed during procurement"
+];
+
+const hardQuestions = [
+  "what the workflow states should be",
+  "who owns each step",
+  "what should be editable",
+  "what needs approval",
+  "what should be logged",
+  "what data should sync",
+  "what should stay in the ERP",
+  "what should happen when a job fails",
+  "how operators and managers will actually use the tool"
+];
+
+const firstProjects = [
+  "one AR collections worklist",
+  "one reconciliation exception queue",
+  "one approval dashboard",
+  "one finance operations console",
+  "one internal admin panel",
+  "one reporting view for managers",
+  "one workflow layer above ERP for a specific team",
+  "one tool to replace a spreadsheet-driven process"
+];
+
+const boundaries = [
+  "We are not an official Retool partner unless that status is separately confirmed.",
+  "We do not claim Retool certifications on Binizam’s behalf.",
+  "We do not replace your ERP with Retool.",
+  "We do not use Retool to process payments.",
+  "We do not build broad internal platforms without a clear first workflow slice."
+];
+
+const faqs = [
+  {
+    q: "Is Binizam a Retool agency?",
+    a: "Some buyers search for a Retool agency, Retool consultant, or Retool developer. Binizam is a small senior engineering team that uses Retool to build governed internal tools when Retool is the right fit. Do not assume official Retool partner status unless separately confirmed."
+  },
+  {
+    q: "Do you offer Retool development in the UAE, Dubai, Saudi Arabia, and the GCC?",
+    a: "Binizam is GCC-focused, with a current UAE-first and Saudi-next focus. The Retool work is aimed at internal tools for finance and operations teams in the region."
+  },
+  {
+    q: "Why does Binizam use Retool?",
+    a: "Retool helps build internal screens faster: tables, forms, dashboards, admin panels, approval views, and integrations. Binizam adds the workflow design, data model, backend logic, governance, auditability, and handover around it."
+  },
+  {
+    q: "Do you only build Retool apps?",
+    a: "No. Retool is often the operator interface. We also build backend services, queues, scheduled jobs, integrations, validation rules, audit tables, and export logic where needed."
+  },
+  {
+    q: "Can Retool connect to ERP, CRM, or databases?",
+    a: "Retool can connect to many systems through databases, APIs, and resources. The exact integration depends on your ERP, CRM, database, security constraints, and what the workflow needs."
+  },
+  {
+    q: "Can you work with Retool Cloud or self-hosted Retool?",
+    a: "Potentially. The right deployment model depends on the client environment, Retool plan, security requirements, and procurement review."
+  },
+  {
+    q: "What compliance does Retool have?",
+    a: "Retool maintains its own Trust Center and security documentation. Binizam should not make procurement claims on Retool’s behalf. For any project, the current Retool Trust Center and your internal requirements should confirm the relevant certifications, reports, deployment options, and controls."
+  }
+];
+
+const relatedLinks = [
+  { text: "Internal tool development", href: "/capabilities/internal-tools-development-gcc" },
+  { text: "Capabilities", href: "/capabilities" },
+  { text: "Workflow layer above ERP", href: "/capabilities/workflow-layer-above-erp" },
+  { text: "Security", href: "/security" },
+  { text: "How we work", href: "/how-we-work" },
+  { text: "AR Collections Automation", href: "/ar-collections" }
+];
+---
+
+<Layout title={seo.title} description={seo.description} structuredData={structuredData}>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-24">
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-8">
+          <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-4 reveal">Capabilities / Retool development</p>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-[1.12] mb-6 reveal">
+            Retool development for internal tools in the GCC
+          </h1>
+          <div class="space-y-4 md:space-y-5 text-base md:text-lg text-muted dark:text-stone-400 leading-relaxed max-w-3xl mb-8 reveal delay-100">
+            <p>Binizam uses Retool to build governed internal tools for GCC finance and operations teams.</p>
+            <p>If you are searching for a Retool development company, Retool development agency in the UAE, Retool consultant in Dubai, Retool consultant in Saudi Arabia, or Retool developer in the wider GCC, the work we do is specific: internal tools with controlled workflow state, integrations, approvals, queues, dashboards, and audit trails.</p>
+            <p>Retool helps us move faster on the operator interface. Binizam adds the workflow design, integration thinking, governance, and engineering needed around it.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 reveal delay-200">
+            <Button href="/contact">Talk to an engineer</Button>
+            <Button href="/capabilities/internal-tools-development-gcc" variant="secondary">Explore internal tool development</Button>
+          </div>
+          <p class="mt-5 text-sm text-stone-400 dark:text-stone-500 reveal delay-300">
+            Retool-first for internal apps · Custom engineering where the workflow needs it
+          </p>
+        </div>
+        <aside class="lg:col-span-4 reveal delay-200">
+          <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 p-6 shadow-sm">
+            <h2 class="text-sm font-semibold text-primary dark:text-stone-100 mb-4">Why does Binizam use Retool?</h2>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mb-4">
+              Retool is a strong fit when a team needs internal tools quickly: tables, forms, dashboards, admin panels, workflow screens, and integrations with databases, APIs, and existing systems.
+            </p>
+            <p class="text-sm font-medium text-primary dark:text-stone-200">
+              Binizam uses Retool for operator-facing screens, then adds architecture for durable state, approvals, reconciliation, audit trails, and controlled operations.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24 border-t border-stone-200/70 dark:border-stone-800/70 pt-16">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <SectionHeader title="Why Retool is useful for internal tools" />
+        </div>
+        <div class="lg:col-span-8">
+          <div class="space-y-5 text-lg text-primary dark:text-stone-300 leading-relaxed mb-8">
+            <p>Many internal tools do not need a fully custom frontend from day one.</p>
+            <p>They need a reliable way for teams to:</p>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4 mb-8">
+            {usefulItems.map(item => <ListItem dotColor="amber">{item}</ListItem>)}
+          </div>
+          <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">
+            Retool is useful because it lets engineering teams build those internal interfaces faster while still connecting to real data sources and business logic. This page is for buyers searching for Retool development, Retool app development, Retool apps development, Retool implementation GCC, Retool implementation UAE, Retool implementation Saudi Arabia, Retool consultants, or Retool developers in the GCC, UAE, Dubai, or Saudi Arabia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Retool features that matter to us" />
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featureCards.map(card => (
+          <FeatureCard title={card.title} icon={card.icon}>
+            <p>{card.text}</p>
+          </FeatureCard>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <SectionHeader title="What Binizam builds with Retool" />
+        </div>
+        <div class="lg:col-span-8">
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-8">
+            Typical Retool internal tools include:
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {retoolBuilds.map(item => <ListItem dotColor="primary">{item}</ListItem>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-main dark:bg-stone-950 p-8 md:p-10">
+        <div class="grid lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-4">
+            <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-5">Where Retool fits in the architecture</h2>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">Retool is often the operator interface. It is not always the whole system.</p>
+          </div>
+          <div class="lg:col-span-8">
+            <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-8">
+              A governed workflow system may also need:
+            </p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {architectureItems.map(item => <ListItem dotColor="amber">{item}</ListItem>)}
+            </div>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-8">
+              Binizam uses Retool for the parts it is good at, then builds the surrounding workflow architecture needed for reliable operations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <SectionHeader title="Security and compliance" />
+        </div>
+        <div class="lg:col-span-8">
+          <div class="space-y-5 text-lg text-primary dark:text-stone-300 leading-relaxed mb-8">
+            <p>Retool maintains its own Trust Center and security documentation. For any production project, we confirm the relevant Retool plan, deployment model, certifications, reports, and controls directly against Retool’s current documentation before relying on them in procurement.</p>
+            <p>Retool Cloud, self-hosted Retool, and Retool Enterprise each need to be reviewed against the client environment, Retool compliance documentation, and the buyer’s own procurement requirements.</p>
+            <p>For each project, Binizam looks at:</p>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {securityChecks.map(item => <ListItem dotColor="primary">{item}</ListItem>)}
+          </div>
+          <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-8">
+            We do not ask buyers to rely on vague claims. Retool’s current documentation and your internal security requirements should drive the final setup.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div>
+          <SectionHeader title="Why use Binizam instead of building directly in Retool yourself?" />
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-6">
+            Retool makes internal app development faster, but the hard part is often not the UI. The hard part is deciding:
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {hardQuestions.map(item => <ListItem dotColor="amber">{item}</ListItem>)}
+          </div>
+          <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-8">
+            Binizam helps with the workflow design, integration logic, data model, controls, and handover, not just the Retool screens.
+          </p>
+        </div>
+        <div>
+          <SectionHeader title="Good first Retool projects" />
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-6">
+            A good first Retool project is narrow and operationally useful.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {firstProjects.map(item => <ListItem dotColor="primary">{item}</ListItem>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Boundaries" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {boundaries.map(item => <ListItem dotColor="red">{item}</ListItem>)}
+      </div>
+      <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-8">
+        Binizam should not be described as an official Retool partner or certified Retool agency unless that status is separately confirmed. Retool is a platform we use; the outcome we deliver is a governed internal workflow system.
+      </p>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Questions buyers ask" />
+      <div class="grid md:grid-cols-2 gap-6">
+        {faqs.map(faq => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-6">
+            <h3 class="text-base font-semibold text-primary dark:text-stone-100 mb-3">{faq.q}</h3>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Related pages" />
+      <div class="flex flex-wrap gap-3">
+        {relatedLinks.map(link => (
+          <a class="rounded-full border border-stone-200 dark:border-stone-800 px-4 py-2 text-sm font-medium text-primary dark:text-stone-200 hover:border-amber-600/50 hover:text-amber-600 transition-colors" href={link.href}>{link.text}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6">
+      <div class="pt-10 border-t border-stone-200 dark:border-stone-800 text-center flex flex-col items-center gap-5">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50">Looking for Retool development in the GCC?</h2>
+        <p class="text-sm text-muted dark:text-stone-400 max-w-xl">Send the short version: what internal tool you need, which systems it should connect to, and what first workflow slice would be safest to build.</p>
+        <Button href="/contact">Talk to an engineer</Button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

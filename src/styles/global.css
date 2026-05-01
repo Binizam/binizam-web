@@ -19,7 +19,30 @@
   html { 
     @apply scroll-smooth antialiased overflow-x-hidden;
   }
+  html[lang="ar"] body {
+    font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+    text-align: start;
+  }
+  html[dir="rtl"] input,
+  html[dir="rtl"] textarea {
+    text-align: start;
+  }
+  html[dir="rtl"],
+  html[dir="rtl"] body {
+    max-width: 100vw;
+    overflow-x: clip;
+  }
+  html[dir="rtl"] input[type="email"],
+  html[dir="rtl"] input[type="url"],
+  html[dir="rtl"] input[type="tel"] {
+    direction: ltr;
+    text-align: left;
+  }
   ::selection { background-color: #b45309; color: white; }
+}
+
+html[lang="ar"] body.font-sans {
+  font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 @utility bg-grid {
@@ -70,14 +93,14 @@
   .reveal {
       opacity: 0;
       transform: translateY(20px);
-      transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition: opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
       will-change: opacity, transform;
   }
 
   .reveal-right {
       opacity: 0;
       transform: translateX(60px);
-      transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
       will-change: opacity, transform;
   }
 
@@ -86,11 +109,47 @@
       transform: translateY(0) translateX(0) !important;
   }
 
-  .delay-100 { transition-delay: 0.1s; }
-  .delay-200 { transition-delay: 0.2s; }
-  .delay-300 { transition-delay: 0.3s; }
-  .delay-400 { transition-delay: 0.4s; }
-  .delay-500 { transition-delay: 0.5s; }
+  .delay-100 { transition-delay: 0.06s; }
+  .delay-200 { transition-delay: 0.1s; }
+  .delay-300 { transition-delay: 0.14s; }
+  .delay-400 { transition-delay: 0.18s; }
+  .delay-500 { transition-delay: 0.22s; }
+
+  @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .reveal-right {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+      }
+  }
+
+  .honeypot-field {
+      position: absolute !important;
+      inline-size: 1px !important;
+      block-size: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+  }
+
+  .honeypot-field input,
+  .honeypot-field label {
+      inline-size: 1px !important;
+      block-size: 1px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: 0 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .reveal-right {
+      transform: translateY(20px);
+  }
 }
 
 @keyframes beam-vert {

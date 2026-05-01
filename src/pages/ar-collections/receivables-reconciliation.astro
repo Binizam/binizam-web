@@ -1,0 +1,273 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/ui/Button.astro';
+import FeatureCard from '../../components/ui/FeatureCard.astro';
+import ListItem from '../../components/ui/ListItem.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+
+const seo = {
+  title: "Receivables Reconciliation Automation Above ERP | Binizam",
+  description: "Receivables reconciliation workflows above ERP: payment matching, unmatched receipts, remittance gaps, short-pays, exception routing, approvals, and audit trails."
+};
+
+const site = Astro.site || new URL('https://binizam.com');
+const breadcrumbStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'AR Collections', item: new URL('/ar-collections', site).toString() },
+    { '@type': 'ListItem', position: 3, name: 'Receivables Reconciliation', item: new URL('/ar-collections/receivables-reconciliation', site).toString() }
+  ]
+};
+
+const serviceStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': new URL('/ar-collections/receivables-reconciliation#service', site).toString(),
+  name: 'Receivables Reconciliation Automation Above ERP',
+  serviceType: 'receivables reconciliation automation',
+  description: 'Binizam builds receivables reconciliation workflows above ERP for payment matching, remittance handling, receipt allocation, unmatched receipts, short-pays, exception routing, approvals, and audit trails.',
+  provider: {
+    '@id': new URL('/#organization', site).toString()
+  },
+  areaServed: [
+    {
+      '@type': 'Place',
+      name: 'GCC'
+    }
+  ]
+};
+
+const structuredData = [breadcrumbStructuredData, serviceStructuredData];
+
+const manualReasons = [
+  "which payment belongs to which invoice",
+  "whether the remittance detail is complete",
+  "why a receipt is unmatched",
+  "whether a payment is partial, short-paid, or deducted",
+  "whether a dispute or credit note is blocking closure",
+  "who owns the next action",
+  "when an exception needs manager approval"
+];
+
+const controlCards = [
+  {
+    title: "Payment matching",
+    icon: "solar:refresh-circle-linear",
+    text: "Review queues for payments that need matching against invoices, customer statements, remittance details, or account balances."
+  },
+  {
+    title: "Remittance handling",
+    icon: "solar:letter-linear",
+    text: "Structured workflows for missing, incomplete, or unclear remittance information."
+  },
+  {
+    title: "Receipt allocation",
+    icon: "solar:route-linear",
+    text: "Controlled assignment of receipts to invoices, customer accounts, portfolios, branches, or service lines."
+  },
+  {
+    title: "Exception routing",
+    icon: "solar:danger-triangle-linear",
+    text: "Clear ownership and next steps for unmatched, partially matched, disputed, short-paid, deducted, or approval-required items."
+  }
+];
+
+const queues = [
+  "Unmatched receipts",
+  "Missing remittance details",
+  "Partially matched payments",
+  "Short-paid invoices",
+  "Deduction review",
+  "Credit-note dependency",
+  "Disputed items",
+  "Manager approval required",
+  "Branch or service-line clarification needed"
+];
+
+const visibilityItems = [
+  "what is matched",
+  "what is unmatched",
+  "what is partially allocated",
+  "what is short-paid",
+  "what is waiting on a customer",
+  "what is waiting on internal clarification",
+  "what was approved, corrected, or overridden",
+  "who made each decision and when"
+];
+
+const firstSlices = [
+  "one unmatched receipt queue",
+  "one short-pay review queue",
+  "one customer portfolio",
+  "one branch or facility",
+  "one service line",
+  "one remittance-driven allocation workflow",
+  "one manager approval path for corrections and overrides"
+];
+
+const faqs = [
+  { q: "Does this replace ERP reconciliation?", a: "No. Binizam does not replace your ERP or ledger. We add workflow control around the reconciliation work that happens above it." },
+  { q: "Do you process payments?", a: "No. We do not handle payment processing. We help teams manage matching, allocation, remittance review, and exception resolution." },
+  { q: "Can this connect to bank files or payment records?", a: "Yes, where appropriate. The first slice should only use the fields needed for matching, review, routing, and auditability." }
+];
+
+const relatedLinks = [
+  { text: "AR Collections Automation", href: "/ar-collections" },
+  { text: "UAE FMCG Distributors", href: "/ar-collections/fmcg-distributors-uae" },
+  { text: "UAE Logistics / 3PL Operators", href: "/ar-collections/logistics-3pl-uae" },
+  { text: "Workflow Layer Above ERP", href: "/capabilities/workflow-layer-above-erp" },
+  { text: "How We Work", href: "/how-we-work" },
+  { text: "Security", href: "/security" }
+];
+---
+
+<Layout title={seo.title} description={seo.description} structuredData={structuredData}>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-24">
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-8">
+          <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-4 reveal">AR Collections / Reconciliation</p>
+          <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-[1.1] mb-6 reveal">
+            Receivables reconciliation automation above the ERP
+          </h1>
+          <div class="space-y-5 text-lg text-muted dark:text-stone-400 leading-relaxed max-w-3xl mb-8 reveal delay-100">
+            <p>Binizam builds receivables reconciliation workflows for finance teams that need better control over payment matching, remittance handling, receipt allocation, unmatched receipts, partial payments, short-pays, deductions, and exception resolution.</p>
+            <p>Your ERP remains the system of record. Binizam adds the workflow layer that helps teams review, route, approve, and audit reconciliation exceptions.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 reveal delay-200">
+            <Button href="/contact">Discuss one reconciliation queue</Button>
+            <Button href="/ar-collections" variant="secondary">Explore AR collections automation</Button>
+          </div>
+        </div>
+        <div class="lg:col-span-4 reveal delay-200">
+          <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 p-6 shadow-sm">
+            <p class="text-xs font-medium text-stone-400 dark:text-stone-500 mb-4">Quick jumps:</p>
+            <div class="flex flex-col gap-3 text-sm">
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#why-manual">Why reconciliation stays manual</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#controls">What the workflow controls</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#queues">Example queues</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#industries">Industry examples</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#boundaries">Boundaries</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-manual" class="max-w-6xl mx-auto px-6 mb-24 border-t border-stone-200/70 dark:border-stone-800/70 pt-16">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <SectionHeader title="Why receivables reconciliation stays manual" />
+        </div>
+        <div class="lg:col-span-8">
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-5">Even ERP-backed finance teams often manage the hardest part of receivables reconciliation outside the ERP.</p>
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-8">The ledger may show open invoices and posted receipts, but the team still has to figure out:</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {manualReasons.map(reason => (
+              <ListItem dotColor="amber">{reason}</ListItem>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="controls" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="What the workflow controls" />
+      <div class="grid md:grid-cols-2 gap-6">
+        {controlCards.map(card => (
+          <FeatureCard title={card.title} icon={card.icon}>
+            <p>{card.text}</p>
+          </FeatureCard>
+        ))}
+      </div>
+    </section>
+
+    <section id="queues" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Example reconciliation queues" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {queues.map(queue => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-4 text-sm text-stone-600 dark:text-stone-300">{queue}</div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-main dark:bg-stone-950 p-8 md:p-10">
+        <div class="grid lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-4">
+            <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-5">Manager visibility and audit trail</h2>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">A reconciliation workflow should make it easy to see:</p>
+          </div>
+          <div class="lg:col-span-8 grid sm:grid-cols-2 gap-4">
+            {visibilityItems.map(item => (
+              <ListItem dotColor="primary">{item}</ListItem>
+            ))}
+          </div>
+        </div>
+        <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-8 pt-6 border-t border-stone-200 dark:border-stone-800">
+          That visibility is difficult to maintain when reconciliation work lives in spreadsheets, inboxes, and private notes.
+        </p>
+      </div>
+    </section>
+
+    <section id="industries" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Industry examples" />
+      <div class="grid md:grid-cols-2 gap-6">
+        <FeatureCard title="FMCG distributors" icon="solar:box-minimalistic-linear">
+          <p class="mb-6">Payments may cover many invoices, arrive with incomplete remittance details, or be reduced by deductions, returns, disputes, or short-pays.</p>
+          <a class="text-sm font-semibold text-amber-600 hover:text-amber-700" href="/ar-collections/fmcg-distributors-uae">UAE FMCG distributors</a>
+        </FeatureCard>
+        <FeatureCard title="Logistics and 3PL operators" icon="solar:delivery-linear">
+          <p class="mb-6">Payments may relate to branches, facilities, service lines, shipments, storage, or billing discrepancies, making allocation and blocked-vs-collectible visibility harder.</p>
+          <a class="text-sm font-semibold text-amber-600 hover:text-amber-700" href="/ar-collections/logistics-3pl-uae">UAE logistics / 3PL operators</a>
+        </FeatureCard>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="First-slice options" subtitle="A safe reconciliation first slice could be:" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {firstSlices.map(slice => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-4 text-sm text-stone-600 dark:text-stone-300">{slice}</div>
+        ))}
+      </div>
+    </section>
+
+    <section id="boundaries" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="FAQ / boundaries" />
+      <div class="grid md:grid-cols-3 gap-6">
+        {faqs.map(faq => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-6">
+            <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-3">{faq.q}</h3>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Related pages" />
+      <div class="flex flex-wrap gap-3">
+        {relatedLinks.map(link => (
+          <a class="rounded-full border border-stone-200 dark:border-stone-800 px-4 py-2 text-sm font-medium text-primary dark:text-stone-200 hover:border-amber-600/50 hover:text-amber-600 transition-colors" href={link.href}>{link.text}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6">
+      <div class="pt-10 border-t border-stone-200 dark:border-stone-800 text-center flex flex-col items-center gap-5">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50">Discuss one reconciliation queue</h2>
+        <p class="text-sm text-muted dark:text-stone-400 max-w-xl">Send the short version: what gets stuck, what data sources are involved, and which queue would be safest to start with.</p>
+        <Button href="/contact">Talk to an engineer</Button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

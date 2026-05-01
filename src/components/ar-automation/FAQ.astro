@@ -1,12 +1,43 @@
 ---
-const faqs = [
-  { q: "Do you replace our ERP?", a: "No. When an ERP is involved, we add a controlled, auditable workflow layer on top of your ERP. We do not act as your system of record for ledgers." },
-  { q: "Are you a payments provider?", a: "No. We specialize exclusively in operational workflows and automation, leaving payment processing entirely to your dedicated gateways and banks." },
-  { q: "Can you include AI?", a: "Only where it’s governable (guardrails, evaluation, monitoring, approvals). If an automated decision cannot be cleanly audited and approved, we skip it." },
-  { q: "What systems can you integrate with?", a: "Typically ERPs, CRMs, bank files/APIs, and internal microservices. We keep integrations practical, reliable, and observable." }
+import { arPages } from '../../content/arabicPages';
+import { getLocaleFromPath } from '../../lib/i18n';
+
+const isAr = getLocaleFromPath(Astro.url.pathname) === 'ar';
+const englishFaqs = [
+  {
+    q: "What is AR collections automation?",
+    a: "AR collections automation is a controlled workflow for managing overdue accounts, aging-based follow-up, credit-control actions, disputes, promises to pay, payment matching, receipt allocation, reconciliation exceptions, and manager visibility above the ERP."
+  },
+  {
+    q: "How is this different from an ERP module?",
+    a: "Your ERP remains the system of record. Binizam adds the workflow execution layer around it: queues, next actions, review states, approvals, exceptions, and audit trails."
+  },
+  {
+    q: "Is Binizam a payment provider?",
+    a: "No. Binizam does not process payments. We help teams manage the workflow around payment matching, remittance handling, receipt allocation, reconciliation, and exceptions."
+  },
+  {
+    q: "Can we start with one AR team or queue?",
+    a: "Yes. The best first slice is usually one AR team, one branch cluster, one customer portfolio, one facility, or one reconciliation queue."
+  },
+  {
+    q: "What data do you need for an AR workflow?",
+    a: "A first slice usually needs customer identifiers, open invoices, aging data, balances, payment or receipt references, remittance details where available, owner mapping, and current exception states."
+  },
+  {
+    q: "Who usually owns this internally?",
+    a: "The pain owner is usually an AR Manager, Credit Control Manager, Collections Manager, Credit Controller, or Receivables Accountant. The sponsor is often a Finance Manager, Financial Controller, Chief Accountant, Head of Finance, or CFO."
+  },
+  {
+    q: "Do you work with UAE and Saudi companies?",
+    a: "Binizam is GCC-focused, with a current UAE-first and Saudi-next focus."
+  }
 ];
+const faqs = isAr
+  ? (arPages.arCollections.sections.find((section) => section.id === 'faq')?.faqs || [])
+  : englishFaqs;
 ---
-<section id="faq" class="max-w-3xl mx-auto px-6 mb-32 reveal">
+<section id="faq" class="max-w-3xl mx-auto px-6 mb-32 reveal" dir={isAr ? 'rtl' : 'ltr'}>
   <div class="space-y-1 border-t border-stone-200 dark:border-stone-800">
     {faqs.map(faq => (
       <details class="group border-b border-stone-200 dark:border-stone-800">
@@ -14,7 +45,7 @@ const faqs = [
           {faq.q}
           <iconify-icon icon="solar:add-circle-linear" class="group-open:rotate-45 transition-transform text-muted group-hover:text-amber-600" width="18" stroke-width="1.5"></iconify-icon>
         </summary>
-        <div class="pb-6 text-sm text-muted dark:text-stone-400 leading-relaxed pr-8">{faq.a}</div>
+        <div class={`pb-6 text-sm text-muted dark:text-stone-400 leading-relaxed ${isAr ? 'pl-8' : 'pr-8'}`}>{faq.a}</div>
       </details>
     ))}
   </div>

@@ -1,23 +1,84 @@
 ---
-const includedFeatures = [
-  { icon: "solar:list-check-minimalistic-linear", title: "Prioritized collector worklists", text: "Equip collectors with dynamically ranked queues and clear next actions to maximize focus." },
-  { icon: "solar:history-2-linear", title: "Follow-up sequences", text: "Automate cadence logic with embedded reminders and structured escalation paths." },
-  { icon: "solar:users-group-two-rounded-linear", title: "PTP and dispute handling", text: "Capture consistent states for promises to pay and disputes, triggering native approvals." },
-  { icon: "solar:scale-linear", title: "Reconciliation queues", text: "Surface “out-of-sync” items early, routing exceptions directly to the relevant owners." },
-  { icon: "solar:key-minimalistic-square-linear", title: "Manager exceptions", text: "Provide management with simple override tools for sensitive financial actions." },
-  { icon: "solar:document-text-linear", title: "Audit trails", text: "Ensure completely traceable outcomes permanently tied to events, logic, and users." }
+import { arPages } from '../../content/arabicPages';
+import { getLocaleFromPath } from '../../lib/i18n';
+
+const isAr = getLocaleFromPath(Astro.url.pathname) === 'ar';
+const featureIcons = [
+  "solar:sort-from-bottom-to-top-linear",
+  "solar:history-2-linear",
+  "solar:hand-shake-linear",
+  "solar:refresh-circle-linear",
+  "solar:scale-linear",
+  "solar:chart-2-linear"
 ];
+const englishFeatures = [
+  {
+    icon: "solar:sort-from-bottom-to-top-linear",
+    title: "Aging-based collector worklists",
+    text: "Prioritized queues that show collectors who to chase, why, and what the next action should be.",
+    items: ["Aging bucket", "Balance size", "Customer segment", "Collector ownership", "Dispute or PTP status", "Escalation priority"]
+  },
+  {
+    icon: "solar:history-2-linear",
+    title: "Collections follow-up",
+    text: "Structured collections workflow automation and credit control workflow automation that reduce dependence on private notes, ad hoc emails, and individual discipline.",
+    items: ["Follow-up cadence", "Reminder tasks", "Escalation paths", "Required notes", "Account-level activity history"]
+  },
+  {
+    icon: "solar:hand-shake-linear",
+    title: "Disputes and PTP tracking",
+    text: "Clear states for disputed invoices, promises to pay, blocked accounts, and stalled follow-ups inside an ERP collections workflow.",
+    items: ["Promise-to-pay dates", "Dispute reasons", "Required evidence", "Owner and next step", "Escalation status"]
+  },
+  {
+    icon: "solar:refresh-circle-linear",
+    title: "Payment matching and receipt allocation",
+    text: "Workflow support for matching customer payments to invoices, remittance notes, statements, and open balances as part of the receivables workflow layer.",
+    items: ["Unmatched receipts", "Partial payments", "Missing remittance details", "Multi-invoice payments", "Allocation review queues"]
+  },
+  {
+    icon: "solar:scale-linear",
+    title: "Reconciliation queues",
+    text: "A controlled queue for receivables items that are out of sync, partially matched, short-paid, disputed, or waiting on clarification.",
+    items: ["Expected vs actual amounts", "Unapplied cash", "Short-pays", "Deductions", "Credit-note dependencies"]
+  },
+  {
+    icon: "solar:chart-2-linear",
+    title: "Manager visibility and audit trail",
+    text: "Managers can see what is overdue, blocked, disputed, promised, unmatched, escalated, or waiting for approval.",
+    items: ["Queue status", "Collector activity", "Escalation history", "Approval decisions", "Corrections and overrides", "Audit log for key actions"]
+  }
+];
+const includedFeatures = isAr
+  ? (arPages.arCollections.sections[0].cards || []).map((card, index) => ({
+      icon: featureIcons[index] || 'solar:list-check-linear',
+      title: card.title,
+      text: card.text,
+      items: card.items || []
+    }))
+  : englishFeatures;
+const sectionTitle = isAr ? 'ماذا يشمل سير عمل تحصيل الذمم؟' : 'What AR collections automation includes';
 ---
-<section id="what-it-includes" class="max-w-6xl mx-auto px-6 mb-32 pt-16 reveal border-t border-stone-200/50 dark:border-stone-800/50">
-  <h2 class="text-2xl md:text-3xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-10">What it includes</h2>
+<section id="what-it-includes" class="max-w-6xl mx-auto px-6 mb-32 pt-16 reveal border-t border-stone-200/50 dark:border-stone-800/50" dir={isAr ? 'rtl' : 'ltr'}>
+  <h2 class="text-2xl md:text-3xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-10">{sectionTitle}</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
     {includedFeatures.map(card => (
-      <div class="p-6 rounded-2xl bg-main dark:bg-stone-950 border border-stone-200 dark:border-stone-800 hover:border-amber-600/40 transition-all duration-300 group shadow-sm relative overflow-hidden flex flex-col gap-3">
+      <div class="p-6 rounded-2xl bg-main dark:bg-stone-950 border border-stone-200 dark:border-stone-800 hover:border-amber-600/40 transition-all duration-300 group shadow-sm relative overflow-hidden flex flex-col gap-4">
         <div class="w-10 h-10 rounded-lg bg-surface dark:bg-stone-800 flex items-center justify-center text-muted group-hover:text-amber-600 transition-colors border border-stone-200 dark:border-stone-700">
           <iconify-icon icon={card.icon} width="20" stroke-width="1.5"></iconify-icon>
         </div>
-        <h3 class="text-sm font-semibold text-primary dark:text-stone-100">{card.title}</h3>
-        <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">{card.text}</p>
+        <div>
+          <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-3">{card.title}</h3>
+          <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">{card.text}</p>
+        </div>
+        <ul class="space-y-2 mt-auto">
+          {card.items.map(item => (
+            <li class="flex items-start gap-2 text-xs text-stone-500 dark:text-stone-400">
+              <div class="w-1 h-1 rounded-full bg-amber-600 mt-1.5 flex-shrink-0"></div>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     ))}
   </div>

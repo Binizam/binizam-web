@@ -1,0 +1,32 @@
+---
+const sliceItems = [
+  "one AR team or customer portfolio",
+  "one prioritized aging-based worklist",
+  "one exception path such as disputed, promised, unmatched, or short-paid",
+  "one manager approval route",
+  "one basic dashboard showing overdue, blocked, disputed, promised, and escalated items"
+];
+---
+<section class="max-w-6xl mx-auto px-6 mb-32 reveal">
+  <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-main dark:bg-stone-950 p-8 md:p-10">
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-4">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-4">Example first slice: AR collections</h2>
+        <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">A safe AR first slice might be:</p>
+      </div>
+      <div class="lg:col-span-8">
+        <ul class="grid sm:grid-cols-2 gap-4 mb-8">
+          {sliceItems.map(item => (
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-300">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0"></div>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-sm text-muted dark:text-stone-400 leading-relaxed pt-6 border-t border-stone-200 dark:border-stone-800">
+          That is enough to prove the workflow without replacing your ERP or redesigning finance operations.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

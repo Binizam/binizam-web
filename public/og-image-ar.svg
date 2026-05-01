@@ -1,0 +1,13 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">بنظام</title>
+  <desc id="desc">أنظمة سير عمل داخلية للمالية والعمليات في الخليج</desc>
+  <rect width="1200" height="630" fill="#29231F"/>
+  <rect x="128" y="112" width="944" height="406" rx="2" fill="#24201D"/>
+  <g transform="translate(270 212)">
+    <path d="M110.2 0C115.2 0 119 0.6 119 6.1L117.7 33.2C117.7 37.5 114.8 39.9 110.5 39.9H82.3C77.3 39.9 73.4 39.3 73.4 33.8L74.7 6.7C74.7 2.4 77.6 0 81.9 0H110.2Z" fill="#D97706"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M55.1 31.5C55.7 31.5 56.3 31.6 56.9 31.7C66.4 32.2 73.6 40.2 73.1 49.6L71.6 100.4H125.7L127.7 47.6C128.1 38.4 136.6 31.5 145.7 31.5H185.8C188.3 31.5 189.9 33.1 189.9 36.8L189 62.6C189 66.4 187.2 68 184.7 68H165L163.5 118.6C163.5 119 163.5 119.4 163.5 119.8C163.1 129.1 153.9 136.8 144.7 136.7H52.4C51.7 136.7 51 136.7 50.4 136.6C40.9 136.1 33.7 128.1 34.2 118.6C34.2 118.3 34.2 118 34.2 117.7L36.1 68H6.4C2.1 68 0 66.4 0 62.6L1.7 36.8C1.7 33.1 4.9 31.5 9.2 31.5H55.1Z" fill="#F5F0E6"/>
+  </g>
+  <text x="910" y="352" text-anchor="end" fill="#F5F0E6" font-family="Tahoma, Arial, sans-serif" font-size="120" font-weight="700" letter-spacing="0">بنظام</text>
+  <text x="910" y="414" text-anchor="end" fill="#B8AEA5" font-family="Tahoma, Arial, sans-serif" font-size="34" font-weight="500" letter-spacing="0">أنظمة سير عمل داخلية للمالية والعمليات</text>
+  <text x="910" y="464" text-anchor="end" fill="#D97706" font-family="Tahoma, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="0">الخليج · ERP · مطابقة وتسوية · سجلات تدقيق</text>
+</svg>

@@ -1,32 +1,35 @@
 ---
 const quickAnswer = [
-  "What process is breaking (and who uses it)",
-  "Systems involved (ERP/CRM/bank files/APIs)",
+  "What workflow is stuck, and who uses it",
+  "Systems involved: ERP, accounting system, CRM, bank files, remittance emails, APIs, spreadsheets, or inboxes",
   "Sensitive steps that need approvals or auditability",
-  "What “good” looks like (speed, control, traceability)",
+  "What good looks like: faster follow-up, cleaner reconciliation, better control, fewer stuck exceptions, or clearer manager visibility",
+  "Whether you already have a first slice in mind, such as one AR team, one customer portfolio, one branch cluster, one facility, or one reconciliation queue",
 ];
 
 const bestWith = [
-  "AR / finance ops teams with high-volume follow-ups + exceptions",
-  "Workflows where approvals and traceability matter",
-  "When spreadsheets + inbox are effectively the system",
+  "Finance and operations teams where spreadsheets and inboxes are effectively running the workflow",
+  "AR / credit-control / collections teams with high-volume follow-ups, disputes, PTPs, short-pays, deductions, or reconciliation exceptions",
+  "ERP-backed teams that need workflow execution around the system of record",
+  "Workflows where approvals, audit trails, and manager visibility matter",
 ];
 
 const happensNext = [
   "Reply in 1–2 business days",
   "15–20 min fit check with an engineer",
-  "We’ll recommend a first workflow slice after hearing your context (or tell you quickly if it’s not a fit)",
+  "We’ll recommend a reviewable first workflow slice after hearing your context (or tell you quickly if it’s not a fit)",
 ];
 
-const placeholderText = `Process: (e.g., AR follow-up / disputes / reconciliation / approvals)
+const placeholderText = `Workflow stuck: (e.g., AR follow-up / disputes / reconciliation / approvals)
 Where it breaks: (ownership, exceptions, visibility, reporting)
-Systems involved: (ERP/CRM/bank files/APIs)
-Sensitive steps: (what needs approvals/audit trail)`;
+Systems involved: (ERP/accounting system, CRM, bank/remittance/payment files, APIs)
+Sensitive steps: (what needs approvals/audit trail)
+Good first slice: (one queue, one branch, one customer portfolio, one facility, etc.)`;
 ---
 
 <section class="max-w-6xl mx-auto px-6 mb-24 reveal delay-100">
-  <div class="grid lg:grid-cols-12 gap-12 lg:gap-8">
-    <div class="lg:col-span-5 flex flex-col gap-6">
+  <div class="flex flex-col lg:grid lg:grid-cols-12 gap-12 lg:gap-8">
+    <div class="order-2 lg:order-1 lg:col-span-5 flex flex-col gap-6">
       <div
         class="bg-surface/50 dark:bg-stone-900/50 rounded-2xl p-8 border border-stone-200 dark:border-stone-800 shadow-sm"
       >
@@ -34,7 +37,7 @@ Sensitive steps: (what needs approvals/audit trail)`;
           Quick answer
         </h2>
         <p class="text-sm text-muted dark:text-stone-400 mb-6">
-          Send the shortest version of your problem. Two sentences is enough.
+          Useful things to include:
         </p>
         <ul class="space-y-4 mb-8">
           {quickAnswer.map((item) => (
@@ -89,12 +92,33 @@ Sensitive steps: (what needs approvals/audit trail)`;
         <p
           class="text-sm text-muted dark:text-stone-500 italic border-t border-stone-200 dark:border-stone-800 pt-6"
         >
-          If that’s you, send a short note. If it’s not, we’ll tell you quickly.
+          If that sounds close, send a short note. If it is not a fit, we will tell you quickly.
         </p>
+      </div>
+
+      <div
+        class="bg-surface/50 dark:bg-stone-900/50 rounded-2xl p-8 border border-stone-200 dark:border-stone-800 shadow-sm"
+      >
+        <h2 class="text-lg font-semibold text-primary dark:text-stone-100 mb-6">
+          What happens next
+        </h2>
+        <ul class="space-y-4">
+          {happensNext.map((item) => (
+            <li class="flex items-start gap-3">
+              <iconify-icon
+                icon="solar:clock-circle-linear"
+                class="text-amber-600 mt-0.5 flex-shrink-0"
+              ></iconify-icon>
+              <span class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
 
-    <div class="lg:col-span-7 flex flex-col h-full">
+    <div class="order-1 lg:order-2 lg:col-span-7 flex flex-col h-full">
       <div
         class="bg-white dark:bg-stone-950 rounded-2xl p-8 md:p-10 border border-stone-200 dark:border-stone-800 shadow-sm relative overflow-hidden hover:border-amber-600/30 transition-colors duration-300 flex flex-col flex-grow"
       >
@@ -116,7 +140,7 @@ Sensitive steps: (what needs approvals/audit trail)`;
         <form class="flex flex-col gap-6 flex-grow" data-contact-form>
           <!-- Honeypot (hidden). Humans won't fill this. -->
           <div
-            style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;"
+            class="honeypot-field"
             aria-hidden="true"
           >
             <label for="hp">Leave this field empty</label>

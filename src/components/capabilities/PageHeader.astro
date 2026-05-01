@@ -9,7 +9,8 @@ const { title, description } = Astro.props;
   <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-6">
     {title}
   </h1>
-  <p class="text-xl text-stone-600 dark:text-stone-400 font-light max-w-2xl leading-relaxed">
-    {description}
-  </p>
+  <div class="text-xl text-stone-600 dark:text-stone-400 font-light max-w-3xl leading-relaxed space-y-5">
+    <p>{description}</p>
+    <slot />
+  </div>
 </section>

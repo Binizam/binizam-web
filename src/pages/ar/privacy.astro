@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ArabicParityPage from '../../components/ar/ArabicParityPage.astro';
+import { arPages } from '../../content/arabicPages';
+
+const page = arPages.privacy;
+---
+
+<Layout title={page.seo.title} description={page.seo.description} lang="ar">
+  <Navbar locale="ar" />
+  <ArabicParityPage page={page} />
+  <Footer locale="ar" />
+</Layout>

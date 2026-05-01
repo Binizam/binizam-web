@@ -1,8 +1,11 @@
 ---
 const boundaryPoints = [
-  "We typically don’t need health records for workflow automation.",
-  "We typically don’t need full payment card data; we keep payment handling out of scope.",
-  "We focus on workflow state and the minimal identifiers needed to run and reconcile the process."
+  "We do not process payments.",
+  "We do not need full card data.",
+  "We do not replace your ERP or accounting system.",
+  "We only need the fields required for workflow state, matching, reconciliation, approvals, and auditability.",
+  "We prefer scoped credentials and least-privilege access.",
+  "Sensitive workflow actions should be logged with actor, timestamp, reason, and outcome."
 ];
 ---
 <section class="max-w-4xl mx-auto px-6 mb-8 reveal">
@@ -11,7 +14,10 @@ const boundaryPoints = [
       Data boundaries
     </h2>
     <p class="text-sm text-muted dark:text-stone-400 mb-8 relative z-10">
-      Early engagements avoid expanding regulated scope:
+      We design early workflow slices to avoid unnecessary data exposure.
+    </p>
+    <p class="text-sm text-primary dark:text-stone-300 font-semibold mb-5 relative z-10">
+      For finance and AR workflows, that usually means:
     </p>
     <ul class="space-y-5 relative z-10">
       {boundaryPoints.map(point => (
@@ -21,5 +27,8 @@ const boundaryPoints = [
         </li>
       ))}
     </ul>
+    <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-8 pt-6 border-t border-stone-200 dark:border-stone-800 relative z-10">
+      In AR collections workflows, the first slice can often work with customer identifiers, invoice references, aging data, receipt/payment references, dispute states, owner mapping, and workflow notes—not broad access to every finance table.
+    </p>
   </div>
 </section>

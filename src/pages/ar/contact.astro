@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ArabicContactPage from '../../components/ar/ArabicContactPage.astro';
+
+const seo = {
+  title: 'تحدّث مع مهندس | بنظام',
+  description: 'أرسل لبنظام وصفًا مختصرًا لسير العمل المتعثر، الأنظمة المتداخلة، الموافقات الحساسة، وما يبدو عليه أول نطاق جيد. فحص ملاءمة مع مهندس.'
+};
+---
+
+<Layout title={seo.title} description={seo.description} lang="ar">
+  <Navbar locale="ar" />
+  <ArabicContactPage />
+  <Footer locale="ar" />
+</Layout>

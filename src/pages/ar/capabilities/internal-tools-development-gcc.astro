@@ -1,0 +1,27 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import ArabicParityPage from '../../../components/ar/ArabicParityPage.astro';
+import { arPages } from '../../../content/arabicPages';
+import { makeServiceStructuredData } from '../../../lib/schema';
+
+const page = arPages.internalTools;
+const site = Astro.site || new URL('https://binizam.com');
+const structuredData = makeServiceStructuredData({
+  site,
+  path: '/ar/capabilities/internal-tools-development-gcc#service',
+  name: 'تطوير أدوات داخلية لفرق المالية والعمليات في الخليج',
+  serviceType: 'تطوير أدوات داخلية',
+  description: page.seo.description,
+  areaServed: ['GCC', 'United Arab Emirates', 'Saudi Arabia'],
+  audience: 'فرق المالية والعمليات في الخليج',
+  inLanguage: 'ar'
+});
+---
+
+<Layout title={page.seo.title} description={page.seo.description} structuredData={structuredData} lang="ar">
+  <Navbar locale="ar" />
+  <ArabicParityPage page={page} />
+  <Footer locale="ar" />
+</Layout>

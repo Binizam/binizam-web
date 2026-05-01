@@ -1,25 +1,34 @@
 ---
+const signs = [
+  "Teams export data from ERP and run the real workflow in Excel",
+  "Follow-ups depend on individual discipline",
+  "Managers ask for manual status updates",
+  "Exceptions stall because ownership is unclear",
+  "Approvals happen in email without a clean audit trail",
+  "Reconciliation issues are discovered late",
+  "Reports do not match what operators say is happening"
+];
 ---
 <section class="max-w-6xl mx-auto px-6 mb-24 reveal delay-100">
   <div class="bg-surface/50 dark:bg-stone-900/50 rounded-xl p-8 md:p-10 border border-stone-200 dark:border-stone-800">
-    <div class="space-y-6 text-lg text-primary dark:text-stone-300 leading-relaxed max-w-3xl">
-      <p>
-        We deliver internal workflow systems that coordinate people +
-        systems: operational queues, approvals, automation,
-        integrations, reconciliation, and reporting you can trust.
-      </p>
-      <p>
-        Retool-first for internal operator UIs, with integrations and
-        workflow state anchored in your stack.
-      </p>
-      <p class="text-base text-stone-600 dark:text-stone-500">
-        For a concrete example, see
-        <a href="/ar-collections" class="text-amber-600 hover:text-amber-700 font-medium transition-colors">AR Collections Automation</a>. 
-        For posture, see
-        <a href="/security" class="text-amber-600 hover:text-amber-700 font-medium transition-colors">Security</a>. 
-        For delivery, see
-        <a href="/how-we-work" class="text-amber-600 hover:text-amber-700 font-medium transition-colors">How we work</a>.
-      </p>
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-4">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-4">Where this fits</h2>
+        <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">
+          Binizam is useful when the system of record exists, but the work still happens manually around it.
+        </p>
+      </div>
+      <div class="lg:col-span-8">
+        <p class="text-sm font-semibold text-primary dark:text-stone-100 mb-5">Common signs:</p>
+        <ul class="grid sm:grid-cols-2 gap-4">
+          {signs.map(sign => (
+            <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+              <div class="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 flex-shrink-0"></div>
+              <span>{sign}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </div>
 </section>

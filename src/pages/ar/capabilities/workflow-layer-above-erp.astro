@@ -1,0 +1,26 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import ArabicParityPage from '../../../components/ar/ArabicParityPage.astro';
+import { arPages } from '../../../content/arabicPages';
+import { makeServiceStructuredData } from '../../../lib/schema';
+
+const page = arPages.workflowLayer;
+const site = Astro.site || new URL('https://binizam.com');
+const structuredData = makeServiceStructuredData({
+  site,
+  path: '/ar/capabilities/workflow-layer-above-erp#service',
+  name: 'طبقة تنفيذ فوق نظام ERP',
+  serviceType: 'أنظمة سير عمل داخلية فوق ERP',
+  description: page.seo.description,
+  areaServed: 'GCC',
+  inLanguage: 'ar'
+});
+---
+
+<Layout title={page.seo.title} description={page.seo.description} structuredData={structuredData} lang="ar">
+  <Navbar locale="ar" />
+  <ArabicParityPage page={page} />
+  <Footer locale="ar" />
+</Layout>

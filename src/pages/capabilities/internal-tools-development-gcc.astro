@@ -1,0 +1,323 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/ui/Button.astro';
+import FeatureCard from '../../components/ui/FeatureCard.astro';
+import ListItem from '../../components/ui/ListItem.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import { makeServiceStructuredData } from '../../lib/schema';
+
+const seo = {
+  title: "Internal Tools Development in the GCC | Binizam",
+  description: "Binizam builds internal tools for GCC finance and operations teams: Retool-first apps, admin panels, dashboards, workflow queues, approvals, integrations, reconciliation, and audit trails around existing systems."
+};
+
+const site = Astro.site || new URL('https://binizam.com');
+const structuredData = makeServiceStructuredData({
+  site,
+  path: '/capabilities/internal-tools-development-gcc#service',
+  name: 'Internal tools development for GCC finance and operations teams',
+  serviceType: 'Internal tool development',
+  description: 'Binizam builds internal tools for GCC finance and operations teams, including Retool-first apps, workflow queues, approvals, integrations, reconciliation dashboards, and audit trails around existing systems.',
+  areaServed: ['GCC', 'United Arab Emirates', 'Saudi Arabia'],
+  audience: 'GCC finance and operations teams',
+  inLanguage: 'en'
+});
+
+const signs = [
+  "Operators work from exported spreadsheets instead of a shared queue",
+  "Managers ask for manual status updates",
+  "Approvals happen in email or chat without a clear audit trail",
+  "Exceptions get stuck because ownership is unclear",
+  "ERP has the records, but not the workflow execution layer",
+  "Teams need an admin panel, dashboard, or operations console that fits how the business actually works",
+  "A process is important enough to control, but not generic enough for off-the-shelf software"
+];
+
+const buildCards = [
+  {
+    title: "Operational dashboards",
+    icon: "solar:chart-2-linear",
+    text: "Dashboards that show live workflow state: what is open, blocked, overdue, approved, rejected, escalated, matched, unmatched, or waiting on review."
+  },
+  {
+    title: "Queues and worklists",
+    icon: "solar:list-check-linear",
+    text: "Prioritized worklists for operators and managers, with ownership, next actions, filters, reason codes, and status history."
+  },
+  {
+    title: "Admin panels",
+    icon: "solar:settings-linear",
+    text: "Internal admin tools for controlled edits, reviewer actions, configuration, user management, workflow rules, and operational controls."
+  },
+  {
+    title: "Approval workflows",
+    icon: "solar:shield-check-linear",
+    text: "Approval paths for sensitive actions, exceptions, overrides, corrections, and manager review."
+  },
+  {
+    title: "Integrations",
+    icon: "solar:link-circle-linear",
+    text: "Connections to ERP, databases, CRMs, bank/payment files, spreadsheets, APIs, and operational systems."
+  },
+  {
+    title: "Audit trails",
+    icon: "solar:document-text-linear",
+    text: "Traceability for key actions: who changed what, when it changed, why it changed, and which workflow item it affected."
+  }
+];
+
+const architectureItems = [
+  "a backend service",
+  "a database",
+  "scheduled jobs",
+  "queue logic",
+  "integration workers",
+  "validation rules",
+  "audit logging",
+  "export logic",
+  "role-based controls"
+];
+
+const firstSlices = [
+  "one finance operations dashboard",
+  "one approval queue",
+  "one reconciliation exception queue",
+  "one operations console",
+  "one admin panel for controlled corrections",
+  "one AR collections worklist",
+  "one manager visibility dashboard",
+  "one workflow above ERP for a specific team or process"
+];
+
+const fitSignals = [
+  "finance or operations teams with clear owners",
+  "ERP-backed or system-backed workflows",
+  "repeated manual coordination",
+  "approvals and exceptions that need traceability",
+  "operators working from spreadsheets, inboxes, or manual reports",
+  "managers who need visibility without constant status chasing",
+  "a realistic first slice that can be scoped to one team, queue, branch, facility, or process"
+];
+
+const boundaries = [
+  "We do not replace your ERP.",
+  "We do not act as a payments provider.",
+  "We do not sell a generic SaaS dashboard.",
+  "We do not take broad access just in case.",
+  "We do not start with all-company transformation."
+];
+
+const faqs = [
+  {
+    q: "What is internal tools development?",
+    a: "Internal tools development means building software used by employees inside the company: admin panels, dashboards, queues, approval screens, operations consoles, reconciliation tools, and workflow systems."
+  },
+  {
+    q: "Do you build internal tools in the GCC?",
+    a: "Yes. Binizam focuses on GCC finance and operations teams, with a UAE-first and Saudi-next focus."
+  },
+  {
+    q: "Are you an internal tools agency?",
+    a: "Some buyers search for an internal tools agency or internal tools development company. Binizam is more specific: a senior engineering team building governed internal workflow tools around existing systems."
+  },
+  {
+    q: "What kinds of internal tools do you build?",
+    a: "We build operational dashboards, admin panels, approval queues, reconciliation tools, exception workflows, workflow layers above ERP, and Retool-first internal apps."
+  },
+  {
+    q: "Can you build tools around our ERP or CRM?",
+    a: "Yes. The ERP or CRM remains the system of record. Binizam builds internal tools and workflow state around it."
+  },
+  {
+    q: "Do you build customer-facing apps?",
+    a: "Usually no. Binizam focuses on internal workflow systems for finance and operations teams, not consumer apps or generic customer portals."
+  },
+  {
+    q: "How small can the first version be?",
+    a: "A good first version can be one queue, one approval path, one operations dashboard, one admin panel, or one reconciliation exception workflow."
+  }
+];
+
+const relatedLinks = [
+  { text: "Capabilities", href: "/capabilities" },
+  { text: "Retool development", href: "/capabilities/retool-development-gcc" },
+  { text: "Workflow layer above ERP", href: "/capabilities/workflow-layer-above-erp" },
+  { text: "AR Collections Automation", href: "/ar-collections" },
+  { text: "Security", href: "/security" },
+  { text: "How we work", href: "/how-we-work" }
+];
+---
+
+<Layout title={seo.title} description={seo.description} structuredData={structuredData}>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-24">
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-8">
+          <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-4 reveal">Capabilities / Internal tools</p>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-[1.12] mb-6 reveal">
+            Internal tools development for GCC finance and operations teams
+          </h1>
+          <div class="space-y-4 md:space-y-5 text-base md:text-lg text-muted dark:text-stone-400 leading-relaxed max-w-3xl mb-8 reveal delay-100">
+            <p>Binizam builds governed internal tools for GCC companies that need clearer workflow execution across finance, operations, ERP, spreadsheets, inboxes, APIs, and internal systems.</p>
+            <p>We build the tools teams actually use to run the work: queues, dashboards, admin panels, approvals, reconciliation checks, exception paths, manager views, and audit trails.</p>
+            <p>Retool-first when it fits. Custom where it matters. Always designed around controlled workflow state.</p>
+            <p>Some buyers describe this as an internal tools development company in the GCC, an internal tools agency in the UAE, or internal tools developers in Dubai. We describe it more narrowly: senior engineering for governed workflow tools around existing systems.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 reveal delay-200">
+            <Button href="/contact">Talk to an engineer</Button>
+            <Button href="/capabilities/retool-development-gcc" variant="secondary">Explore Retool development</Button>
+          </div>
+          <p class="mt-5 text-sm text-stone-400 dark:text-stone-500 reveal delay-300">
+            GCC-first · UAE-first, Saudi-next · Built around your existing systems
+          </p>
+        </div>
+        <aside class="lg:col-span-4 reveal delay-200">
+          <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 p-6 shadow-sm">
+            <h2 class="text-sm font-semibold text-primary dark:text-stone-100 mb-4">What does Binizam build?</h2>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mb-4">
+              Binizam builds internal tools and workflow systems for GCC finance and operations teams. That can include Retool apps, admin panels, operational dashboards, approval tools, reconciliation queues, exception workflows, and manager visibility layers around ERP and other existing systems.
+            </p>
+            <p class="text-sm font-medium text-primary dark:text-stone-200">
+              We do not replace your ERP. We build the controlled workflow layer around it.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24 border-t border-stone-200/70 dark:border-stone-800/70 pt-16">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <SectionHeader title="When internal tools are the right answer" />
+        </div>
+        <div class="lg:col-span-8">
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-5">
+            Internal tools are useful when the business process already exists, but the execution is scattered.
+          </p>
+          <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mb-8">
+            This page is for buyers searching for internal tools development in the GCC, UAE, Dubai, or Saudi Arabia, but the work itself is not a generic outsourcing offer; it is focused on governed workflow tools for finance and operations teams.
+            That can include custom admin panel development, internal dashboard development, operations console development, workflow app development, back-office automation in the GCC, business process automation in the GCC, and internal software development for processes that need control rather than broad transformation.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {signs.map(item => <ListItem dotColor="amber">{item}</ListItem>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="What we build" />
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {buildCards.map(card => (
+          <FeatureCard title={card.title} icon={card.icon}>
+            <p>{card.text}</p>
+          </FeatureCard>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-main dark:bg-stone-950 p-8 md:p-10">
+        <div class="grid lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-4">
+            <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-5">Where this fits in GCC companies</h2>
+          </div>
+          <div class="lg:col-span-8 space-y-5 text-lg text-primary dark:text-stone-300 leading-relaxed">
+            <p>Many GCC operators are not missing systems. They already have ERP, accounting software, CRM, warehouse tools, or operational platforms.</p>
+            <p>The problem is that the real workflow still happens around those systems.</p>
+            <p>A Finance Manager may know the ERP has the data, but the team still works from Excel. An operations lead may have a system of record, but exceptions still move through inboxes and WhatsApp messages. A manager may receive reports, but still cannot see what is actually blocked and who owns the next action.</p>
+            <p class="text-base text-muted dark:text-stone-400">That is where Binizam fits: internal tools that turn scattered execution into a controlled workflow.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <SectionHeader title="Retool-first, not Retool-only" />
+        </div>
+        <div class="lg:col-span-8">
+          <div class="space-y-5 text-lg text-primary dark:text-stone-300 leading-relaxed mb-8">
+            <p>Retool is often the fastest and safest way to build internal operator tools, especially when the work needs screens, tables, forms, approvals, dashboards, and integrations.</p>
+            <p>But Retool is not the whole architecture. A good internal tool may also need:</p>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {architectureItems.map(item => <ListItem dotColor="primary">{item}</ListItem>)}
+          </div>
+          <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-8">
+            Binizam uses Retool where it speeds up the operator interface, and custom engineering where the workflow needs durable state, stronger controls, or backend logic.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div>
+          <SectionHeader title="First-slice examples" />
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-6">
+            A good internal tool project should start narrow. The goal is not to rebuild the whole company. The goal is to control one workflow slice well enough that the team trusts it.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {firstSlices.map(item => <ListItem dotColor="amber">{item}</ListItem>)}
+          </div>
+        </div>
+        <div>
+          <SectionHeader title="Good-fit teams" />
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-6">
+            Binizam is strongest for teams that already have process maturity but need better execution control.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {fitSignals.map(item => <ListItem dotColor="primary">{item}</ListItem>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="What we do not do" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {boundaries.map(item => <ListItem dotColor="red">{item}</ListItem>)}
+      </div>
+      <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-8">
+        We build governed internal tools around the systems and workflows you already run.
+      </p>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Questions buyers ask" />
+      <div class="grid md:grid-cols-2 gap-6">
+        {faqs.map(faq => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-6">
+            <h3 class="text-base font-semibold text-primary dark:text-stone-100 mb-3">{faq.q}</h3>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Related pages" />
+      <div class="flex flex-wrap gap-3">
+        {relatedLinks.map(link => (
+          <a class="rounded-full border border-stone-200 dark:border-stone-800 px-4 py-2 text-sm font-medium text-primary dark:text-stone-200 hover:border-amber-600/50 hover:text-amber-600 transition-colors" href={link.href}>{link.text}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6">
+      <div class="pt-10 border-t border-stone-200 dark:border-stone-800 text-center flex flex-col items-center gap-5">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50">Have an internal workflow that still runs through spreadsheets and inboxes?</h2>
+        <p class="text-sm text-muted dark:text-stone-400 max-w-xl">Send the short version: what work is stuck, which systems are involved, and what first queue or dashboard would be safest to build.</p>
+        <Button href="/contact">Talk to an engineer</Button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

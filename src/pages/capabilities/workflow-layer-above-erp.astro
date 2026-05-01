@@ -1,0 +1,274 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/ui/Button.astro';
+import FeatureCard from '../../components/ui/FeatureCard.astro';
+import ListItem from '../../components/ui/ListItem.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+
+const seo = {
+  title: "Workflow Layer Above ERP for Finance & Ops | Binizam",
+  description: "Workflow layers above ERP for finance and operations teams that need queues, approvals, exception handling, reconciliation, and audit trails without replacing ERP."
+};
+
+const site = Astro.site || new URL('https://binizam.com');
+const breadcrumbStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Capabilities', item: new URL('/capabilities', site).toString() },
+    { '@type': 'ListItem', position: 3, name: 'Workflow Layer Above ERP', item: new URL('/capabilities/workflow-layer-above-erp', site).toString() }
+  ]
+};
+
+const serviceStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': new URL('/capabilities/workflow-layer-above-erp#service', site).toString(),
+  name: 'Workflow Layer Above ERP',
+  serviceType: 'internal workflow systems above ERP',
+  description: 'Binizam builds workflow layers above ERP systems for finance and operations teams that need queues, approvals, exception handling, reconciliation checks, manager visibility, and audit trails without replacing ERP.',
+  provider: {
+    '@id': new URL('/#organization', site).toString()
+  },
+  areaServed: [
+    {
+      '@type': 'Place',
+      name: 'GCC'
+    }
+  ]
+};
+
+const structuredData = [breadcrumbStructuredData, serviceStructuredData];
+
+const scatteredWork = [
+  "Excel worklists",
+  "shared inboxes",
+  "private notes",
+  "exported reports",
+  "status meetings",
+  "Slack or WhatsApp follow-ups",
+  "manual approval threads"
+];
+
+const layerCards = [
+  {
+    title: "Queues and worklists",
+    icon: "solar:list-check-linear",
+    text: "A clear place for operators to see what needs action, who owns it, why it matters, and what the next step is."
+  },
+  {
+    title: "Workflow state",
+    icon: "solar:database-linear",
+    text: "Durable states such as open, blocked, disputed, promised, approved, rejected, escalated, matched, unmatched, or completed."
+  },
+  {
+    title: "Approvals and exceptions",
+    icon: "solar:shield-check-linear",
+    text: "Controlled paths for sensitive decisions, overrides, corrections, escalations, and review-required cases."
+  },
+  {
+    title: "Reconciliation checks",
+    icon: "solar:refresh-circle-linear",
+    text: "Checks that compare expected vs actual and route mismatches into review instead of letting them hide in reports."
+  },
+  {
+    title: "Manager visibility",
+    icon: "solar:chart-2-linear",
+    text: "Views that show what is moving, what is stuck, what needs review, and where ownership is unclear."
+  },
+  {
+    title: "Audit trails",
+    icon: "solar:document-text-linear",
+    text: "A record of who did what, what changed, why it changed, and when it happened."
+  }
+];
+
+const firstSlices = [
+  {
+    title: "AR collections automation",
+    text: "A workflow above the ERP for aging-based collections, credit-control follow-up, disputes, PTPs, payment matching, reconciliation queues, manager exceptions, and audit trails.",
+    href: "/ar-collections",
+    cta: "Explore AR Collections"
+  },
+  {
+    title: "Reconciliation queue",
+    text: "A workflow for unmatched records, payment allocation, missing remittance details, amount mismatches, or exceptions that need review.",
+    href: "/ar-collections/receivables-reconciliation",
+    cta: "Explore Receivables Reconciliation"
+  },
+  {
+    title: "Approval workflow",
+    text: "A controlled path for sensitive operational changes, manager sign-off, reason codes, and audit events."
+  },
+  {
+    title: "Exception operations",
+    text: "A queue for operational items that are blocked, out of sync, waiting on another team, or missing required evidence."
+  }
+];
+
+const deliveryItems = [
+  "one queue",
+  "one exception path",
+  "one approval route",
+  "one operator group",
+  "one manager view",
+  "a limited integration scope",
+  "clear QA and handover"
+];
+
+const boundaries = [
+  "Your ERP remains the system of record.",
+  "Binizam does not become your accounting system.",
+  "Binizam does not process payments.",
+  "We avoid broad access just in case.",
+  "We keep workflow state, approvals, and auditability scoped to the slice being delivered."
+];
+
+const relatedLinks = [
+  { text: "Capabilities", href: "/capabilities" },
+  { text: "Internal tool development", href: "/capabilities/internal-tools-development-gcc" },
+  { text: "Retool development", href: "/capabilities/retool-development-gcc" },
+  { text: "AR Collections Automation", href: "/ar-collections" },
+  { text: "Receivables Reconciliation Automation", href: "/ar-collections/receivables-reconciliation" },
+  { text: "How We Work", href: "/how-we-work" },
+  { text: "Security", href: "/security" }
+];
+---
+
+<Layout title={seo.title} description={seo.description} structuredData={structuredData}>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-24">
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-8">
+          <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-4 reveal">Capabilities / ERP Workflow Layer</p>
+          <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-[1.1] mb-6 reveal">
+            A workflow layer above your ERP
+          </h1>
+          <div class="space-y-5 text-lg text-muted dark:text-stone-400 leading-relaxed max-w-3xl mb-8 reveal delay-100">
+            <p>Your ERP can be the system of record and still not be the place where daily work gets done.</p>
+            <p>Binizam builds governed workflow layers above ERP systems for finance and operations teams that need queues, approvals, exception handling, reconciliation checks, manager visibility, and audit trails.</p>
+            <p>We do not replace your ERP. We make the execution around it controlled and traceable.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 reveal delay-200">
+            <Button href="/contact">Talk to an engineer about a workflow above your ERP</Button>
+            <Button href="/ar-collections" variant="secondary">Explore AR collections</Button>
+          </div>
+        </div>
+        <div class="lg:col-span-4 reveal delay-200">
+          <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 p-6 shadow-sm">
+            <p class="text-xs font-medium text-stone-400 dark:text-stone-500 mb-4">Quick jumps:</p>
+            <div class="flex flex-col gap-3 text-sm">
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#why-erp">Why ERP is not enough</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#adds">What the workflow layer adds</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#first-slices">Example first slices</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#boundaries">Boundaries</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-erp" class="max-w-6xl mx-auto px-6 mb-24 border-t border-stone-200/70 dark:border-stone-800/70 pt-16">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <SectionHeader title="Why ERP is not enough for workflow execution" />
+        </div>
+        <div class="lg:col-span-8">
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-5">
+            ERP systems are good at holding records: customers, invoices, balances, credits, payments, inventory, orders, and accounting entries.
+          </p>
+          <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-8">
+            But many teams still run the actual workflow somewhere else:
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {scatteredWork.map(item => (
+              <ListItem dotColor="amber">{item}</ListItem>
+            ))}
+          </div>
+          <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-8">
+            That is where work becomes hard to control. The data exists, but the execution state is scattered.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="adds" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="What the workflow layer adds" />
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {layerCards.map(card => (
+          <FeatureCard title={card.title} icon={card.icon}>
+            <p>{card.text}</p>
+          </FeatureCard>
+        ))}
+      </div>
+    </section>
+
+    <section id="first-slices" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Example first slices" />
+      <div class="grid md:grid-cols-2 gap-6">
+        {firstSlices.map((slice, index) => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-6">
+            <h3 class="text-base font-semibold text-primary dark:text-stone-100 mb-3">{slice.title}</h3>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mb-5">{slice.text}</p>
+            {slice.href && (
+              <a class="text-sm font-semibold text-amber-600 hover:text-amber-700" href={slice.href}>{slice.cta}</a>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-main dark:bg-stone-950 p-8 md:p-10">
+        <div class="grid lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-4">
+            <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-5">First-slice delivery model</h2>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mb-4">We do not recommend starting with an all-company transformation.</p>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">A good first slice is:</p>
+          </div>
+          <div class="lg:col-span-8 grid sm:grid-cols-2 gap-4">
+            {deliveryItems.map(item => (
+              <ListItem dotColor="primary">{item}</ListItem>
+            ))}
+          </div>
+        </div>
+        <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-8 pt-6 border-t border-stone-200 dark:border-stone-800">
+          This makes the workflow reviewable, useful, and safe to expand.
+        </p>
+      </div>
+    </section>
+
+    <section id="boundaries" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Boundaries" />
+      <div class="grid sm:grid-cols-2 gap-4">
+        {boundaries.map(item => (
+          <ListItem dotColor="red">{item}</ListItem>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Related pages" />
+      <div class="flex flex-wrap gap-3">
+        {relatedLinks.map(link => (
+          <a class="rounded-full border border-stone-200 dark:border-stone-800 px-4 py-2 text-sm font-medium text-primary dark:text-stone-200 hover:border-amber-600/50 hover:text-amber-600 transition-colors" href={link.href}>{link.text}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6">
+      <div class="pt-10 border-t border-stone-200 dark:border-stone-800 text-center flex flex-col items-center gap-5">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50">Talk to an engineer about a workflow above your ERP</h2>
+        <p class="text-sm text-muted dark:text-stone-400 max-w-xl">Send the short version: what work still happens outside the ERP, who owns it, and what first queue would be safest to control.</p>
+        <Button href="/contact">Talk to an engineer</Button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

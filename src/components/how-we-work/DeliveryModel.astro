@@ -3,31 +3,34 @@ const steps = [
   {
     number: "1",
     title: "Discovery",
-    subtitle: "(clarify the workflow)",
+    subtitle: "Clarify the workflow.",
     items: [
-      "Map states, handoffs, and exceptions",
-      "Define “good” (success criteria you can verify)",
-      "Agree the first slice: one queue + one exception path"
+      "Map states, handoffs, owners, and exceptions",
+      "Identify what currently lives in ERP, spreadsheets, inboxes, or bank/payment files",
+      "Define success criteria that operators and managers can verify",
+      "Agree the first slice: one queue, one exception path, one reviewer path"
     ]
   },
   {
     number: "2",
     title: "Build",
-    subtitle: "(deliver the slice)",
+    subtitle: "Deliver the slice.",
     items: [
-      "Implement the queue, actions, and required fields",
+      "Implement the queue, views, actions, required fields, and reason codes",
       "Add approvals where outcomes are sensitive",
-      "Connect only what’s needed to keep workflow state consistent"
+      "Connect only the systems and fields needed for the workflow",
+      "Keep the ERP or source system as the system of record where appropriate"
     ]
   },
   {
     number: "3",
     title: "QA + handover",
-    subtitle: "(make it reliable)",
+    subtitle: "Make it reliable.",
     items: [
-      "Test real exceptions (missing data, overrides, duplicates)",
+      "Test real exceptions: missing data, duplicates, overrides, blocked items, and corrections",
       "Verify permissions and audit logging for key actions",
-      "Hand over with documentation and clear ownership"
+      "Confirm manager visibility and reporting",
+      "Hand over documentation, ownership notes, and runbook basics"
     ]
   }
 ];

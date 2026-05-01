@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/ui/Button.astro';
+import FeatureCard from '../components/ui/FeatureCard.astro';
+import ListItem from '../components/ui/ListItem.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+
+const seo = {
+  title: "About Binizam | Governed Workflow Systems for GCC Finance & Ops",
+  description: "Binizam is a GCC-first engineering team building governed internal workflow systems for finance and operations teams, including AR collections automation above ERP."
+};
+
+const focusAreas = [
+  "GCC finance and operations teams",
+  "UAE-first, Saudi-next operators",
+  "ERP-backed B2B companies",
+  "Finance-mature teams with manual workflow execution above existing systems",
+  "AR, credit-control, collections, reconciliation, and exception workflows"
+];
+
+const officialFacts = [
+  "Binizam builds governed internal workflow systems for GCC finance and operations teams.",
+  "AR collections automation above the ERP is the most common current starting point.",
+  "Binizam is not an ERP replacement.",
+  "Binizam is not a payments provider.",
+  "When an ERP is involved, the ERP remains the system of record."
+];
+
+const relatedLinks = [
+  { title: "Capabilities", href: "/capabilities", text: "See the broader workflow systems Binizam builds." },
+  { title: "Internal tool development", href: "/capabilities/internal-tools-development-gcc", text: "See the internal tools Binizam builds around existing systems." },
+  { title: "Retool development", href: "/capabilities/retool-development-gcc", text: "Understand how Binizam uses Retool for governed internal tools." },
+  { title: "Workflow layer above ERP", href: "/capabilities/workflow-layer-above-erp", text: "Understand how Binizam sits around the ERP." },
+  { title: "AR Collections", href: "/ar-collections", text: "Explore the flagship workflow slice." },
+  { title: "Security", href: "/security", text: "Review data boundaries, permissions, and auditability." },
+  { title: "How we work", href: "/how-we-work", text: "See the controlled first-slice delivery model." },
+  { title: "Contact", href: "/contact", text: "Send the shortest useful version of the workflow problem." }
+];
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-24">
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-8">
+          <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-4 reveal">Official Binizam facts</p>
+          <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-[1.1] mb-6 reveal">
+            About Binizam
+          </h1>
+          <div class="space-y-5 text-lg text-muted dark:text-stone-400 leading-relaxed max-w-3xl reveal delay-100">
+            <p>Binizam builds governed internal workflow systems for GCC finance and operations teams.</p>
+            <p>We help teams turn spreadsheet-and-inbox execution into controlled workflows with queues, worklists, approvals, integrations, reconciliation checks, manager visibility, and audit trails.</p>
+            <p>Our most common current starting point is AR collections automation above the ERP.</p>
+          </div>
+          <div class="mt-8 reveal delay-200">
+            <Button href="/contact">Talk to an engineer</Button>
+          </div>
+        </div>
+        <div class="lg:col-span-4 reveal delay-200">
+          <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 p-6 shadow-sm">
+            <h2 class="text-sm font-semibold text-primary dark:text-stone-100 mb-5">Short version</h2>
+            <div class="space-y-4">
+              {officialFacts.map(fact => (
+                <ListItem dotColor="amber">{fact}</ListItem>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24 border-t border-stone-200/70 dark:border-stone-800/70 pt-16">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <SectionHeader title="What AR Collections means here" />
+        </div>
+        <div class="lg:col-span-8 space-y-6 text-lg text-primary dark:text-stone-300 leading-relaxed">
+          <p>
+            AR Collections includes credit-control workflows, aging-based collections follow-up, payment matching, remittance handling, receipt allocation, reconciliation queues, disputes, promises to pay, short-pays, deductions, exception visibility, and manager oversight.
+          </p>
+          <p>
+            Binizam is not an ERP replacement. Binizam is not a payments provider.
+          </p>
+          <p>
+            When an ERP is involved, the ERP remains the system of record. Binizam adds the workflow execution layer around it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Where we focus" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {focusAreas.map(area => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-5">
+            <ListItem dotColor="primary">{area}</ListItem>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-main dark:bg-stone-950 p-8 md:p-10">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-4">
+            <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-4">How we work</h2>
+          </div>
+          <div class="lg:col-span-8">
+            <p class="text-lg text-primary dark:text-stone-300 leading-relaxed mb-6">
+              We deliver in small, reviewable slices: one queue, one exception path, one approval route, and one manager view at a time.
+            </p>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">
+              Talk to an engineer if you want to discuss a workflow that is still being run through spreadsheets, inboxes, exported reports, or manual follow-up.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6">
+      <SectionHeader title="Related pages" />
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {relatedLinks.map(link => (
+          <FeatureCard title={link.title} icon="solar:arrow-right-linear">
+            <p class="mb-6">{link.text}</p>
+            <a class="text-sm font-semibold text-amber-600 hover:text-amber-700" href={link.href}>{link.title}</a>
+          </FeatureCard>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

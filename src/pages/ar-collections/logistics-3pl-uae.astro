@@ -1,0 +1,297 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/ui/Button.astro';
+import FeatureCard from '../../components/ui/FeatureCard.astro';
+import ListItem from '../../components/ui/ListItem.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+
+const seo = {
+  title: "Receivables Automation for UAE Logistics & 3PL Operators | Binizam",
+  description: "Receivables workflows for UAE logistics and 3PL operators: collections, discrepancies, unapplied payments, blocked-vs-collectible visibility, and audit trails."
+};
+
+const site = Astro.site || new URL('https://binizam.com');
+const breadcrumbStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'AR Collections', item: new URL('/ar-collections', site).toString() },
+    { '@type': 'ListItem', position: 3, name: 'UAE Logistics and 3PL', item: new URL('/ar-collections/logistics-3pl-uae', site).toString() }
+  ]
+};
+
+const serviceStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': new URL('/ar-collections/logistics-3pl-uae#service', site).toString(),
+  name: 'Receivables Automation for UAE Logistics and 3PL Operators',
+  serviceType: 'receivables automation',
+  description: 'Binizam builds governed receivables execution workflows for UAE logistics and 3PL operators, including collections worklists, discrepancies, unapplied payments, blocked-vs-collectible visibility, and audit trails above ERP.',
+  provider: {
+    '@id': new URL('/#organization', site).toString()
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United Arab Emirates'
+  },
+  audience: {
+    '@type': 'BusinessAudience',
+    name: 'UAE logistics and 3PL operators'
+  }
+};
+
+const structuredData = [breadcrumbStructuredData, serviceStructuredData];
+
+const painPatterns = [
+  "Aging reports show overdue balances but not why they are stuck",
+  "Collectors cannot separate collectible accounts from operationally blocked items",
+  "Billing discrepancies slow payment",
+  "Payments arrive without clean allocation details",
+  "Unapplied payments sit while finance checks references",
+  "Short-pays and disputes depend on operational context",
+  "Managers lack a live view of what is overdue, promised, disputed, blocked, unapplied, or escalated"
+];
+
+const controlCards = [
+  {
+    title: "Collections worklists",
+    icon: "solar:list-check-linear",
+    text: "Aging-based queues that show which accounts need action, what is blocked, and what the collector should do next."
+  },
+  {
+    title: "Discrepancy handling",
+    icon: "solar:danger-triangle-linear",
+    text: "Workflow states for billing discrepancies, service-line issues, missing documents, disputed charges, and operational blockers."
+  },
+  {
+    title: "Unapplied and partially matched payments",
+    icon: "solar:refresh-square-linear",
+    text: "Queues for payments that need matching, remittance review, allocation, short-pay review, or branch/service-line clarification."
+  },
+  {
+    title: "Blocked-vs-collectible visibility",
+    icon: "solar:chart-square-linear",
+    text: "Manager views that separate balances that can be chased now from items blocked by billing, operations, documentation, or dispute resolution."
+  }
+];
+
+const whereItems = [
+  "collections worklists",
+  "discrepancy queues",
+  "payment matching support",
+  "remittance and allocation review",
+  "dispute and short-pay states",
+  "branch / facility / service-line ownership",
+  "escalation paths",
+  "manager visibility",
+  "audit trail"
+];
+
+const firstSlices = [
+  "one branch",
+  "one facility or warehouse cluster",
+  "one service line",
+  "one receivables queue",
+  "one customer segment",
+  "one country or business-unit ledger"
+];
+
+const roleGroups = [
+  {
+    title: "Pain owners",
+    roles: ["AR Manager", "Collections Manager", "Credit Control Manager", "Credit Controller", "Receivables / Collection Supervisor", "Accounts Receivable Accountant", "Collections Specialist"]
+  },
+  {
+    title: "Sponsor layer",
+    roles: ["Finance Manager", "Financial Controller", "Head of Finance", "Country Finance Manager", "Branch Finance Manager"]
+  },
+  {
+    title: "Approval layer",
+    roles: ["CFO", "Finance Director", "Group Finance Director", "Managing Director / owner in some private operators"]
+  }
+];
+
+const fitSigns = [
+  "warehouse-heavy 3PL operations",
+  "forwarding + warehousing",
+  "contract logistics",
+  "fulfillment or facility-based logistics",
+  "branches, facilities, service lines, depots, or regional operations",
+  "visible AR, collections, or credit-control ownership",
+  "recurring B2B invoicing",
+  "manual discrepancy handling, reconciliation, payment allocation, or blocked-account follow-up"
+];
+
+const faqs = [
+  { q: "Do you replace logistics or ERP systems?", a: "No. ERP and logistics systems remain in place. Binizam adds workflow control around receivables execution, exceptions, approvals, and audit trails." },
+  { q: "Are you a payment platform?", a: "No. We do not process payments. We support workflows around matching, remittance handling, receipt allocation, unapplied payments, and reconciliation exceptions." },
+  { q: "Can this start with one facility?", a: "Yes. A good first slice can be one branch, facility, service line, queue, or country ledger." },
+  { q: "Can billing teams be involved?", a: "Yes. In logistics, billing and revenue roles often matter when invoice validity, documentation, or service-line discrepancies block collections." }
+];
+
+const relatedLinks = [
+  { text: "AR Collections Automation", href: "/ar-collections" },
+  { text: "Receivables Reconciliation Automation", href: "/ar-collections/receivables-reconciliation" },
+  { text: "Workflow Layer Above ERP", href: "/capabilities/workflow-layer-above-erp" },
+  { text: "How We Work", href: "/how-we-work" },
+  { text: "Security", href: "/security" }
+];
+---
+
+<Layout title={seo.title} description={seo.description} structuredData={structuredData}>
+  <Navbar />
+
+  <main class="z-10 relative flex-grow pt-32 pb-24">
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-8">
+          <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-4 reveal">AR Collections / UAE Logistics</p>
+          <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-[1.1] mb-6 reveal">
+            Receivables automation for UAE logistics and 3PL operators
+          </h1>
+          <div class="space-y-5 text-lg text-muted dark:text-stone-400 leading-relaxed max-w-3xl mb-8 reveal delay-100">
+            <p>Binizam builds governed receivables execution workflows for UAE logistics operators where collections, billing discrepancies, unapplied payments, operational blockers, and reconciliation issues need one controlled workflow layer.</p>
+            <p>This is for warehouse-heavy 3PLs, forwarding + warehousing hybrids, contract logistics operators, and regional logistics companies with branch, facility, service-line, or country-level complexity.</p>
+            <p>We work around your ERP and operational systems. We do not replace them, and we do not process payments.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 reveal delay-200">
+            <Button href="/contact">Scope one receivables queue or facility workflow</Button>
+            <Button href="/ar-collections" variant="secondary">Explore AR collections automation</Button>
+          </div>
+        </div>
+        <div class="lg:col-span-4 reveal delay-200">
+          <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 p-6 shadow-sm">
+            <p class="text-xs font-medium text-stone-400 dark:text-stone-500 mb-4">Quick jumps:</p>
+            <div class="flex flex-col gap-3 text-sm">
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#why-different">Why logistics receivables are different</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#controls">What the workflow controls</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#first-slices">First-slice options</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#roles">Roles</a>
+              <a class="text-primary dark:text-stone-200 hover:text-amber-600" href="#boundaries">Boundaries</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-different" class="max-w-6xl mx-auto px-6 mb-24 border-t border-stone-200/70 dark:border-stone-800/70 pt-16">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <SectionHeader title="Why logistics receivables are different" />
+        </div>
+        <div class="lg:col-span-8">
+          <div class="space-y-5 text-lg text-primary dark:text-stone-300 leading-relaxed mb-8">
+            <p>In logistics, receivables execution is not only about chasing overdue accounts. Payment often depends on billing accuracy, operational confirmation, shipment or storage context, documentation, service-line charges, and customer-specific disputes.</p>
+            <p>That means AR and collections teams often need input from billing, operations, branches, warehouses, transport teams, or service-line owners before they know whether a balance is collectible, disputed, blocked, or waiting on clarification.</p>
+          </div>
+          <p class="text-sm font-semibold text-primary dark:text-stone-100 mb-5">Common pain patterns:</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {painPatterns.map(point => (
+              <ListItem dotColor="amber">{point}</ListItem>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="controls" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="What the workflow controls" />
+      <div class="grid md:grid-cols-2 gap-6">
+        {controlCards.map(card => (
+          <FeatureCard title={card.title} icon={card.icon}>
+            <p>{card.text}</p>
+          </FeatureCard>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-main dark:bg-stone-950 p-8 md:p-10">
+        <div class="grid lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-5">
+            <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-5">Where Binizam sits</h2>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mb-4">Your ERP or accounting system remains the system of record. Logistics systems remain the source of operational context.</p>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">Binizam adds the controlled workflow layer between them:</p>
+          </div>
+          <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+            {whereItems.map(item => (
+              <ListItem dotColor="primary">{item}</ListItem>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="first-slices" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="First-slice options" subtitle="A safe logistics first slice should be operationally bounded." />
+      <p class="text-sm font-semibold text-primary dark:text-stone-100 mb-5">Good first slices include:</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {firstSlices.map(slice => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-4 text-sm text-stone-600 dark:text-stone-300">{slice}</div>
+        ))}
+      </div>
+      <p class="text-sm text-muted dark:text-stone-400 leading-relaxed mt-6">The goal is to prove control over a specific billing-to-cash workflow without redesigning the whole logistics operation.</p>
+    </section>
+
+    <section id="roles" class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 p-8 md:p-10">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-8">Who this is for</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {roleGroups.map(group => (
+            <div>
+              <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-4">{group.title}</h3>
+              <div class="flex flex-wrap gap-2">
+                {group.roles.map(role => (
+                  <span class="inline-flex rounded-full border border-stone-200 dark:border-stone-700 px-3 py-1.5 text-xs font-medium text-stone-600 dark:text-stone-300 bg-surface/60 dark:bg-stone-900">{role}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Good-fit signs" subtitle="This page is most relevant if your company has:" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {fitSigns.map(sign => (
+          <ListItem dotColor="amber">{sign}</ListItem>
+        ))}
+      </div>
+    </section>
+
+    <section id="boundaries" class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="FAQ / boundaries" />
+      <div class="grid md:grid-cols-2 gap-6">
+        {faqs.map(faq => (
+          <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-6">
+            <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-3">{faq.q}</h3>
+            <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+      <SectionHeader title="Related pages" />
+      <div class="flex flex-wrap gap-3">
+        {relatedLinks.map(link => (
+          <a class="rounded-full border border-stone-200 dark:border-stone-800 px-4 py-2 text-sm font-medium text-primary dark:text-stone-200 hover:border-amber-600/50 hover:text-amber-600 transition-colors" href={link.href}>{link.text}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6">
+      <div class="pt-10 border-t border-stone-200 dark:border-stone-800 text-center flex flex-col items-center gap-5">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50">Scope one receivables queue or facility workflow</h2>
+        <p class="text-sm text-muted dark:text-stone-400 max-w-xl">Send the short version: which accounts or queues get stuck, what systems are involved, and where finance needs clearer control.</p>
+        <Button href="/contact">Talk to an engineer</Button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

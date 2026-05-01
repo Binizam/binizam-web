@@ -1,0 +1,188 @@
+---
+import FeatureCard from '../ui/FeatureCard.astro';
+import ListItem from '../ui/ListItem.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import { arPages } from '../../content/arabicPages';
+import { getLocaleFromPath } from '../../lib/i18n';
+
+const isAr = getLocaleFromPath(Astro.url.pathname) === 'ar';
+const englishGoodFit = [
+  "UAE-first, Saudi-next operating footprint",
+  "ERP-backed finance function",
+  "Dedicated AR, credit-control, or collections ownership",
+  "Repeated invoicing and customer balances",
+  "Warehouses, branches, fleets, depots, facilities, service lines, or regional operations",
+  "Manual collections follow-up, reconciliation, payment matching, or exception tracking",
+  "A believable first slice such as one AR team, one branch cluster, one customer portfolio, one facility, or one receivables queue"
+];
+
+const englishWeakFit = [
+  "AR is only a side task for one general accountant",
+  "The business is mostly retail/POS-led",
+  "No visible receivables ownership",
+  "The company wants an ERP replacement",
+  "The use case is mainly payment processing"
+];
+
+const englishRoleGroups = [
+  {
+    title: "Pain owners",
+    roles: ["AR Manager", "Accounts Receivable Manager", "Credit Control Manager", "Collections Manager", "Credit Controller", "Senior Credit Controller", "Receivables Accountant", "AR Supervisor"]
+  },
+  {
+    title: "Sponsor layer",
+    roles: ["Finance Manager", "Financial Controller", "Chief Accountant", "Head of Finance"]
+  },
+  {
+    title: "Approval layer",
+    roles: ["CFO", "Finance Director", "General Manager / Managing Director / owner in some private regional firms"]
+  }
+];
+
+const englishFirstSlices = [
+  { title: "One prioritized AR worklist", text: "A queue for one AR team, customer portfolio, branch cluster, or business unit." },
+  { title: "One exception path", text: "For example: disputed, promised, unmatched, short-paid, or waiting for manager review." },
+  { title: "One approval route", text: "Sensitive changes go through a defined reviewer with notes and audit trail." },
+  { title: "Minimal integrations", text: "Pull only the fields needed from ERP, bank files, spreadsheets, or inbox sources." },
+  { title: "Basic manager visibility", text: "Show what is overdue, blocked, promised, disputed, unmatched, escalated, or completed." }
+];
+
+const fitSection = arPages.arCollections.sections.find((section) => section.id === 'fit');
+const rolesSection = arPages.arCollections.sections.find((section) => section.title === 'من يستخدمه؟');
+const industriesSection = arPages.arCollections.sections.find((section) => section.id === 'industries');
+const firstSliceSection = arPages.arCollections.sections.find((section) => section.id === 'first-slice');
+
+const goodFit = isAr ? (fitSection?.items || []) : englishGoodFit;
+const weakFit = isAr ? (fitSection?.cards?.[0]?.items || []) : englishWeakFit;
+const roleGroups = isAr
+  ? (rolesSection?.cards || []).map((card) => ({ title: card.title, roles: card.items || [] }))
+  : englishRoleGroups;
+const firstSlices = isAr
+  ? (firstSliceSection?.cards || []).map((card) => ({ title: card.title.replace(/^\d+\.\s*/, ''), text: card.text }))
+  : englishFirstSlices;
+const industryCards = isAr
+  ? (industriesSection?.cards || []).map((card, index) => ({
+      title: card.title,
+      text: card.text,
+      href: card.href || '#',
+      cta: card.cta || card.title,
+      icon: ['solar:box-minimalistic-linear', 'solar:delivery-linear', 'solar:refresh-circle-linear'][index] || 'solar:list-check-linear'
+    }))
+  : [
+      {
+        title: 'UAE FMCG distributors',
+        text: 'For B2B FMCG and foodservice distributors in the UAE with warehouses, fleets, route delivery, fragmented trade channels, and credit-control work that still depends on spreadsheets, inboxes, and manual account-state updates. This is FMCG distribution AR automation, not an ERP replacement.',
+        href: '/ar-collections/fmcg-distributors-uae',
+        cta: 'Explore AR for FMCG distributors',
+        icon: 'solar:box-minimalistic-linear'
+      },
+      {
+        title: 'UAE logistics and 3PL operators',
+        text: 'For logistics receivables automation in the UAE: warehouse-heavy 3PL, forwarding and warehousing receivables, and contract logistics operators where receivables execution breaks across billing, finance, operations, discrepancies, unapplied payments, and blocked-vs-collectible visibility.',
+        href: '/ar-collections/logistics-3pl-uae',
+        cta: 'Explore receivables for logistics / 3PL',
+        icon: 'solar:delivery-linear'
+      },
+      {
+        title: 'Receivables reconciliation',
+        text: 'For teams that need controlled payment matching, remittance handling, receipt allocation, unmatched receipt review, short-pay handling, and reconciliation exception queues above the ERP.',
+        href: '/ar-collections/receivables-reconciliation',
+        cta: 'Explore receivables reconciliation',
+        icon: 'solar:refresh-circle-linear'
+      }
+    ];
+const relatedLinks = isAr
+  ? [
+      { href: '/ar/capabilities/workflow-layer-above-erp', label: 'طبقة تنفيذ فوق ERP' },
+      { href: '/ar/security', label: 'الأمان' },
+      { href: '/ar/how-we-work', label: 'كيف نعمل' },
+      { href: '/ar/contact', label: 'تحدّث مع مهندس' }
+    ]
+  : [
+      { href: '/capabilities/workflow-layer-above-erp', label: 'Workflow layer above ERP' },
+      { href: '/security', label: 'Security' },
+      { href: '/how-we-work', label: 'How we work' },
+      { href: '/contact', label: 'Talk to an engineer' }
+    ];
+---
+
+<section id="best-fit" class="max-w-6xl mx-auto px-6 mb-32 reveal" dir={isAr ? 'rtl' : 'ltr'}>
+  <div class="grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-4">
+      <SectionHeader
+        title={isAr ? 'الشركات الأنسب' : 'Best-fit companies'}
+        subtitle={isAr ? 'تكون بنظام أقوى عندما تكون الشركة في الخليج، لديها فريق مالي ناضج، ويمتلك العمل على الذمم المدينة مالكًا واضحًا، لكن التنفيذ اليومي ما زال يدويًا فوق ERP.' : 'Binizam is strongest for finance-mature GCC B2B operators where receivables work is visibly owned but still executed manually around the ERP.'}
+      />
+    </div>
+    <div class="lg:col-span-8 grid md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-5">{isAr ? 'علامات الملاءمة:' : 'Good-fit signals:'}</h3>
+        <div class="space-y-4">
+          {goodFit.map(item => (
+            <ListItem dotColor="amber">{item}</ListItem>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-5">{isAr ? 'علامات ضعف الملاءمة:' : 'Weak-fit signals:'}</h3>
+        <div class="space-y-4">
+          {weakFit.map(item => (
+            <ListItem dotColor="red">{item}</ListItem>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 mb-32 reveal" dir={isAr ? 'rtl' : 'ltr'}>
+  <div class="rounded-2xl border border-stone-200 dark:border-stone-800 bg-main dark:bg-stone-950 p-8 md:p-10">
+    <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 mb-8">{isAr ? 'من يستخدمه؟' : 'Who uses it'}</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      {roleGroups.map(group => (
+        <div>
+          <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-4">{group.title}</h3>
+          <div class="flex flex-wrap gap-2">
+            {group.roles.map(role => (
+              <span class="inline-flex rounded-full border border-stone-200 dark:border-stone-700 px-3 py-1.5 text-xs font-medium text-stone-600 dark:text-stone-300 bg-surface/60 dark:bg-stone-900">{role}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="industry-use-cases" class="max-w-6xl mx-auto px-6 mb-32 reveal" dir={isAr ? 'rtl' : 'ltr'}>
+  <SectionHeader title={isAr ? 'حالات استخدام حسب القطاع' : 'Industry use cases'} />
+  <div class="grid md:grid-cols-3 gap-6">
+    {industryCards.map((card) => (
+      <FeatureCard title={card.title} icon={card.icon}>
+        <p class="mb-6">{card.text}</p>
+        <a class="text-sm font-semibold text-amber-600 hover:text-amber-700" href={card.href}>{card.cta}</a>
+      </FeatureCard>
+    ))}
+  </div>
+  <div class="mt-8 flex flex-wrap gap-5 text-sm font-medium">
+    {relatedLinks.map((link) => (
+      <a class="text-primary dark:text-stone-200 hover:text-amber-600" href={link.href}>{link.label}</a>
+    ))}
+  </div>
+</section>
+
+<section id="first-version-scope" class="max-w-6xl mx-auto px-6 mb-32 reveal" dir={isAr ? 'rtl' : 'ltr'}>
+  <SectionHeader
+    title={isAr ? 'كيف يبدو أول نطاق؟' : 'First version scope'}
+    subtitle={isAr ? 'أول نسخة آمنة ليست تحولًا كاملًا في الذمم المدينة. هي نطاق تشغيل واضح يمكن اختباره.' : 'A safe first version is not a full AR transformation. It should be one controlled workflow slice.'}
+  />
+  <p class="text-sm font-semibold text-primary dark:text-stone-100 mb-5">{isAr ? 'أمثلة:' : 'Typical first slices:'}</p>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+    {firstSlices.map((slice, index) => (
+      <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-5">
+        <div class="text-xs font-mono text-amber-600 mb-3">{index + 1}</div>
+        <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-2">{slice.title}</h3>
+        <p class="text-sm text-muted dark:text-stone-400 leading-relaxed">{slice.text}</p>
+      </div>
+    ))}
+  </div>
+</section>

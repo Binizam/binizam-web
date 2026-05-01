@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import FeatureCard from '../../components/ui/FeatureCard.astro';
+import ListItem from '../../components/ui/ListItem.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import ReconciliationSection from '../../components/ReconciliationSection.astro';
+import { arPages } from '../../content/arabicPages';
+
+const page = arPages.home;
+const whatSection = page.sections[0];
+const reconciliationLinks = page.sections[1].links || [];
+const startingPoints = page.sections[2].cards || [];
+const outputs = page.sections[3].items || [];
+const enterpriseItems = page.sections[4].items || [];
+const boundaries = page.sections[5].items || [];
+---
+
+<Layout title={page.seo.title} description={page.seo.description} lang="ar">
+  <div class="absolute top-0 inset-x-0 h-screen pointer-events-none z-0 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-main dark:to-[#1C1917] z-10"></div>
+    <div class="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center_top,black_50%,transparent_100%)] z-0">
+      <div class="beam-v left-[calc(50%-20px)]" style="animation: beam-vert 23s infinite ease-in 2s;"></div>
+      <div class="beam-v left-[calc(50%-140px)]" style="animation: beam-vert 37s infinite ease-in 10s;"></div>
+      <div class="beam-v left-[calc(50%+140px)]" style="animation: beam-vert 29s infinite ease-in 5s;"></div>
+      <div class="beam-v left-[calc(50%-300px)] hidden md:block" style="animation: beam-vert 41s infinite ease-in 15s;"></div>
+      <div class="beam-v left-[calc(50%+300px)] hidden md:block" style="animation: beam-vert 31s infinite ease-in 0s;"></div>
+      <div class="beam-h top-[80px]" style="animation: beam-horz 25s infinite ease-in 4s;"></div>
+      <div class="beam-h top-[240px]" style="animation: beam-horz 35s infinite ease-in 8s;"></div>
+      <div class="beam-h top-[400px]" style="animation: beam-horz 45s infinite ease-in 18s;"></div>
+      <div class="beam-h top-[600px] hidden md:block" style="animation: beam-horz 55s infinite ease-in 1s;"></div>
+    </div>
+  </div>
+
+  <Navbar locale="ar" />
+
+  <main class="z-10 relative flex-grow flex flex-col" dir="rtl">
+    <Hero locale="ar" />
+
+    <section class="pt-24 pb-8">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-12 gap-12">
+          <div class="md:col-span-4">
+            <SectionHeader title={whatSection.title} />
+          </div>
+          <div class="md:col-span-8 space-y-10">
+            <div class="space-y-5 text-xl text-primary dark:text-stone-300 font-light leading-relaxed reveal delay-100">
+              {whatSection.intro?.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+            <div class="grid sm:grid-cols-2 gap-y-6 gap-x-8">
+              {whatSection.items?.map((item) => (
+                <ListItem icon="solar:checklist-minimalistic-linear" delay="delay-200">{item}</ListItem>
+              ))}
+            </div>
+            <div class="pt-6 border-t border-primary/10 dark:border-stone-800 reveal delay-500">
+              <p class="text-sm text-stone-500 mb-4">Retool أولًا لواجهات التشغيل الداخلية، مع تكاملات وحالة سير عمل داخل بيئتك الحالية.</p>
+              <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium">
+                <span class="text-stone-500/60">روابط ذات صلة:</span>
+                {whatSection.links?.map((link) => (
+                  <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors" href={link.href}>{link.label}</a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <ReconciliationSection locale="ar" />
+
+    <section class="py-12 max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { title: 'ضبط بلا فوضى', icon: 'solar:shield-check-linear', text: 'قوائم عمل، موافقات، واستثناءات مبنية حول طريقة العمل الفعلية.' },
+          { title: 'جاهز للتكامل', icon: 'solar:plug-circle-linear', text: 'نربط الأنظمة التي تستخدمها بالفعل ونضيف مطابقة وتسوية حتى لا تختفي الفروقات.' },
+          { title: 'تسليم هندسي مباشر', icon: 'solar:code-square-linear', text: 'تواصل مباشر مع مهندسين، دورات مراجعة قصيرة، ومستندات تسليم واضحة.' }
+        ].map((card, index) => (
+          <FeatureCard title={card.title} icon={card.icon} delay={index === 0 ? '' : `delay-${index}00`}>
+            <p>{card.text}</p>
+          </FeatureCard>
+        ))}
+      </div>
+    </section>
+
+    <section class="py-12 max-w-6xl mx-auto px-6 space-y-8">
+      <SectionHeader title={page.sections[2].title} />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {startingPoints.map((card) => (
+          <div class="relative p-8 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:bg-surface dark:hover:bg-stone-800/50 transition-colors group reveal min-w-0">
+            {card.label && (
+              <div class="mb-4">
+                <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-amber-600/10 text-amber-600">{card.label}</span>
+              </div>
+            )}
+            <h3 class="text-xl font-semibold mb-3 text-primary dark:text-stone-50">{card.title}</h3>
+            <p class="text-stone-500 dark:text-stone-400 text-sm mb-8 leading-relaxed">{card.text}</p>
+            {card.href && card.cta && (
+              <a class="inline-flex items-center text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors" href={card.href}>
+                {card.cta}
+                <iconify-icon class="mr-2" icon="solar:arrow-left-linear" stroke-width="1.5"></iconify-icon>
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="py-12 max-w-6xl mx-auto px-6 border-t border-primary/5 dark:border-white/5">
+      <div class="grid md:grid-cols-12 gap-12">
+        <div class="md:col-span-4">
+          <SectionHeader title={page.sections[3].title} />
+        </div>
+        <div class="md:col-span-8">
+          <p class="text-stone-500 dark:text-stone-400 mb-8">مخرجات عملية يمكن مراجعتها والاحتفاظ بها.</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {outputs.map((item) => (
+              <div class="flex items-start gap-3 p-4 rounded-lg bg-white/50 dark:bg-stone-900/50 border border-stone-200/50 dark:border-stone-800/50 text-sm reveal">
+                <iconify-icon class="text-amber-600 mt-0.5" icon="solar:file-text-bold" width="16"></iconify-icon>
+                <span class="text-primary dark:text-stone-300">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="space-y-6">
+          <SectionHeader title={page.sections[4].title} />
+          <div class="space-y-3 pl-1">
+            {enterpriseItems.map((item) => <ListItem dotColor="primary">{item}</ListItem>)}
+          </div>
+        </div>
+        <div class="space-y-6">
+          <SectionHeader title={page.sections[5].title} />
+          <div class="space-y-3 pl-1 text-sm">
+            {boundaries.map((item) => <ListItem dotColor="red">{item}</ListItem>)}
+            <p class="text-sm text-stone-500 dark:text-stone-400 pt-4">{page.sections[5].intro?.[0]}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer locale="ar" />
+</Layout>

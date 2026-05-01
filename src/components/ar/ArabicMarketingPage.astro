@@ -1,0 +1,135 @@
+---
+import Button from '../ui/Button.astro';
+import FeatureCard from '../ui/FeatureCard.astro';
+import ListItem from '../ui/ListItem.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import type { ArabicPage } from '../../content/arabicPages';
+
+interface Props {
+  page: ArabicPage;
+}
+
+const { page } = Astro.props;
+---
+
+<main class="z-10 relative flex-grow pt-28 sm:pt-32 pb-20 sm:pb-24 text-start">
+  <section class="w-full px-5 sm:px-6 pb-16 sm:pb-20 lg:max-w-6xl lg:mx-auto">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start min-w-0">
+      <div class="lg:col-span-8 min-w-0">
+        {page.eyebrow && (
+          <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-4 reveal">
+            {page.eyebrow}
+          </p>
+        )}
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-[1.14] mb-6 max-w-3xl reveal break-words text-balance" dir="rtl">
+          {page.h1}
+        </h1>
+        <div class="space-y-4 text-base sm:text-[1.0625rem] text-muted dark:text-stone-400 leading-relaxed max-w-2xl reveal delay-100" dir="rtl">
+          {page.lead.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        {(page.primaryCta || page.secondaryCta) && (
+          <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal delay-200" dir="rtl">
+            {page.primaryCta && <Button href={page.primaryCta.href} class="w-full sm:w-auto">{page.primaryCta.label}</Button>}
+            {page.secondaryCta && <Button href={page.secondaryCta.href} variant="secondary" class="w-full sm:w-auto">{page.secondaryCta.label}</Button>}
+          </div>
+        )}
+        {page.smallLine && (
+          <p class="mt-5 text-sm text-stone-400 dark:text-stone-500 reveal delay-300" dir="rtl">{page.smallLine}</p>
+        )}
+      </div>
+
+      {page.quickJumps && page.quickJumps.length > 0 && (
+        <aside class="lg:col-span-4 reveal delay-200 mt-8 lg:mt-0 min-w-0">
+          <div class="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white/70 dark:bg-stone-950/70 p-5 shadow-sm min-w-0" dir="rtl">
+            <p class="text-xs font-medium text-stone-400 dark:text-stone-500 mb-4">روابط سريعة</p>
+            <div class="flex flex-col gap-2.5 text-sm">
+              {page.quickJumps.map((jump) => (
+                <a class="text-primary dark:text-stone-200 hover:text-amber-600 transition-colors break-words py-1 border-b border-stone-200/60 last:border-b-0 dark:border-stone-800/70" href={jump.href}>
+                  {jump.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </aside>
+      )}
+    </div>
+  </section>
+
+  {page.sections.map((section) => (
+    <section id={section.id} class="w-full px-5 sm:px-6 mb-16 sm:mb-20 border-t border-stone-200/70 dark:border-stone-800/70 pt-12 sm:pt-14 first:border-t-0 first:pt-0 lg:max-w-6xl lg:mx-auto">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-12 min-w-0">
+        <div class="lg:col-span-4 min-w-0">
+          {section.eyebrow && (
+            <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-3 reveal">{section.eyebrow}</p>
+          )}
+          <SectionHeader title={section.title} />
+        </div>
+        <div class="lg:col-span-8 min-w-0">
+          {section.intro && (
+            <div class="space-y-4 text-base text-primary dark:text-stone-300 leading-relaxed mb-7 break-words max-w-3xl" dir="rtl">
+              {section.intro.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          )}
+
+          {section.items && (
+            <div class="grid sm:grid-cols-2 gap-3.5 mb-8 min-w-0">
+              {section.items.map((item) => <ListItem dotColor="amber">{item}</ListItem>)}
+            </div>
+          )}
+
+          {section.cards && (
+            <div class="grid md:grid-cols-2 gap-6 mb-8 min-w-0">
+              {section.cards.map((card) => (
+                <FeatureCard title={card.title} icon="solar:document-text-linear">
+                  {card.label && <p class="font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 mb-3">{card.label}</p>}
+                  <p class="mb-5">{card.text}</p>
+                  {card.items && (
+                    <div class="space-y-3 mb-5">
+                      {card.items.map((item) => <ListItem dotColor="primary">{item}</ListItem>)}
+                    </div>
+                  )}
+                  {card.href && card.cta && (
+                    <a class="text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors" href={card.href}>{card.cta}</a>
+                  )}
+                </FeatureCard>
+              ))}
+            </div>
+          )}
+
+          {section.faqs && (
+            <div class="grid md:grid-cols-2 gap-6 mb-8 min-w-0">
+              {section.faqs.map((faq) => (
+                <div class="rounded-xl border border-stone-200 dark:border-stone-800 bg-surface/50 dark:bg-stone-900/40 p-6 min-w-0">
+                  <h3 class="text-sm font-semibold text-primary dark:text-stone-100 mb-3 break-words">{faq.q}</h3>
+                  <p class="text-sm text-muted dark:text-stone-400 leading-relaxed break-words">{faq.a}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {section.links && (
+            <div class="flex flex-wrap gap-3 min-w-0" dir="rtl">
+              {section.links.map((link) => (
+                <a class="max-w-full rounded-full border border-stone-200 dark:border-stone-800 px-4 py-2 text-sm font-medium text-primary dark:text-stone-200 hover:border-amber-600/50 hover:text-amber-600 transition-colors break-words" href={link.href}>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  {page.finalCta && (
+    <section class="w-full px-5 sm:px-6 lg:max-w-6xl lg:mx-auto">
+      <div class="pt-10 border-t border-stone-200 dark:border-stone-800 text-center flex flex-col items-center gap-5" dir="rtl">
+        <h2 class="text-2xl font-semibold tracking-tight text-primary dark:text-stone-50 break-words">{page.finalCta.title}</h2>
+        {page.finalCta.text && (
+          <p class="text-sm text-muted dark:text-stone-400 max-w-xl leading-relaxed break-words">{page.finalCta.text}</p>
+        )}
+        <Button href={page.finalCta.href} class="w-full sm:w-auto">{page.finalCta.label}</Button>
+      </div>
+    </section>
+  )}
+</main>

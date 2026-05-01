@@ -5,56 +5,99 @@ import Footer from '../components/Footer.astro';
 
 import Hero from '../components/ar-automation/Hero.astro';
 import FeaturesGrid from '../components/ar-automation/FeaturesGrid.astro';
-import SignsYouNeedThis from '../components/ar-automation/SignsYouNeedThis.astro';
-import WorkflowsAccordion from '../components/ar-automation/WorkflowsAccordion.astro';
-import SafeVersionStepper from '../components/ar-automation/SafeVersionStepper.astro';
+import HubExpansion from '../components/ar-automation/HubExpansion.astro';
 import FAQ from '../components/ar-automation/FAQ.astro';
 import FinalCTA from '../components/ar-automation/FinalCTA.astro';
 
 // SEO constants 
 const seo = {
-  title: "AR Collections Automation | Binizam",
-  description: "AR collections workflows: collector worklists, follow-ups, disputes/PTP, reconciliation queues, approvals, and audit trails."
+  title: "AR Collections Automation for GCC Finance Teams | Binizam",
+  description: "AR collections and accounts receivable automation for GCC finance teams: aging worklists, credit-control workflows, payment matching, reconciliation queues, and audit trails."
 };
 
-const structuredData = {
+const site = Astro.site || new URL('https://binizam.com');
+const faqStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Do you replace our ERP?',
+      name: 'What is AR collections automation?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. When an ERP is involved, we add a controlled, auditable workflow layer on top of your ERP. We do not act as your system of record for ledgers.'
+        text: 'AR collections automation is a controlled workflow for managing overdue accounts, aging-based follow-up, credit-control actions, disputes, promises to pay, payment matching, receipt allocation, reconciliation exceptions, and manager visibility above the ERP.'
       }
     },
     {
       '@type': 'Question',
-      name: 'Are you a payments provider?',
+      name: 'How is this different from an ERP module?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. We specialize exclusively in operational workflows and automation, leaving payment processing entirely to your dedicated gateways and banks.'
+        text: 'Your ERP remains the system of record. Binizam adds the workflow execution layer around it: queues, next actions, review states, approvals, exceptions, and audit trails.'
       }
     },
     {
       '@type': 'Question',
-      name: 'Can you include AI?',
+      name: 'Is Binizam a payment provider?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Only where it’s governable (guardrails, evaluation, monitoring, approvals). If an automated decision cannot be cleanly audited and approved, we skip it.'
+        text: 'No. Binizam does not process payments. We help teams manage the workflow around payment matching, remittance handling, receipt allocation, reconciliation, and exceptions.'
       }
     },
     {
       '@type': 'Question',
-      name: 'What systems can you integrate with?',
+      name: 'Can we start with one AR team or queue?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Typically ERPs, CRMs, bank files/APIs, and internal microservices. We keep integrations practical, reliable, and observable.'
+        text: 'Yes. The best first slice is usually one AR team, one branch cluster, one customer portfolio, one facility, or one reconciliation queue.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What data do you need for an AR workflow?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A first slice usually needs customer identifiers, open invoices, aging data, balances, payment or receipt references, remittance details where available, owner mapping, and current exception states.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Who usually owns this internally?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The pain owner is usually an AR Manager, Credit Control Manager, Collections Manager, Credit Controller, or Receivables Accountant. The sponsor is often a Finance Manager, Financial Controller, Chief Accountant, Head of Finance, or CFO.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you work with UAE and Saudi companies?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Binizam is GCC-focused, with a current UAE-first and Saudi-next focus.'
       }
     }
   ]
 };
+
+const serviceStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': new URL('/ar-collections#service', site).toString(),
+  name: 'AR Collections Automation',
+  serviceType: 'AR collections automation',
+  description: 'Binizam builds AR collections automation workflows for GCC finance teams, including aging-based worklists, disputes/PTP, payment matching, reconciliation queues, manager visibility, and audit trails above ERP.',
+  provider: {
+    '@id': new URL('/#organization', site).toString()
+  },
+  areaServed: [
+    {
+      '@type': 'Place',
+      name: 'GCC'
+    }
+  ]
+};
+
+const structuredData = [faqStructuredData, serviceStructuredData];
 ---
 
 <Layout title={seo.title} description={seo.description} structuredData={structuredData}>
@@ -63,9 +106,7 @@ const structuredData = {
   <main class="z-10 relative flex-grow pt-16">
     <Hero />
     <FeaturesGrid />
-    <SignsYouNeedThis />
-    <WorkflowsAccordion />
-    <SafeVersionStepper />
+    <HubExpansion />
     <FAQ />
     <FinalCTA />
   </main>

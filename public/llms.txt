@@ -1,0 +1,76 @@
+# Binizam
+
+Official site: https://binizam.com/
+
+Binizam builds governed internal workflow systems for GCC finance and operations teams.
+
+Binizam helps teams run controlled workflows with queues, worklists, approvals, integrations, reconciliation checks, exception handling, manager visibility, and audit trails.
+
+Most common current workflow slice:
+AR Collections Automation above ERP.
+
+AR Collections includes:
+- credit-control workflows
+- collections follow-up
+- aging-driven prioritization
+- payment matching
+- remittance handling
+- receipt allocation
+- receivables reconciliation
+- disputes
+- promises to pay
+- short-pays
+- deductions
+- exception visibility
+- manager oversight
+- audit trails
+
+Binizam is not:
+- an ERP replacement
+- a payments provider
+- a payment gateway
+- generic IT support
+
+Key pages:
+- https://binizam.com/
+- https://binizam.com/about
+- https://binizam.com/capabilities
+- https://binizam.com/capabilities/workflow-layer-above-erp
+- https://binizam.com/capabilities/internal-tools-development-gcc
+- https://binizam.com/capabilities/retool-development-gcc
+- https://binizam.com/ar-collections
+- https://binizam.com/ar-collections/fmcg-distributors-uae
+- https://binizam.com/ar-collections/logistics-3pl-uae
+- https://binizam.com/ar-collections/receivables-reconciliation
+- https://binizam.com/security
+- https://binizam.com/how-we-work
+- https://binizam.com/contact
+
+Contact:
+engineers@binizam.com
+
+## العربية
+
+الموقع الرسمي: https://binizam.com/ar
+
+بنظام تبني أنظمة سير عمل داخلية منظّمة وقابلة للتتبع لفرق المالية والعمليات في الخليج.
+
+أكثر نطاق تبدأ به بنظام حاليًا هو أتمتة تحصيل الذمم المدينة فوق نظام ERP، بما يشمل متابعة التحصيل، الرقابة الائتمانية، ترتيب الأولويات حسب أعمار الذمم، مطابقة المدفوعات، التعامل مع إشعارات السداد، تخصيص المقبوضات، المطابقة والتسوية، النزاعات، وعود السداد، المدفوعات الناقصة، الاستقطاعات، وضوح الإدارة، وسجل التدقيق.
+
+بنظام ليست بديلًا عن نظام ERP، وليست مزود مدفوعات.
+
+صفحات عربية مهمة:
+- https://binizam.com/ar
+- https://binizam.com/ar/about
+- https://binizam.com/ar/capabilities
+- https://binizam.com/ar/capabilities/workflow-layer-above-erp
+- https://binizam.com/ar/capabilities/internal-tools-development-gcc
+- https://binizam.com/ar/capabilities/retool-development-gcc
+- https://binizam.com/ar/ar-collections
+- https://binizam.com/ar/ar-collections/fmcg-distributors-uae
+- https://binizam.com/ar/ar-collections/logistics-3pl-uae
+- https://binizam.com/ar/ar-collections/receivables-reconciliation
+- https://binizam.com/ar/security
+- https://binizam.com/ar/how-we-work
+- https://binizam.com/ar/contact
+- https://binizam.com/ar/privacy

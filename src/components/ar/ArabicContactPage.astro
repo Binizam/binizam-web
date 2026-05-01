@@ -1,0 +1,194 @@
+---
+import Button from '../ui/Button.astro';
+import ListItem from '../ui/ListItem.astro';
+
+const usefulItems = [
+  'ما سير العمل المتعثر، ومن يستخدمه',
+  'الأنظمة المتداخلة: ERP، نظام محاسبة، CRM، ملفات بنكية، إشعارات سداد، APIs، جداول، أو بريد',
+  'الخطوات الحساسة التي تحتاج إلى موافقات أو سجل تدقيق',
+  'ما الذي يعني “نجاحًا”: متابعة أسرع، مطابقة أوضح، استثناءات أقل، أو رؤية أفضل للإدارة',
+  'هل لديك أول نطاق في ذهنك: فريق AR، محفظة عملاء، فرع، مرفق، أو قائمة تسوية'
+];
+
+const bestFitItems = [
+  'فرق مالية أو تشغيلية تعتمد على الجداول والبريد لتشغيل سير العمل',
+  'فرق AR أو تحصيل أو رقابة ائتمانية لديها متابعات كثيرة، نزاعات، وعود سداد، مدفوعات ناقصة، استقطاعات، أو استثناءات تسوية',
+  'فرق لديها ERP لكنها تحتاج إلى تنفيذ أوضح فوق النظام',
+  'عمليات تحتاج إلى موافقات، سجل تدقيق، ووضوح للإدارة'
+];
+
+const placeholderText = 'مثال: نريد ضبط متابعة تحصيل الذمم لفريق AR واحد، مع حالات نزاع ووعود سداد ومدفوعات غير مخصصة فوق نظام ERP.';
+---
+
+<main class="z-10 relative flex-grow pt-28 sm:pt-32 pb-20 sm:pb-24 text-start">
+  <section class="w-full px-5 sm:px-6 pb-16 lg:max-w-6xl lg:mx-auto">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-primary dark:text-stone-50 leading-[1.14] mb-6 max-w-3xl reveal" dir="rtl">
+      تحدّث مع مهندس
+    </h1>
+    <div class="space-y-4 text-base md:text-lg text-muted dark:text-stone-400 leading-relaxed max-w-3xl reveal delay-100" dir="rtl">
+      <p>بدون عرض مبيعات مطوّل — فقط فحص ملاءمة قصير مع مهندس.</p>
+      <p>اكتب النسخة المختصرة من المشكلة. جملتان قد تكفيان.</p>
+    </div>
+  </section>
+
+  <section class="w-full px-5 sm:px-6 lg:max-w-6xl lg:mx-auto">
+    <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-8 min-w-0">
+      <div class="order-2 lg:order-1 lg:col-span-5 flex flex-col gap-6 mt-8 lg:mt-0">
+        <div class="bg-surface/50 dark:bg-stone-900/50 rounded-2xl p-6 sm:p-8 border border-stone-200 dark:border-stone-800 shadow-sm min-w-0" dir="rtl">
+          <h2 class="text-lg font-semibold text-primary dark:text-stone-100 mb-2">ما المفيد ذكره؟</h2>
+          <div class="space-y-4 mt-6">
+            {usefulItems.map((item) => <ListItem dotColor="amber">{item}</ListItem>)}
+          </div>
+          <div class="flex flex-wrap items-center gap-3 pt-6 mt-6 border-t border-stone-200 dark:border-stone-800 min-w-0">
+            <span class="text-sm text-stone-500">تفضل البريد؟</span>
+            <a href="mailto:engineers@binizam.com" class="text-sm font-semibold text-primary dark:text-stone-200 hover:text-amber-600 transition-colors break-all" dir="ltr">engineers@binizam.com</a>
+          </div>
+        </div>
+
+        <div class="bg-surface/50 dark:bg-stone-900/50 rounded-2xl p-6 sm:p-8 border border-stone-200 dark:border-stone-800 shadow-sm min-w-0" dir="rtl">
+          <h2 class="text-lg font-semibold text-primary dark:text-stone-100 mb-6">من نعمل معه بشكل أفضل؟</h2>
+          <div class="space-y-4">
+            {bestFitItems.map((item) => <ListItem icon="solar:check-circle-linear">{item}</ListItem>)}
+          </div>
+          <p class="text-sm text-muted dark:text-stone-500 italic border-t border-stone-200 dark:border-stone-800 pt-6 mt-6">
+            إذا كان ذلك قريبًا من وضعك، أرسل ملاحظة قصيرة. وإذا لم يكن مناسبًا، سنخبرك بسرعة.
+          </p>
+        </div>
+      </div>
+
+      <div class="order-1 lg:order-2 lg:col-span-7 min-w-0">
+        <div class="bg-white dark:bg-stone-950 rounded-2xl p-6 sm:p-8 md:p-10 border border-stone-200 dark:border-stone-800 shadow-sm min-w-0" dir="rtl">
+          <div class="mb-8">
+            <h2 class="text-xl font-semibold text-primary dark:text-stone-50 mb-2">إرسال رسالة</h2>
+            <p class="text-sm text-muted dark:text-stone-400">اكتب وصفًا مختصرًا. سنراجع الرسالة ونرد خلال يوم إلى يومي عمل.</p>
+          </div>
+
+          <form class="flex flex-col gap-6" data-contact-form>
+            <div class="honeypot-field" aria-hidden="true">
+              <label for="hp">اترك هذا الحقل فارغًا</label>
+              <input id="hp" name="hp" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-2">
+                <label for="name" class="text-xs font-semibold text-primary dark:text-stone-300">الاسم</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-xl bg-surface/50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-700 text-sm text-primary dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-600/50 focus:border-amber-600 transition-all" />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="email" class="text-xs font-semibold text-primary dark:text-stone-300">البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" required dir="ltr" class="w-full px-4 py-3 rounded-xl bg-surface/50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-700 text-sm text-primary dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-600/50 focus:border-amber-600 transition-all text-left" />
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-2">
+                <label for="company" class="text-xs font-semibold text-primary dark:text-stone-300">الشركة</label>
+                <input type="text" id="company" name="company" class="w-full px-4 py-3 rounded-xl bg-surface/50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-700 text-sm text-primary dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-600/50 focus:border-amber-600 transition-all" />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="role" class="text-xs font-semibold text-primary dark:text-stone-300">الدور الوظيفي</label>
+                <input type="text" id="role" name="role" class="w-full px-4 py-3 rounded-xl bg-surface/50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-700 text-sm text-primary dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-600/50 focus:border-amber-600 transition-all" />
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="message" class="text-xs font-semibold text-primary dark:text-stone-300">ما سير العمل الذي تريد ضبطه؟</label>
+              <textarea id="message" name="message" placeholder={placeholderText} required class="w-full min-h-[180px] px-4 py-3 rounded-xl bg-surface/50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-700 text-sm text-primary dark:text-stone-100 placeholder-stone-400/80 dark:placeholder-stone-600 focus:outline-none focus:ring-2 focus:ring-amber-600/50 focus:border-amber-600 transition-all resize-none leading-relaxed"></textarea>
+            </div>
+
+            <div class="min-h-[20px]">
+              <p class="text-xs font-medium hidden" data-contact-status aria-live="polite"></p>
+            </div>
+
+            <div class="flex justify-start">
+              <button type="submit" data-contact-submit class="group inline-flex w-full sm:w-auto items-center justify-center gap-2.5 px-8 py-3 text-sm font-semibold text-white bg-amber-600 hover:bg-amber-700 rounded-xl transition-all duration-300 shadow-lg shadow-amber-600/20 hover:shadow-amber-600/40 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed">
+                إرسال
+                <iconify-icon icon="solar:arrow-left-linear" width="18" stroke-width="1.5" class="transition-transform duration-300 group-hover:-translate-x-1"></iconify-icon>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script is:inline>
+  function initArabicContactForm() {
+    const form = document.querySelector("[data-contact-form]");
+    if (!form || form.dataset.bound === "true") return;
+
+    form.dataset.bound = "true";
+    const statusEl = form.querySelector("[data-contact-status]");
+    const submitBtn = form.querySelector("[data-contact-submit]");
+    const originalBtnHtml = submitBtn?.innerHTML;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl?.classList.add("hidden");
+      statusEl?.classList.remove("text-green-600", "text-red-600", "dark:text-green-400", "dark:text-red-400");
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "جارٍ الإرسال...";
+      }
+
+      const fd = new FormData(form);
+      const role = String(fd.get("role") || "");
+      const baseMessage = String(fd.get("message") || "");
+      const message = role ? `${baseMessage}\n\nالدور الوظيفي: ${role}` : baseMessage;
+      const params = new URLSearchParams(window.location.search);
+
+      const payload = {
+        fullName: String(fd.get("name") || ""),
+        email: String(fd.get("email") || ""),
+        company: String(fd.get("company") || ""),
+        message,
+        honeypot: String(fd.get("hp") || ""),
+        pageUri: window.location.href,
+        pageName: document.title,
+        utmSource: params.get("utm_source") || "",
+        utmMedium: params.get("utm_medium") || "",
+        utmCampaign: params.get("utm_campaign") || "",
+        utmTerm: params.get("utm_term") || "",
+        utmContent: params.get("utm_content") || "",
+      };
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) {
+          if (res.status === 429) throw new Error("RATE_LIMIT");
+          if (res.status === 403) throw new Error("FORBIDDEN_ORIGIN");
+          throw new Error("SUBMIT_FAILED");
+        }
+
+        form.reset();
+        statusEl.textContent = "وصلت رسالتك. سنراجعها ونرد خلال يوم إلى يومي عمل.";
+        statusEl?.classList.add("text-green-600", "dark:text-green-400");
+        statusEl?.classList.remove("hidden");
+      } catch (err) {
+        let msg = "حدث خطأ أثناء الإرسال. حاول مرة أخرى أو راسلنا مباشرة عبر البريد الإلكتروني.";
+        if (err && err.message === "RATE_LIMIT") msg = "محاولات كثيرة خلال وقت قصير. انتظر قليلًا ثم حاول مرة أخرى.";
+        if (err && err.message === "FORBIDDEN_ORIGIN") msg = "حدّث الصفحة ثم حاول مرة أخرى.";
+
+        statusEl.textContent = msg;
+        statusEl?.classList.add("text-red-600", "dark:text-red-400");
+        statusEl?.classList.remove("hidden");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (originalBtnHtml) submitBtn.innerHTML = originalBtnHtml;
+          else submitBtn.textContent = "إرسال";
+        }
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initArabicContactForm);
+  document.addEventListener("astro:page-load", initArabicContactForm);
+</script>

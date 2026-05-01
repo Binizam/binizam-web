@@ -1,0 +1,38 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import Hero from '../../../components/ar-automation/Hero.astro';
+import FeaturesGrid from '../../../components/ar-automation/FeaturesGrid.astro';
+import HubExpansion from '../../../components/ar-automation/HubExpansion.astro';
+import FAQ from '../../../components/ar-automation/FAQ.astro';
+import FinalCTA from '../../../components/ar-automation/FinalCTA.astro';
+import { arPages } from '../../../content/arabicPages';
+import { makeServiceStructuredData } from '../../../lib/schema';
+
+const page = arPages.arCollections;
+const site = Astro.site || new URL('https://binizam.com');
+const structuredData = makeServiceStructuredData({
+  site,
+  path: '/ar/ar-collections#service',
+  name: 'أتمتة تحصيل الذمم المدينة',
+  serviceType: 'أتمتة تحصيل الذمم المدينة',
+  description: page.seo.description,
+  areaServed: 'GCC',
+  inLanguage: 'ar'
+});
+---
+
+<Layout title={page.seo.title} description={page.seo.description} structuredData={structuredData} lang="ar">
+  <Navbar locale="ar" />
+
+  <main class="z-10 relative flex-grow flex flex-col">
+    <Hero locale="ar" />
+    <FeaturesGrid />
+    <HubExpansion />
+    <FAQ />
+    <FinalCTA />
+  </main>
+
+  <Footer locale="ar" />
+</Layout>

@@ -2,37 +2,76 @@
 import Button from './ui/Button.astro';
 import ListItem from './ui/ListItem.astro';
 import HeroVisualizer from './HeroVisualizer.astro';
+import { getLocaleFromPath, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale || getLocaleFromPath(Astro.url.pathname);
+const isAr = locale === 'ar';
+const copy = isAr ? {
+  titleStart: 'أنظمة سير عمل داخلية ',
+  titleHighlight: 'لفرق المالية والعمليات',
+  paragraphs: [
+    'تبني بنظام أنظمة سير عمل داخلية منظّمة وقابلة للتتبع للشركات في الخليج التي تحتاج إلى قوائم عمل، موافقات، مطابقة وتسوية، استثناءات، وسجل تدقيق عبر الأدوات التي تستخدمها بالفعل.',
+    'نعمل حول ERP، الملفات البنكية، الجداول، البريد، والأنظمة الداخلية حتى يتوقف الفريق عن مطاردة الحالة ويبدأ في تشغيل سير عمل واضح.'
+  ],
+  bullets: [
+    { icon: 'solar:global-linear', text: 'تنفيذ خليجي أولًا. العربية والإنجليزية.' },
+    { icon: 'solar:code-circle-linear', text: 'بدون عرض مبيعات مطوّل، فقط فحص ملاءمة قصير مع مهندس.' }
+  ],
+  primary: { href: '/ar/contact', label: 'تحدّث مع مهندس' },
+  secondary: { href: '/ar/ar-collections', label: 'استكشف تحصيل الذمم المدينة' },
+  smallLine: 'رد خلال يوم إلى يومي عمل · فحص ملاءمة خلال 15–20 دقيقة'
+} : {
+  titleStart: 'Workflow systems for ',
+  titleHighlight: 'finance and operations teams',
+  paragraphs: [
+    'Binizam builds governed internal workflow systems for GCC companies that need queues, approvals, reconciliation, exceptions, and audit trails across the tools they already use.',
+    'We work around your ERP, bank files, spreadsheets, inboxes, and internal systems, so teams stop chasing status and start running clear workflow state.'
+  ],
+  bullets: [
+    { icon: 'solar:global-linear', text: 'GCC-first delivery. Arabic and English.' },
+    { icon: 'solar:code-circle-linear', text: 'No sales deck — just a short fit check with an engineer.' }
+  ],
+  primary: { href: '/contact', label: 'Talk to an engineer' },
+  secondary: { href: '/ar-collections', label: 'Explore AR collections' },
+  smallLine: 'Reply in 1–2 business days • 15–20 min fit check.'
+};
 ---
 
 <section class="min-h-0 sm:min-h-[90vh] flex max-w-6xl mx-auto pt-32 sm:pt-48 px-6 pb-12 sm:pb-24 items-center">
   <div class="grid grid-cols-1 xl:grid-cols-12 gap-16 w-full items-center">
     
-    <div class="z-20 relative order-1 xl:col-span-6 flex flex-col items-center xl:items-start text-center xl:text-left">
+    <div class={`z-20 relative order-1 xl:col-span-6 flex flex-col items-center ${isAr ? 'xl:items-end xl:text-right' : 'xl:items-start xl:text-left'} text-center`} dir={isAr ? 'rtl' : 'ltr'}>
       <h1 class="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.1] mb-6 reveal">
-        <span class="text-primary dark:text-stone-50">Workflow systems for </span>
-        <span class="bg-clip-text text-transparent bg-gradient-to-br from-amber-700 to-amber-500">finance and operations teams.</span>
+        <span class="text-primary dark:text-stone-50">{copy.titleStart}</span>
+        <span class="bg-clip-text text-transparent bg-gradient-to-br from-amber-700 to-amber-500">{copy.titleHighlight}</span>
       </h1>
       
       <p class="dark:text-stone-400 leading-relaxed text-lg font-normal text-stone-600 mb-8 reveal delay-100 max-w-lg">
-        Binizam delivers governed workflow systems and automation across your stack, so finance and ops teams run a clear queue with approvals and traceable outcomes.
+        {copy.paragraphs[0]}
+      </p>
+      <p class="dark:text-stone-400 leading-relaxed text-base font-normal text-stone-600 mb-8 reveal delay-100 max-w-lg">
+        {copy.paragraphs[1]}
       </p>
       
-      <div class="space-y-3 mb-8 w-full flex flex-col items-center xl:items-start">
-        <ListItem icon="solar:global-linear" delay="delay-200">
-          GCC-first delivery. Arabic and English.
-        </ListItem>
-        <ListItem icon="solar:code-circle-linear" delay="delay-200">
-          No sales deck — just a short fit check with an engineer.
-        </ListItem>
+      <div class={`space-y-3 mb-8 w-full flex flex-col items-center ${isAr ? 'xl:items-end' : 'xl:items-start'}`}>
+        {copy.bullets.map((bullet) => (
+          <ListItem icon={bullet.icon} delay="delay-200">
+            {bullet.text}
+          </ListItem>
+        ))}
       </div>
       
-      <div class="space-y-6 mt-8 reveal delay-300 w-full flex flex-col items-center xl:items-start">
-        <div class="flex flex-col sm:flex-row gap-4 justify-center xl:justify-start w-full">
-          <Button href="/contact/" variant="primary">Talk to an engineer</Button>
-          <Button href="/ar-collections/" variant="secondary">Explore AR collections</Button>
+      <div class={`space-y-6 mt-8 reveal delay-300 w-full flex flex-col items-center ${isAr ? 'xl:items-end' : 'xl:items-start'}`}>
+        <div class={`flex flex-col sm:flex-row gap-4 justify-center ${isAr ? 'xl:justify-end' : 'xl:justify-start'} w-full`}>
+          <Button href={copy.primary.href} variant="primary">{copy.primary.label}</Button>
+          <Button href={copy.secondary.href} variant="secondary">{copy.secondary.label}</Button>
         </div>
         <p class="text-xs font-mono text-stone-500 dark:text-stone-500 leading-relaxed">
-          Reply in 1–2 business days • 15–20 min fit check.
+          {copy.smallLine}
         </p>
       </div>
     </div>
@@ -40,7 +79,7 @@ import HeroVisualizer from './HeroVisualizer.astro';
     <div class="hidden sm:flex order-2 xl:col-span-6 justify-center xl:justify-end items-center w-full min-w-0">
       <div class="w-full max-w-[30rem] sm:max-w-md xl:max-w-none">
          <div class="w-full h-auto transition-all duration-500 scale-100 origin-center xl:origin-right">
-            <HeroVisualizer />
+            <HeroVisualizer locale={locale} />
          </div>
       </div>
     </div>

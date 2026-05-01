@@ -3,43 +3,82 @@ import BentoCard from './BentoCard.astro';
 
 const deliverables = [
   {
-    title: "Worklists and operational UIs (Retool-first)",
+    title: "Worklists and operational UIs",
     icon: "solar:list-check-linear",
     delay: "delay-100",
+    text: "Retool-first internal apps for operators, managers, and reviewers.",
     items: [
-      "Prioritized queues and case views with clear next actions",
-      "Manager exception dashboards and approval views",
-      "Admin tools for controlled changes (roles, rules, templates)"
+      "Prioritized queues and case views",
+      "Clear next actions and ownership",
+      "Manager review screens",
+      "Admin tools for rules, roles, and templates",
+      "Filters by team, status, priority, and exception type"
     ]
   },
   {
-    title: "Controlled automation",
-    icon: "solar:bolt-linear",
+    title: "Workflow state",
+    icon: "solar:database-linear",
     delay: "delay-200",
+    text: "Durable workflow state that does not disappear into spreadsheets, inboxes, or private notes.",
     items: [
-      "Approvals for sensitive outcomes",
-      "Reminders and escalation paths with accountability",
-      "Scheduled jobs for routine operations (syncs, checks, notifications)"
+      "Open, blocked, approved, rejected, escalated, and completed states",
+      "Owner and timestamp tracking",
+      "Required fields for sensitive steps",
+      "Status history for each workflow item",
+      "Reporting based on real workflow events"
     ]
   },
   {
-    title: "Integrations + reconciliation",
-    icon: "solar:link-circle-linear",
+    title: "Approvals and exception handling",
+    icon: "solar:shield-check-linear",
     delay: "delay-100",
+    text: "Controlled paths for actions that need review, evidence, or management visibility.",
     items: [
-      "APIs, webhooks, and scheduled syncs to connect your systems",
-      "Reconciliation checks to detect drift (“expected vs actual”)",
-      "Exception routing with clear resolution steps and ownership"
+      "Approval queues",
+      "Escalation rules",
+      "Override tracking",
+      "Reason codes",
+      "Audit logs for sensitive decisions"
     ]
   },
   {
-    title: "Workflow state + reporting you can trust",
-    icon: "solar:chart-2-linear",
+    title: "Integrations and reconciliation",
+    icon: "solar:link-circle-linear",
     delay: "delay-200",
+    text: "Practical integrations across your existing stack, with checks that surface drift before it becomes invisible.",
     items: [
-      "Durable workflow state tied to real events (not spreadsheets)",
-      "Operational reporting and metrics based on workflow actions",
-      "Audit trails for key decisions, changes, and overrides"
+      "ERP/accounting data",
+      "Bank files and payment records",
+      "CRM or operational systems",
+      "APIs, webhooks, and scheduled syncs",
+      "Reconciliation checks and exception routing"
+    ]
+  },
+  {
+    title: "Reporting and manager visibility",
+    icon: "solar:chart-2-linear",
+    delay: "delay-100",
+    text: "Workflow reporting that shows what is actually happening, not just what sits in the ledger.",
+    items: [
+      "Queue counts",
+      "Aging by workflow state",
+      "Blocked items",
+      "Reviewer activity",
+      "Escalations",
+      "Exceptions by reason code"
+    ]
+  },
+  {
+    title: "Audit trails",
+    icon: "solar:document-text-linear",
+    delay: "delay-200",
+    text: "Traceability for key actions, corrections, approvals, and overrides.",
+    items: [
+      "Who did what",
+      "When it happened",
+      "What changed",
+      "Why it changed",
+      "Which workflow item it affected"
     ]
   }
 ];
@@ -51,6 +90,7 @@ const deliverables = [
   <div class="grid md:grid-cols-2 gap-6">
     {deliverables.map(card => (
       <BentoCard title={card.title} icon={card.icon} delay={card.delay}>
+        <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed mb-5">{card.text}</p>
         <ul class="space-y-3.5 pl-1">
           {card.items.map(item => (
             <li class="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-400">
